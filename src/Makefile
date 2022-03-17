@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/03/17 14:58:44 by enijakow         ###   ########.fr        #
+#    Updated: 2022/03/17 15:33:12 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ EXECUTABLE = ./cub3d
 
 HEADERS = \
 include/cub_ext.h \
+include/cub_gfx.h \
 include/cub.h \
 utils/utils.h \
 utils/stringbuilder/stringbuilder.h
