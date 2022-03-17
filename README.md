@@ -53,7 +53,7 @@ if the MAP is NOT surrounded by walls (1) it should return an error
 
 
 EXAMPLE OF .cub file
-
+```
 NO ./path_to_north_texture
 SO ./path_to_south_texture
 WE ./path_to_west_texture
@@ -62,7 +62,6 @@ EA ./path_to_east_texture
 F	37,100,0
 C	37,30,0
 
-```
 		1111111111111111111111111
 		1000000000110000000000001
 		1011000001110000000000001
