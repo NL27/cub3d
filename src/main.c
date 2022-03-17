@@ -6,33 +6,34 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/17 14:50:59 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:31:15 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub.h"
-#include "utils/stringbuilder/stringbuilder.h"
+#include "utils/utils.h"
 
-void	test()
+
+void	cub_main(char *config_file)
 {
-	char			*str;
-	t_stringbuilder	builder;
+	char	*configuration;
 
-	stringbuilder_create(&builder);
-	stringbuilder_append_char(&builder, 'h');
-	stringbuilder_append_char(&builder, 'a');
-	stringbuilder_append_str(&builder, "llo welt!");
-	str = stringbuilder_finalize(&builder);
-	stringbuilder_destroy(&builder);
-	printf("Result is: %s\n", str);
-	free(str);
+	configuration = utils_read_file(config_file);
+	if (configuration == NULL)
+		printf("File not found!\n");
+	else
+	{
+		// TODO: Create a parser and process the file!
+	}
 }
 
-int	main(int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
-	(void) argc;
-	(void) argv;
-	printf("This is cub3d!\n");
-	test();
+	if (argc == 2)
+		cub_main(argv[1]);
+	else
+	{
+		printf("Error: Arguments!\n");
+	}
 	return (0);
 }
