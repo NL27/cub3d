@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/03/17 14:48:28 by enijakow         ###   ########.fr        #
+#    Updated: 2022/03/17 14:58:44 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ utils/stringbuilder/stringbuilder.h
 
 SOURCES = \
 utils/memcpy.c \
+utils/read_file.c \
 utils/stringbuilder/stringbuilder.c \
 main.c
 
