@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_gfx.h                                          :+:      :+:    :+:   */
+/*   cub_math.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/17 17:23:56 by enijakow         ###   ########.fr       */
+/*   Created: 2022/03/17 17:22:58 by enijakow          #+#    #+#             */
+/*   Updated: 2022/03/17 17:26:14 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_GFX_H
-# define CUB_GFX_H
+#ifndef CUB_MATH_H
+# define CUB_MATH_H
 
-# include "cub_ext.h"
-# include "cub_math.h"
+typedef float	t_fl;
 
-typedef unsigned int	t_rgb;
-
-typedef struct s_tex
+typedef struct s_vec2i
 {
-}	t_tex;
+	int	x;
+	int	y;
+}	t_vec2i;
 
-t_rgb			tex_at(t_tex *tex, t_fl x, t_fl y);
-
-typedef struct s_screen
+typedef struct s_vec2
 {
-}	t_screen;
+	t_fl	x;
+	t_fl	y;
+}	t_vec2;
 
-unsigned int	screen_get_width(t_screen *screen);
-unsigned int	screen_get_height(t_screen *screen);
-void			screen_put(t_screen *screen, int x, int y, t_rgb color);
+typedef struct s_vec2_and_angle
+{
+	t_vec2	vec;
+	t_fl	angle;
+};
 
 #endif
