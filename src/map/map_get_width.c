@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:34:30 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/21 14:35:09 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:08:19 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 unsigned int	map_get_width(t_map *map)
 {
-	(void) map;
-	return (0);
+	return (map->width);
 }
