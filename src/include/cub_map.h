@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/23 13:53:34 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:56:43 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ unsigned int	map_get_height(t_map *map);
 
 bool	map_check_inbounds(t_map *map, unsigned int x, unsigned int y);
 
-void	map_resize(t_map *map, unsigned int w, unsigned int h);
+bool	map_resize(t_map *map, unsigned int w, unsigned int h);
 
 t_block	map_at(t_map *map, unsigned int x, unsigned int y);
 void	map_put(t_map *map, unsigned int x, unsigned int y, t_block block);
