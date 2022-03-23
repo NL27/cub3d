@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_create.c                                       :+:      :+:    :+:   */
+/*   map_check_inbounds.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 14:33:22 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/23 13:50:27 by enijakow         ###   ########.fr       */
+/*   Created: 2022/03/23 13:51:43 by enijakow          #+#    #+#             */
+/*   Updated: 2022/03/23 13:53:06 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub_map.h"
 
-void	map_create(t_map *map)
+bool	map_check_inbounds(t_map *map, unsigned int x, unsigned int y)
 {
-	map->width = 0;
-	map->height = 0;
-	map->blocks = NULL;
+	return ((x >= 0) && (y >= 0)
+			&& (x < map_get_width(map)) && (y < map_get_height(map)));
 }

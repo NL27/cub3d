@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/03/21 15:35:56 by enijakow         ###   ########.fr        #
+#    Updated: 2022/03/23 13:52:57 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ utils/stringbuilder/stringbuilder.h
 
 SOURCES = \
 map/map_at.c \
+map/map_check_inbounds.c \
 map/map_create.c \
 map/map_destroy.c \
 map/map_get_height.c \

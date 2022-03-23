@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:33:22 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/21 14:34:01 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:50:40 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	map_destroy(t_map *map)
 {
-	(void) map;
+	if (map->blocks != NULL)
+		free(map->blocks);
 }
