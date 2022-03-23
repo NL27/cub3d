@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/03/23 13:52:57 by enijakow         ###   ########.fr        #
+#    Updated: 2022/03/23 14:44:42 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ map/map_get_height.c \
 map/map_get_width.c \
 map/map_put.c \
 map/map_resize.c \
+map/map_validate.c \
 utils/memcpy.c \
 utils/read_file.c \
 utils/stringbuilder/stringbuilder.c \

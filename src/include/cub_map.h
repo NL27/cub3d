@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/23 14:16:35 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:45:22 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,16 @@ typedef struct s_map
 	t_block	*blocks;
 }	t_map;
 
+bool	map_check_inbounds(t_map *map, int x, int y);
+bool	map_resize(t_map *map, int w, int h);
+
 void	map_create(t_map *map);
 void	map_destroy(t_map *map);
 
 int	map_get_width(t_map *map);
 int	map_get_height(t_map *map);
 
-bool	map_check_inbounds(t_map *map, int x, int y);
-
-bool	map_resize(t_map *map, int w, int h);
-
 t_block	map_at(t_map *map, int x, int y);
 void	map_put(t_map *map, int x, int y, t_block block);
+
+bool	map_validate(t_map *map);

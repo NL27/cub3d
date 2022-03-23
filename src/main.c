@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/23 14:13:02 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:46:47 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	test()
 	map_put(&map, 5, 7, BLOCK_WALL);
 	map_put(&map, 15, 12, BLOCK_WALL);
 	map_put(&map, 3, 3, BLOCK_WALL);
-	for (unsigned int y = 0; y < map_get_height(&map); y++)
+	for (int y = 0; y < map_get_height(&map); y++)
 	{
-		for (unsigned int x = 0; x < map_get_width(&map); x++)
+		for (int x = 0; x < map_get_width(&map); x++)
 		{
 			switch (map_at(&map, x, y))
 			{
@@ -52,7 +52,7 @@ void	test()
 		}
 		putchar('\n');
 	}
-	printf("Testing ended! %u %u\n", map_get_width(&map), map_get_height(&map));
+	printf("Testing ended! %u %u %d\n", map_get_width(&map), map_get_height(&map), map_validate(&map));
 	map_destroy(&map);
 }
 
