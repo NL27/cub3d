@@ -6,13 +6,13 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:34:30 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/23 14:08:19 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:14:49 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub_map.h"
 
-unsigned int	map_get_width(t_map *map)
+int	map_get_width(t_map *map)
 {
 	return (map->width);
 }
