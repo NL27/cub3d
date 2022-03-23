@@ -6,11 +6,12 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/23 14:45:22 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:50:52 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub_ext.h"
+#include "../include/cub_math.h"
 
 typedef enum e_block
 {
@@ -34,10 +35,12 @@ bool	map_resize(t_map *map, int w, int h);
 void	map_create(t_map *map);
 void	map_destroy(t_map *map);
 
-int	map_get_width(t_map *map);
-int	map_get_height(t_map *map);
+int		map_get_width(t_map *map);
+int		map_get_height(t_map *map);
 
 t_block	map_at(t_map *map, int x, int y);
 void	map_put(t_map *map, int x, int y, t_block block);
 
 bool	map_validate(t_map *map);
+
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_vec2i *hit);

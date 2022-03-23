@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:22:58 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/17 17:26:14 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:49:17 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ typedef struct s_vec2_and_angle
 {
 	t_vec2	vec;
 	t_fl	angle;
-};
+}	t_vec2_and_angle;
 
 #endif
