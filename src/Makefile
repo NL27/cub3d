@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/03/24 15:35:36 by enijakow         ###   ########.fr        #
+#    Updated: 2022/03/24 15:55:54 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,3 +67,6 @@ clean:
 .phony: fclean
 fclean: clean
 	- $(RM) $(EXECUTABLE)
+
+.phony: re
+re: fclean all

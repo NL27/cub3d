@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:07:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:31:04 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:56:55 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ bool	rgb_is_black(t_rgb rgb);
 char	transform(t_rgb color)
 {
 	if (rgb_is_black(color))
-		return ('@');
-	return ('.');
+		return ('.');
+	return ('#');
 }
 
 void	screen_blit(t_screen *screen)

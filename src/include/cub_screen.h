@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:47:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:53:56 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:55:36 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include "../include/cub_map.h"
 #include "../include/cub_math.h"
 
-#define SCREEN_WIDTH 80
-#define SCREEN_HEIGHT 24
+#define SCREEN_WIDTH (80*3)
+#define SCREEN_HEIGHT (24*3)
 
 typedef struct s_screen
 {
