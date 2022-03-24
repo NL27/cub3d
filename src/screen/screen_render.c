@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 16:05:04 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:15:32 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	screen_draw_slice(t_screen *screen, int x, int yup, int ydown, t_rgb color)
 {
-	unsigned int	y;
+	int	y;
 
 	y = 0;
-	while (y < screen_get_height(screen))
+	while (y < (int) screen_get_height(screen))
 	{
-		if (y >= (unsigned int) yup && y <= (unsigned int) ydown)
-			screen_put(screen, x, y, color);
+		if (y >= yup && y <= ydown)
+			screen_put(screen, (unsigned int) x, (unsigned int) y, color);
 		else
-			screen_put(screen, x, y, RGB_BLACK);
+			screen_put(screen, (unsigned int) x, (unsigned int) y, RGB_BLACK);
 		y = y + 1;
 	}
 }
