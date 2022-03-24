@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/03/23 14:44:42 by enijakow         ###   ########.fr        #
+#    Updated: 2022/03/24 14:23:13 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ utils/reader/reader.h \
 utils/stringbuilder/stringbuilder.h
 
 SOURCES = \
+map/block_is_solid.c \
 map/map_at.c \
 map/map_check_inbounds.c \
 map/map_create.c \
@@ -30,6 +31,7 @@ map/map_destroy.c \
 map/map_get_height.c \
 map/map_get_width.c \
 map/map_put.c \
+map/map_raycast.c \
 map/map_resize.c \
 map/map_validate.c \
 utils/memcpy.c \
