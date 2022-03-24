@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:44:39 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:03:04 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 		hit->dist = (vars.side_dist_y - vars.delta_dist_y);
 	else
 		hit->dist = (vars.side_dist_x - vars.delta_dist_x);
+	hit->hit_block_x = vars.x_pos;
+	hit->hit_block_y = vars.y_pos;
 	return (true);
 }
 

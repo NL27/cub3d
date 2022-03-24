@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:56:20 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:59:27 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	test()
 		putchar('\n');
 	}
 	t_vec2_and_angle pos;
-	pos.vec.x = 9;
+	pos.vec.x = 2;
 	pos.vec.y = 2;
-	pos.angle = -3.141592f / 4.0f;
+	pos.angle = 0;
 	screen_render(&screen, &map, pos);
 	screen_blit(&screen);
 	printf("Testing ended! %u %u %d\n", map_get_width(&map), map_get_height(&map), map_validate(&map));

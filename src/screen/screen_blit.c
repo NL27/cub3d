@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:07:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:56:55 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:05:14 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ bool	rgb_is_black(t_rgb rgb);
 
 char	transform(t_rgb color)
 {
-	if (rgb_is_black(color))
+	if (color == RGB_BLACK)
 		return ('.');
+	else if (color == RGB_GRAY)
+		return ('!');
 	return ('#');
 }
 

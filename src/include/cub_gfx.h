@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:33:08 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:03:22 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef unsigned int	t_rgb;
 
 #define RGB_BLACK 0
 #define RGB_WHITE 0xffffff
+#define RGB_GRAY  0xaaaaaa
 
 bool	rgb_is_black(t_rgb rgb);
 
