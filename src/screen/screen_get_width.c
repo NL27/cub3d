@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_gfx.h                                          :+:      :+:    :+:   */
+/*   screen_get_width.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:33:08 by enijakow         ###   ########.fr       */
+/*   Created: 2022/03/24 14:49:07 by enijakow          #+#    #+#             */
+/*   Updated: 2022/03/24 15:31:23 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_GFX_H
-# define CUB_GFX_H
+#include "../include/cub_screen.h"
 
-# include "cub_ext.h"
-# include "cub_math.h"
-
-typedef unsigned int	t_rgb;
-
-#define RGB_BLACK 0
-#define RGB_WHITE 0xffffff
-
-bool	rgb_is_black(t_rgb rgb);
-
-
-typedef struct s_tex
+unsigned int	screen_get_width(t_screen *screen)
 {
-}	t_tex;
-
-t_rgb			tex_at(t_tex *tex, t_fl x, t_fl y);
-
-#endif
+	(void) screen;
+	return (SCREEN_WIDTH);
+}

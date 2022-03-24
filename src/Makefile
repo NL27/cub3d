@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/03/24 14:23:13 by enijakow         ###   ########.fr        #
+#    Updated: 2022/03/24 15:33:22 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ utils/reader/reader.h \
 utils/stringbuilder/stringbuilder.h
 
 SOURCES = \
+gfx/rgb_is_black.c \
 map/block_is_solid.c \
 map/map_at.c \
 map/map_check_inbounds.c \
@@ -34,6 +35,12 @@ map/map_put.c \
 map/map_raycast.c \
 map/map_resize.c \
 map/map_validate.c \
+screen/screen_blit.c \
+screen/screen_create.c \
+screen/screen_destroy.c \
+screen/screen_get_height.c \
+screen/screen_get_width.c \
+screen/screen_put.c \
 utils/memcpy.c \
 utils/read_file.c \
 utils/stringbuilder/stringbuilder.c \

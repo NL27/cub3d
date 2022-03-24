@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 14:33:38 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:45:56 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	test()
 
 	printf("Testing begins!\n");
 	map_create(&map);
-	//map_resize(&map, 20, 20);
 	for (int y = 0; y < 12; y++)
 	{
 		for (int x = 0; x < 12; x++)
@@ -57,6 +56,13 @@ void	test()
 		}
 		putchar('\n');
 	}
+	t_vec2_and_angle pos;
+	pos.vec.x = 2;
+	pos.vec.y = 2;
+	pos.angle = -3.141592f / 4.0f;
+	t_vec2i hit;
+	map_raycast(&map, pos, &hit);
+	printf("Hit at %d %d\n", hit.x, hit.y);
 	printf("Testing ended! %u %u %d\n", map_get_width(&map), map_get_height(&map), map_validate(&map));
 	map_destroy(&map);
 }

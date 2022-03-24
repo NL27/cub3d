@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_gfx.h                                          :+:      :+:    :+:   */
+/*   screen_put.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:33:08 by enijakow         ###   ########.fr       */
+/*   Created: 2022/03/24 14:58:16 by enijakow          #+#    #+#             */
+/*   Updated: 2022/03/24 15:31:46 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_GFX_H
-# define CUB_GFX_H
+#include "../include/cub_screen.h"
 
-# include "cub_ext.h"
-# include "cub_math.h"
-
-typedef unsigned int	t_rgb;
-
-#define RGB_BLACK 0
-#define RGB_WHITE 0xffffff
-
-bool	rgb_is_black(t_rgb rgb);
-
-
-typedef struct s_tex
+void	screen_put(t_screen *screen, unsigned int x, unsigned int y, t_rgb color)
 {
-}	t_tex;
-
-t_rgb			tex_at(t_tex *tex, t_fl x, t_fl y);
-
-#endif
+	if (x >= 0 && y >= 0 && x < screen_get_width(screen) && y < screen_get_height(screen))
+		screen->text[x][y] = color;
+}
