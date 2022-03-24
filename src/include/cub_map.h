@@ -6,12 +6,15 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 14:41:42 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:53:36 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub_ext.h"
-#include "../include/cub_math.h"
+#ifndef CUB_MAP_H
+# define CUB_MAP_H
+
+# include "../include/cub_ext.h"
+# include "../include/cub_math.h"
 
 typedef enum e_block
 {
@@ -29,6 +32,11 @@ typedef struct s_map
 	t_block	*blocks;
 }	t_map;
 
+typedef struct s_hit
+{
+	t_fl	dist;
+}	t_hit;
+
 bool	map_check_inbounds(t_map *map, int x, int y);
 bool	map_resize(t_map *map, int w, int h);
 
@@ -43,4 +51,6 @@ void	map_put(t_map *map, int x, int y, t_block block);
 
 bool	map_validate(t_map *map);
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_vec2i *hit);
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit);
+
+#endif

@@ -6,12 +6,13 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 14:45:56 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:53:14 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub.h"
 #include "include/cub_map.h"
+#include "include/cub_screen.h"
 #include "utils/utils.h"
 
 
@@ -30,9 +31,11 @@ void	cub_main(char *config_file)
 
 void	test()
 {
-	t_map	map;
+	t_map		map;
+	t_screen	screen;
 
 	printf("Testing begins!\n");
+	screen_create(&screen);
 	map_create(&map);
 	for (int y = 0; y < 12; y++)
 	{
@@ -60,11 +63,10 @@ void	test()
 	pos.vec.x = 2;
 	pos.vec.y = 2;
 	pos.angle = -3.141592f / 4.0f;
-	t_vec2i hit;
-	map_raycast(&map, pos, &hit);
-	printf("Hit at %d %d\n", hit.x, hit.y);
+	screen_blit(&screen);
 	printf("Testing ended! %u %u %d\n", map_get_width(&map), map_get_height(&map), map_validate(&map));
 	map_destroy(&map);
+	screen_destroy(&screen);
 }
 
 int		main(int argc, char *argv[])

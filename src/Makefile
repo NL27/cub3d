@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/03/24 15:33:22 by enijakow         ###   ########.fr        #
+#    Updated: 2022/03/24 15:35:36 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ screen/screen_destroy.c \
 screen/screen_get_height.c \
 screen/screen_get_width.c \
 screen/screen_put.c \
+screen/screen_render.c \
 utils/memcpy.c \
 utils/read_file.c \
 utils/stringbuilder/stringbuilder.c \

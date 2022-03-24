@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 14:41:26 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:44:39 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 typedef struct s_rayvars
 {
+	t_fl	x_start;
+	t_fl	y_start;
 	int		x_pos;
 	int		y_pos;
 	int		step_x;
@@ -28,6 +30,8 @@ typedef struct s_rayvars
 
 static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos)
 {
+	vars->x_start = pos.vec.x;
+	vars->y_start = pos.vec.y;
 	vars->x_pos = (int) pos.vec.x;
 	vars->y_pos = (int) pos.vec.y;
 	vars->ray_dir_x = cos(pos.angle);
@@ -63,7 +67,7 @@ static bool	is_hit(t_block block)
 	return (block == BLOCK_NOTHING || block_is_solid(block));
 }
 
-static bool	map_raycast_core(t_map *map, t_vec2i *hit, t_rayvars vars)
+static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 {
 	bool	side;
 	
@@ -83,12 +87,14 @@ static bool	map_raycast_core(t_map *map, t_vec2i *hit, t_rayvars vars)
 			side = true;
 		}
 	}
-	hit->x = vars.x_pos;
-	hit->y = vars.y_pos;
+	if (side)
+		hit->dist = (vars.side_dist_y - vars.delta_dist_y);
+	else
+		hit->dist = (vars.side_dist_x - vars.delta_dist_x);
 	return (true);
 }
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_vec2i *hit)
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit)
 {
 	t_rayvars	vars;
 
