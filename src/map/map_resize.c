@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:35:52 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/23 14:15:37 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:38:24 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,15 @@ bool	map_resize(t_map *map, int w, int h)
 			xx = 0;
 			while (xx < w)
 			{
-				if (map_check_inbounds(map, xx, yy))
-					new_blocks[xx + yy * w] = map->blocks[xx + yy * map_get_width(map)];
-				else
-					new_blocks[xx + yy * w] = BLOCK_NOTHING;
+				new_blocks[xx + yy * w] = map_at(map, xx, yy);
 				xx = xx + 1;
 			}
 			yy = yy + 1;
 		}
-		map->width = w;
-		map->height = h;
 		if (map->blocks != NULL)
 			free(map->blocks);
+		map->width = w;
+		map->height = h;
 		map->blocks = new_blocks;
 	}
 	return (new_blocks != NULL);

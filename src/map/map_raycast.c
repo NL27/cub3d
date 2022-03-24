@@ -6,11 +6,9 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 14:22:52 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:41:26 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <math.h>
 
 #include "../include/cub_map.h"
 

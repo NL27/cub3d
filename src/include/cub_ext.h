@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:08:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/17 14:51:15 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:41:33 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <stdlib.h>
+# include <math.h>
 
 #endif

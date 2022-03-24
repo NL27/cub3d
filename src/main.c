@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/23 14:46:47 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:33:38 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,14 @@ void	test()
 
 	printf("Testing begins!\n");
 	map_create(&map);
-	map_put(&map, 5, 7, BLOCK_WALL);
-	map_put(&map, 15, 12, BLOCK_WALL);
-	map_put(&map, 3, 3, BLOCK_WALL);
+	//map_resize(&map, 20, 20);
+	for (int y = 0; y < 12; y++)
+	{
+		for (int x = 0; x < 12; x++)
+		{
+			map_put(&map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
+		}
+	}
 	for (int y = 0; y < map_get_height(&map); y++)
 	{
 		for (int x = 0; x < map_get_width(&map); x++)
