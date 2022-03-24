@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:59:27 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:08:23 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "include/cub_screen.h"
 #include "utils/utils.h"
 
+#include <unistd.h>
 
 void	cub_main(char *config_file)
 {
@@ -44,6 +45,8 @@ void	test()
 			map_put(&map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
 		}
 	}
+	map_put(&map, 8, 4, BLOCK_WALL);
+	map_put(&map, 8, 3, BLOCK_WALL);
 	for (int y = 0; y < map_get_height(&map); y++)
 	{
 		for (int x = 0; x < map_get_width(&map); x++)
@@ -63,8 +66,13 @@ void	test()
 	pos.vec.x = 2;
 	pos.vec.y = 2;
 	pos.angle = 0;
-	screen_render(&screen, &map, pos);
-	screen_blit(&screen);
+	while (true)
+	{
+		screen_render(&screen, &map, pos);
+		screen_blit(&screen);
+		pos.angle += 0.1;
+		sleep(1);
+	}
 	printf("Testing ended! %u %u %d\n", map_get_width(&map), map_get_height(&map), map_validate(&map));
 	map_destroy(&map);
 	screen_destroy(&screen);
