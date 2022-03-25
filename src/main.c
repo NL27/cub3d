@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 16:08:23 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:20:12 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	test()
 	{
 		screen_render(&screen, &map, pos);
 		screen_blit(&screen);
-		pos.angle += 0.1;
+		pos.angle -= 0.1;
 		sleep(1);
 	}
 	printf("Testing ended! %u %u %d\n", map_get_width(&map), map_get_height(&map), map_validate(&map));

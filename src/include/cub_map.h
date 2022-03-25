@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 16:02:40 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:09:23 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_hit
 	t_fl	dist;
 	int		hit_block_x;
 	int		hit_block_y;
+	t_fl	tex_x;
 }	t_hit;
 
 bool	map_check_inbounds(t_map *map, int x, int y);

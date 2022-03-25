@@ -6,27 +6,12 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/25 11:58:25 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:23:35 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub_map.h"
-
-typedef struct s_rayvars
-{
-	t_fl	x_start;
-	t_fl	y_start;
-	int		x_pos;
-	int		y_pos;
-	int		step_x;
-	int		step_y;
-	t_fl	ray_dir_x;
-	t_fl	ray_dir_y;
-	t_fl	side_dist_x;
-	t_fl	side_dist_y;
-	t_fl	delta_dist_x;
-	t_fl	delta_dist_y;
-}	t_rayvars;
+#include "map_internal.h"
 
 static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos)
 {
@@ -36,8 +21,6 @@ static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos)
 	vars->y_pos = (int) pos.vec.y;
 	vars->ray_dir_x = cos(pos.angle);
 	vars->ray_dir_y = -sin(pos.angle);
-	//vars->delta_dist_x = sqrt(1 + (vars->ray_dir_y * vars->ray_dir_y) / (vars->ray_dir_x * vars->ray_dir_x));
-	//vars->delta_dist_y = sqrt(1 + (vars->ray_dir_x * vars->ray_dir_x) / (vars->ray_dir_y * vars->ray_dir_y));
 	vars->delta_dist_x = fabs(1.0f / vars->ray_dir_x);
 	vars->delta_dist_y = fabs(1.0f / vars->ray_dir_y);
 	if (vars->ray_dir_x < 0)
@@ -88,9 +71,16 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 		}
 	}
 	if (side)
+	{
 		hit->dist = (vars.side_dist_y - vars.delta_dist_y);
+		hit->tex_x = vars.x_pos + hit->dist * vars.ray_dir_x;
+	}
 	else
+	{
 		hit->dist = (vars.side_dist_x - vars.delta_dist_x);
+		hit->tex_x = vars.y_pos + hit->dist * vars.ray_dir_y;
+	}
+	hit->tex_x = hit->tex_x - floorf(hit->tex_x);
 	hit->hit_block_x = vars.x_pos;
 	hit->hit_block_y = vars.y_pos;
 	return (true);

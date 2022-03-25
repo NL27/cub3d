@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/25 14:05:32 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:20:59 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos)
 		// TODO, FIXME, XXX: hit.dist being zero!
 		hit.dist = hit.dist * cos(((x / (t_fl) screen_get_width(screen)) - 0.5f) * fov);
 		wall_height = (1 / hit.dist) * screen_get_height(screen);
-		screen_draw_slice(screen, x, screen_get_height(screen) / 2 - wall_height / 2, screen_get_height(screen) / 2 + wall_height / 2, rgb_scale(((hit.hit_block_x % 2) == (hit.hit_block_y % 2)) ? RGB_WHITE : RGB_GRAY, 1 / hit.dist));
+		screen_draw_slice(screen, x, screen_get_height(screen) / 2 - wall_height / 2, screen_get_height(screen) / 2 + wall_height / 2, rgb_scale(((hit.hit_block_x % 2) == (hit.hit_block_y % 2)) ? RGB_WHITE : RGB_GRAY, hit.tex_x));
 		x = x + 1;
 	}
 }
