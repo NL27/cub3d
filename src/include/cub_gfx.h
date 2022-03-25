@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 16:03:22 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/25 14:03:38 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ typedef unsigned int	t_rgb;
 #define RGB_GRAY  0xaaaaaa
 
 bool	rgb_is_black(t_rgb rgb);
+
+t_rgb	rgb_create(int r, int g, int b);
+void	rgb_split(t_rgb rgb, int *r, int *g, int *b);
+t_rgb	rgb_scale(t_rgb rgb, t_fl scale);
 
 
 typedef struct s_tex
