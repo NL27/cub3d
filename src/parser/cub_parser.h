@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader_check_empty_line.c                          :+:      :+:    :+:   */
+/*   cub_parser.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 13:29:04 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/26 14:20:34 by nlenoch          ###   ########.fr       */
+/*   Created: 2022/03/25 17:00:24 by nlenoch           #+#    #+#             */
+/*   Updated: 2022/03/25 17:21:59 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reader.h"
+#ifndef CUB_PARSER_H
+# define CUB_PARSER_H
 
-bool	reader_check_empty_line(t_reader *reader)
+typedef struct s_parser
 {
-	reader_skip_whitespace(reader);
-	return (reader_check_newline(reader));
-}
+	
+}	t_parser;
+
+void	parser(t_map *map, t_reader *reader); // takes the reader & the map as input to output the map layout (calls map put in a loop)
+
+#endif
