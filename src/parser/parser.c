@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:09:28 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/26 17:36:50 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/03/27 18:24:18 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,52 +41,110 @@ if '1' -> map_put(BLOCK_WALL)
 if '0' -> map_put(BLOCK_AIR)
 if 'N' || 'S' || 'W' || 'E' -> startpoint direction
 
-void	parser(t_map *map, t_reader *reader)
+// Third Iteration
+
+void parser(t_map *map, t_reader *reader)
 {
 	char	*str;
-	int		*result;
-	
-	while (reader != '\0')
+	int		*result_r;
+	int		*result_g;
+	int		*result_b;
+	int		x;
+	int		y;
+
+	while(reader_has_more(reader))
 	{
-		if (reader == ' ' || reader == '\t' || reader == '\n')	// reader_skip_whitespace(reader) || reader_check_newline(reader);
-			reader_advance(reader);
-		if (reader_peeks(reader, NO) || reader_peeks(reader, SO) || reader_peeks(reader, WE) || reader_peeks(reader, EA))
+		while (reader_check_empty_line(reader))
 		{
 			reader_skip_whitespace(reader);
-			while (reader != '\n')	// !check_newline(reader);
+			if (reader_peeks(reader, NO) || reader_peeks(reader, SO) || reader_peeks(reader, WE) || reader_peeks(reader, EA))
 			{
-				// str = reader_read(reader);
+				reader_skip_whitespace(reader);
 				str = reader_create_on_string(reader, str);
 			}
-		}
-		else if (reader_peekc(reader, F) || reader_peekc(reader, C))
-		{
-			reader_skip_whitespace(reader);
-			while (reader != '\n')
+			else if (reader_peekc(reader, F) || reader_peeks(reader, C))
 			{
-				if (is_digit(reader))
-					result = reader_read_int(reader, result);
 				reader_skip_whitespace(reader);
-				if (reader == ',')
-				{
-					reader_skip_whitespace(reader);
-					result = reader_read_int(reader, result);
-				}
+				result_r = reader_read_int(reader, result_r);
+				reader_skip_whitespace(reader);
+				if (reader_peekc(reader, ','))
+					result_g = reader_read_int(reader, result_g);
+				reader_skip_whitespace(reader);
+				if (reader_peekc(reader, ',')
+					result_b = reader_read_int(reader, result_b);
 			}
 		}
+		y = 0;
 		while (map_validate(map))
 		{
-			if (reader_peekc(reader, ' '))
-				map_put(map, x, y, BLOCK_NOTHING);
-			else if (reader_peekc(reader, '1'))
-				map_put(map, x, y, BLOCK_WALL);
-			else if (reader_peekc(reader, '0'))
-				map_put(map, x, y, BLOCK_AIR);
-			else if (reader_peekc(reader, N) || reader_peekc(reader, S) || reader_peekc(reader, W) || reader_peekc(reader, E))
-				// put startpoint;
+			x = 0;
+			while (!reader_check_newline(reader))
+			{
+				if (reader_peekc(reader, ' ')
+					map_put(map, x, y, BLOCK_NOTHING);
+				else if (reader_peekc(reader, '1')
+					map_put(map, x, y, BLOCK_WALL);
+				else if (reader_peekc(reader, '0')
+					map_put(map, x, y, BLOCK_AIR);
+				else if (reader_peekc(reader, 'N') || reader_peekc(reader, 'S') || reader_peekc(reader, 'W') || reader_peekc(reader, 'E'))
+					map_start_direction(); // TODO:
+				x++;
+			}
+			y++;
 		}
 	}
 }
+
+// Second Iteration
+
+// void	parser(t_map *map, t_reader *reader)
+// {
+// 	char	*str;
+// 	int		*result;
+	
+// 	while (reader != '\0')
+// 	{
+// 		if (reader == ' ' || reader == '\t' || reader == '\n')	// reader_skip_whitespace(reader) || reader_check_newline(reader);
+// 			reader_advance(reader);
+// 		if (reader_peeks(reader, NO) || reader_peeks(reader, SO) || reader_peeks(reader, WE) || reader_peeks(reader, EA))
+// 		{
+// 			reader_skip_whitespace(reader);
+// 			while (reader != '\n')	// !check_newline(reader);
+// 			{
+// 				// str = reader_read(reader);
+// 				str = reader_create_on_string(reader, str);
+// 			}
+// 		}
+// 		else if (reader_peekc(reader, F) || reader_peekc(reader, C))
+// 		{
+// 			reader_skip_whitespace(reader);
+// 			while (reader != '\n')
+// 			{
+// 				if (is_digit(reader))
+// 					result = reader_read_int(reader, result);
+// 				reader_skip_whitespace(reader);
+// 				if (reader == ',')
+// 				{
+// 					reader_skip_whitespace(reader);
+// 					result = reader_read_int(reader, result);
+// 				}
+// 			}
+// 		}
+// 		while (map_validate(map))
+// 		{
+// 			if (reader_peekc(reader, ' '))
+// 				map_put(map, x, y, BLOCK_NOTHING);
+// 			else if (reader_peekc(reader, '1'))
+// 				map_put(map, x, y, BLOCK_WALL);
+// 			else if (reader_peekc(reader, '0'))
+// 				map_put(map, x, y, BLOCK_AIR);
+// 			else if (reader_peekc(reader, N) || reader_peekc(reader, S) || reader_peekc(reader, W) || reader_peekc(reader, E))
+// 				// put startpoint;
+// 		}
+// 	}
+// }
+
+// First try
 
 // void	parser(t_map *map, t_reader *reader)
 // {
@@ -119,7 +177,7 @@ void	parser(t_map *map, t_reader *reader)
 
 /*
 
-   F	37       ,100,0
+   F	3    7       ,100,0
 
 NO ./path_to_north_texture
 SO ./path_to_south_texture
