@@ -3,21 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   reader_read_int.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:35:33 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/22 15:32:52 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/03/28 18:14:30 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h>
+
 #include "reader.h"
 
-int	reader_read_int(t_reader *reader, int *result)
+bool	reader_read_uint(t_reader *reader, unsigned int *result)
 {
-	while (is_digit(reader) == true)
+	unsigned long	value;
+
+	value = 0;
+	while (reader_has_more(reader))
 	{
-		result = reader_peek(reader);
+		if (!is_digit(reader_peek(reader)))
+			break ;
+		value = 10 * value + reader_peek(reader) - '0';
+		if (value > INT_MAX)
+			return (false);
 		reader_advance(reader);
 	}
-	return (result);
+	*result = (unsigned int) value;
+	return (true);
 }
