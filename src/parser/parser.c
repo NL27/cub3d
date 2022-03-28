@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:09:28 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/28 17:55:34 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:57:15 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 #include "../include/cub_gfx.h"
 
 
-bool	parser_parse_rgb(t_reader *reader, t_rgb *rgb)
+bool	parser_parse_rgb(t_parser *parser, t_rgb *rgb)
 {
 	int		result_r;
 	int		result_g;
 	int		result_b;
 	
-	reader_skip_whitespace(reader);
-	if (!reader_read_int(reader, &result_r))
+	reader_skip_whitespace(parser->reader);
+	if (!reader_read_int(parser->reader, &result_r))
 		return (false);
-	reader_skip_whitespace(reader);
-	if (!reader_peeks(reader, ","))
+	reader_skip_whitespace(parser->reader);
+	if (!reader_peeks(parser->reader, ","))
 		return (false);
-	reader_skip_whitespace(reader);
-	if (!reader_read_int(reader, &result_g))
+	reader_skip_whitespace(parser->reader);
+	if (!reader_read_int(parser->reader, &result_g))
 		return (false);
-	reader_skip_whitespace(reader);
-	if (!reader_peeks(reader, ","))
+	reader_skip_whitespace(parser->reader);
+	if (!reader_peeks(parser->reader, ","))
 		return (false);
-	reader_skip_whitespace(reader);
-	if (!reader_read_int(reader, &result_b))
+	reader_skip_whitespace(parser->reader);
+	if (!reader_read_int(parser->reader, &result_b))
 		return (false);
-	reader_skip_whitespace(reader);
-	if (!reader_peeks(reader, "\n"))
+	reader_skip_whitespace(parser->reader);
+	if (!reader_peeks(parser->reader, "\n"))
 		return (false);
 	*rgb = rgb_create(result_r, result_g, result_b);
 	return (true);
