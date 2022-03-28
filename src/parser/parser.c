@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:09:28 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/27 18:24:18 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/03/28 17:41:00 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub_parser.h"
+#include "../utils/reader/reader.h"
 #include "../include/cub_map.h"
 
+/*
 while the file has not reached the end ('\0')
 
 check for empty lines & skip them (advance reader)
@@ -42,8 +43,22 @@ if '0' -> map_put(BLOCK_AIR)
 if 'N' || 'S' || 'W' || 'E' -> startpoint direction
 
 // Third Iteration
+*/
 
-void parser(t_map *map, t_reader *reader)
+bool	parser_parse_rgb(t_reader *reader, t_rgb *rgb)
+{
+	// TODO!
+	reader_skip_whitespace(reader);
+	result_r = reader_read_int(reader, result_r);
+	reader_skip_whitespace(reader);
+	if (reader_peekc(reader, ','))
+		result_g = reader_read_int(reader, result_g);
+	reader_skip_whitespace(reader);
+	if (reader_peekc(reader, ',')
+		result_b = reader_read_int(reader, result_b);
+}
+
+bool parser(t_map *map, t_reader *reader)
 {
 	char	*str;
 	int		*result_r;
@@ -51,47 +66,81 @@ void parser(t_map *map, t_reader *reader)
 	int		*result_b;
 	int		x;
 	int		y;
+	t_rgb	color;
 
-	while(reader_has_more(reader))
+	while (reader_has_more(reader))
 	{
-		while (reader_check_empty_line(reader))
+		x = reader_skip_whitespace(reader);
+		if (reader_peeks(reader, "\n"))
+			; // Do nothing
+		else if (reader_peeks(reader, "NO"))
 		{
 			reader_skip_whitespace(reader);
-			if (reader_peeks(reader, NO) || reader_peeks(reader, SO) || reader_peeks(reader, WE) || reader_peeks(reader, EA))
-			{
-				reader_skip_whitespace(reader);
-				str = reader_create_on_string(reader, str);
-			}
-			else if (reader_peekc(reader, F) || reader_peeks(reader, C))
-			{
-				reader_skip_whitespace(reader);
-				result_r = reader_read_int(reader, result_r);
-				reader_skip_whitespace(reader);
-				if (reader_peekc(reader, ','))
-					result_g = reader_read_int(reader, result_g);
-				reader_skip_whitespace(reader);
-				if (reader_peekc(reader, ',')
-					result_b = reader_read_int(reader, result_b);
-			}
+			str = reader_read_until_newline(reader, str);
+			// TODO: Set northern texture to the texture
 		}
-		y = 0;
-		while (map_validate(map))
+		// TODO: et cetera
+		else if (reader_peeks(reader, "F"))
+		{
+			if (parser_parse_color(reader, &color))
+				// TODO: Set floor color
+				;
+			else
+				return (false);
+			
+		}
+		else if (reader_peeks(reader, "C"))
+		{
+			if (parser_parse_color(reader, &color))
+				// TODO: Set ceiling color
+				;
+			else
+				return (false);
+			
+		}
+		else
+			break ;
+	}
+	y = 0;
+	while(reader_has_more(reader))
+	{
+		if (reader_peeks(reader, " "))
+			x++;
+		else if (reader_peeks(reader, "\n"))
 		{
 			x = 0;
-			while (!reader_check_newline(reader))
-			{
-				if (reader_peekc(reader, ' ')
-					map_put(map, x, y, BLOCK_NOTHING);
-				else if (reader_peekc(reader, '1')
-					map_put(map, x, y, BLOCK_WALL);
-				else if (reader_peekc(reader, '0')
-					map_put(map, x, y, BLOCK_AIR);
-				else if (reader_peekc(reader, 'N') || reader_peekc(reader, 'S') || reader_peekc(reader, 'W') || reader_peekc(reader, 'E'))
-					map_start_direction(); // TODO:
-				x++;
-			}
 			y++;
 		}
+		else if (reader_peeks(reader, "0"))
+		{
+			map_put(map, x++, y, BLOCK_AIR);
+		}
+		else if (reader_peeks(reader, "1"))
+		{
+			map_put(map, x++, y, BLOCK_WALL);
+		}
+		else if (reader_peeks(reader, "N"))
+		{
+			// TODO: Set spawn position and direction
+			map_put(map, x++, y, BLOCK_AIR);
+		}
+		else if (reader_peeks(reader, "S"))
+		{
+			// TODO: Set spawn position and direction
+			map_put(map, x++, y, BLOCK_AIR);
+		}
+		else if (reader_peeks(reader, "E"))
+		{
+			// TODO: Set spawn position and direction
+			map_put(map, x++, y, BLOCK_AIR);
+		}
+		else if (reader_peeks(reader, "W"))
+		{
+			// TODO: Set spawn position and direction
+			map_put(map, x++, y, BLOCK_AIR);
+		}
+		else
+			return (false);
 	}
 }
 
@@ -177,15 +226,14 @@ void parser(t_map *map, t_reader *reader)
 
 /*
 
-   F	3    7       ,100,0
+   F	37       ,100,0
 
-NO ./path_to_north_texture
+NO       ./path_to_north_texture
 SO ./path_to_south_texture
 WE ./path_to_west_texture
 EA ./path_to_east_texture
 
 C	37   ,     30    ,    0
-
 		1111111111111111111111111
 		1000000000110000000000001
 		1011000001110000000000001
@@ -195,7 +243,7 @@ C	37   ,     30    ,    0
 11110111111111011100000010001
 11110111111111011101010010001
 11000000110101011100000010001
-10000000000000001100000010001
+10000000000000001100000010001    NO
 10000000000000001101010010001
 11000001110101011111011110N01
 11110111 1110101 101111010001

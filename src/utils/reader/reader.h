@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:32:25 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/25 17:24:16 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/03/28 17:36:07 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	reader_read(t_reader *reader);		// *(str++)   	 -> uses first the peek fct 
 
 bool	reader_peekc(t_reader *reader, char c);			// probably not needed as we have string peek
 bool	reader_peeks(t_reader *reader, char *prefix);	// Check if prefix occurs, if so, consume it and return true, else leave it and return false
-void	reader_skip_whitespace(t_reader *reader);		// Advance while pointing to a whitespace -> uses peek & advance fct in a while loop
+unsigned int	reader_skip_whitespace(t_reader *reader);		// Advance while pointing to a whitespace -> uses peek & advance fct in a while loop
 bool	reader_check_newline(t_reader *reader);			// => reader_peeks(reader, "\n")	returns false if current char is Not Newline else advance & return true
 bool	reader_check_empty_line(t_reader *reader);		// => { reader_skip_whitespace(reader); reader_check_newline(reader); } returns check_newline fct & skips whitespaces
 
