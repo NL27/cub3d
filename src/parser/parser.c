@@ -6,92 +6,71 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:09:28 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/28 17:41:00 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:55:34 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils/reader/reader.h"
-#include "../include/cub_map.h"
+#include "../include/cub_parser.h"
+#include "../include/cub_gfx.h"
 
-/*
-while the file has not reached the end ('\0')
-
-check for empty lines & skip them (advance reader)
-
-check for spaces before the prefixes & skip them
-check for the prefixes NO, SO, WE, EA 
-check for spaces after the prefixes & skip them
--> do smth (get the path for the textures)
-until the new line put everything into a string & check if it is valid
-
-check for spaces before the prefixes & skip them
-check for the prefixes F & C 
-check for spaces after the prefixes & skip them
--> do smth (get the ints without the commas into r, g, b values)
-get the first number & put it into red
-until the comma check for spaces after the first number & skip them
-until the next number after the first comma check for spaces & skip them
-get the second number & put it into green
-until the comma check for spaces after the second number & skip them
-until the next number after the second comma check for spaces & skip them
-get the last number & put it into blue
-
-check if there is nothing else in the map except "1, 0, N, S, E, W" -> validate map
-if ' ' -> map_put(BLOCK_NOTHING)
-if '1' -> map_put(BLOCK_WALL)
-if '0' -> map_put(BLOCK_AIR)
-if 'N' || 'S' || 'W' || 'E' -> startpoint direction
-
-// Third Iteration
-*/
 
 bool	parser_parse_rgb(t_reader *reader, t_rgb *rgb)
 {
-	// TODO!
+	int		result_r;
+	int		result_g;
+	int		result_b;
+	
 	reader_skip_whitespace(reader);
-	result_r = reader_read_int(reader, result_r);
+	if (!reader_read_int(reader, &result_r))
+		return (false);
 	reader_skip_whitespace(reader);
-	if (reader_peekc(reader, ','))
-		result_g = reader_read_int(reader, result_g);
+	if (!reader_peeks(reader, ","))
+		return (false);
 	reader_skip_whitespace(reader);
-	if (reader_peekc(reader, ',')
-		result_b = reader_read_int(reader, result_b);
+	if (!reader_read_int(reader, &result_g))
+		return (false);
+	reader_skip_whitespace(reader);
+	if (!reader_peeks(reader, ","))
+		return (false);
+	reader_skip_whitespace(reader);
+	if (!reader_read_int(reader, &result_b))
+		return (false);
+	reader_skip_whitespace(reader);
+	if (!reader_peeks(reader, "\n"))
+		return (false);
+	*rgb = rgb_create(result_r, result_g, result_b);
+	return (true);
 }
 
-bool parser(t_map *map, t_reader *reader)
+bool parser_parse_config_header(t_parser *parser, int *x)
 {
 	char	*str;
-	int		*result_r;
-	int		*result_g;
-	int		*result_b;
-	int		x;
-	int		y;
 	t_rgb	color;
-
-	while (reader_has_more(reader))
+	
+	while (reader_has_more(parser->reader))
 	{
-		x = reader_skip_whitespace(reader);
-		if (reader_peeks(reader, "\n"))
+		*x = reader_skip_whitespace(parser->reader);
+		if (reader_peeks(parser->reader, "\n"))
 			; // Do nothing
-		else if (reader_peeks(reader, "NO"))
+		else if (reader_peeks(parser->reader, "NO"))
 		{
-			reader_skip_whitespace(reader);
-			str = reader_read_until_newline(reader, str);
+			reader_skip_whitespace(parser->reader);
+			reader_read_until_newline(parser->reader, &str);
 			// TODO: Set northern texture to the texture
 		}
 		// TODO: et cetera
-		else if (reader_peeks(reader, "F"))
+		else if (reader_peeks(parser->reader, "F"))
 		{
-			if (parser_parse_color(reader, &color))
+			if (parser_parse_color(parser->reader, &color))
 				// TODO: Set floor color
 				;
 			else
 				return (false);
 			
 		}
-		else if (reader_peeks(reader, "C"))
+		else if (reader_peeks(parser->reader, "C"))
 		{
-			if (parser_parse_color(reader, &color))
+			if (parser_parse_color(parser->reader, &color))
 				// TODO: Set ceiling color
 				;
 			else
@@ -101,127 +80,62 @@ bool parser(t_map *map, t_reader *reader)
 		else
 			break ;
 	}
+}
+
+bool	parser_parse_config_body(t_parser *parser, int x)
+{
+	int	y;
+	
 	y = 0;
-	while(reader_has_more(reader))
+	while(reader_has_more(parser->reader))
 	{
-		if (reader_peeks(reader, " "))
+		if (reader_peeks(parser->reader, " "))
 			x++;
-		else if (reader_peeks(reader, "\n"))
+		else if (reader_peeks(parser->reader, "\n"))
 		{
 			x = 0;
 			y++;
 		}
-		else if (reader_peeks(reader, "0"))
+		else if (reader_peeks(parser->reader, "0"))
 		{
-			map_put(map, x++, y, BLOCK_AIR);
+			map_put(parser->map, x++, y, BLOCK_AIR);
 		}
-		else if (reader_peeks(reader, "1"))
+		else if (reader_peeks(parser->reader, "1"))
 		{
-			map_put(map, x++, y, BLOCK_WALL);
+			map_put(parser->map, x++, y, BLOCK_WALL);
 		}
-		else if (reader_peeks(reader, "N"))
+		else if (reader_peeks(parser->reader, "N"))
 		{
 			// TODO: Set spawn position and direction
-			map_put(map, x++, y, BLOCK_AIR);
+			map_put(parser->map, x++, y, BLOCK_AIR);
 		}
-		else if (reader_peeks(reader, "S"))
+		else if (reader_peeks(parser->reader, "S"))
 		{
 			// TODO: Set spawn position and direction
-			map_put(map, x++, y, BLOCK_AIR);
+			map_put(parser->map, x++, y, BLOCK_AIR);
 		}
-		else if (reader_peeks(reader, "E"))
+		else if (reader_peeks(parser->reader, "E"))
 		{
 			// TODO: Set spawn position and direction
-			map_put(map, x++, y, BLOCK_AIR);
+			map_put(parser->map, x++, y, BLOCK_AIR);
 		}
-		else if (reader_peeks(reader, "W"))
+		else if (reader_peeks(parser->reader, "W"))
 		{
 			// TODO: Set spawn position and direction
-			map_put(map, x++, y, BLOCK_AIR);
+			map_put(parser->map, x++, y, BLOCK_AIR);
 		}
 		else
 			return (false);
 	}
 }
 
-// Second Iteration
+bool	parser_parse_config(t_parser *parser)
+{
+	int		x;
 
-// void	parser(t_map *map, t_reader *reader)
-// {
-// 	char	*str;
-// 	int		*result;
-	
-// 	while (reader != '\0')
-// 	{
-// 		if (reader == ' ' || reader == '\t' || reader == '\n')	// reader_skip_whitespace(reader) || reader_check_newline(reader);
-// 			reader_advance(reader);
-// 		if (reader_peeks(reader, NO) || reader_peeks(reader, SO) || reader_peeks(reader, WE) || reader_peeks(reader, EA))
-// 		{
-// 			reader_skip_whitespace(reader);
-// 			while (reader != '\n')	// !check_newline(reader);
-// 			{
-// 				// str = reader_read(reader);
-// 				str = reader_create_on_string(reader, str);
-// 			}
-// 		}
-// 		else if (reader_peekc(reader, F) || reader_peekc(reader, C))
-// 		{
-// 			reader_skip_whitespace(reader);
-// 			while (reader != '\n')
-// 			{
-// 				if (is_digit(reader))
-// 					result = reader_read_int(reader, result);
-// 				reader_skip_whitespace(reader);
-// 				if (reader == ',')
-// 				{
-// 					reader_skip_whitespace(reader);
-// 					result = reader_read_int(reader, result);
-// 				}
-// 			}
-// 		}
-// 		while (map_validate(map))
-// 		{
-// 			if (reader_peekc(reader, ' '))
-// 				map_put(map, x, y, BLOCK_NOTHING);
-// 			else if (reader_peekc(reader, '1'))
-// 				map_put(map, x, y, BLOCK_WALL);
-// 			else if (reader_peekc(reader, '0'))
-// 				map_put(map, x, y, BLOCK_AIR);
-// 			else if (reader_peekc(reader, N) || reader_peekc(reader, S) || reader_peekc(reader, W) || reader_peekc(reader, E))
-// 				// put startpoint;
-// 		}
-// 	}
-// }
-
-// First try
-
-// void	parser(t_map *map, t_reader *reader)
-// {
-// 	char *str;
-
-// 	while (reader_has_more(reader))
-// 	{
-// 		if (reader_check_empty_line(reader) == true)
-// 			break ;
-// 		if (reader_peeks(reader, NO) == true)
-// 			reader_create_on_string(reader, str);
-// 		if (reader_peeks(reader, SO) == true)
-// 			reader_create_on_string(reader, str);
-// 		if (reader_peeks(reader, WE) == true)
-
-// 		if (reader_peeks(reader, EA) == true)
-
-// 		if (reader_peekc(reader, F) == true)
-
-// 		if (reader_peekc(reader, C) == true)
-
-// 	}
-	
-// 	if (map_validate(map) == true)
-// 	{
-// 	}
-	
-// }
+	return (parser_parse_config_header(parser, &x)
+			&& parser_parse_config_body(parser, x));
+}
 
 
 /*
