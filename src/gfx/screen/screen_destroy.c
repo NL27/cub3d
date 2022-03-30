@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tex_get.c                                          :+:      :+:    :+:   */
+/*   screen_destroy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 11:10:30 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/29 11:11:24 by nlenoch          ###   ########.fr       */
+/*   Created: 2022/03/24 15:29:10 by enijakow          #+#    #+#             */
+/*   Updated: 2022/03/30 16:52:00 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_tex.h"
+#include "../../include/cub_gfx.h"
 
-t_rgb	tex_get(t_tex *tex, t_fl x, t_fl y)
+void	screen_destroy(t_screen *screen)
 {
-	
+	mlx_destroy_image(screen->mlx, screen->image);
+	mlx_destroy_window(screen->mlx, screen->window);
 }

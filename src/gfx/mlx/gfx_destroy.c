@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screen_destroy.c                                   :+:      :+:    :+:   */
+/*   gfx_destroy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 15:29:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:29:53 by enijakow         ###   ########.fr       */
+/*   Created: 2022/03/29 11:59:56 by nlenoch           #+#    #+#             */
+/*   Updated: 2022/03/30 16:52:26 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub_screen.h"
+#include "../../include/cub_gfx.h"
 
-void	screen_destroy(t_screen *screen)
+void	gfx_destroy(t_gfx *gfx)
 {
-	(void) screen;
+	mlx_destroy(gfx->mlx);
 }

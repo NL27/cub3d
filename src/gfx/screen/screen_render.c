@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   screen_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/25 15:24:03 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:52:15 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub_screen.h"
+#include "../../include/cub_gfx.h"
 
 void	screen_draw_slice(t_screen *screen, t_vec2 pos, t_fl x_angle, int x, int yup, int ydown, t_fl x_fact, t_rgb color)
 {

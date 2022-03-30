@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_gfx.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/25 14:03:38 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:51:07 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "cub_ext.h"
 # include "cub_math.h"
+# include "cub_map.h"
 
 typedef unsigned int	t_rgb;
 
@@ -28,11 +29,45 @@ t_rgb	rgb_create(int r, int g, int b);
 void	rgb_split(t_rgb rgb, int *r, int *g, int *b);
 t_rgb	rgb_scale(t_rgb rgb, t_fl scale);
 
+typedef struct s_gfx
+{
+	void	*mlx;
+}	t_gfx;
+
+void	gfx_create(t_gfx *gfx, int window_width, int window_height);
+void	gfx_destroy(t_gfx *gfx);
+
+typedef struct s_screen
+{
+	void	*mlx;
+	void	*window;
+	void	*image;
+	int		height;
+	int		width;
+	int		line_len;
+	int		bpp;
+	int		endian;
+}	t_screen;
+
+void			screen_create(t_screen *screen);
+void			screen_destroy(t_screen *screen);
+
+unsigned int	screen_get_width(t_screen *screen);
+unsigned int	screen_get_height(t_screen *screen);
+void			screen_put(t_screen *screen, unsigned int x, unsigned int y, t_rgb color);
+void			screen_blit(t_screen *screen);
+
+void			screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos);
 
 typedef struct s_tex
 {
 }	t_tex;
 
-t_rgb			tex_at(t_tex *tex, t_fl x, t_fl y);
+void	tex_create(t_tex *tex, const char *image_path);
+void	tex_destroy(t_tex *tex);
+
+t_rgb	tex_at(t_tex *tex, t_fl x, t_fl y);
+
+
 
 #endif

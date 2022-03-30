@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gfx_create.c                                       :+:      :+:    :+:   */
+/*   tex_destroy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 11:58:32 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/29 12:01:07 by nlenoch          ###   ########.fr       */
+/*   Created: 2022/03/29 11:09:29 by nlenoch           #+#    #+#             */
+/*   Updated: 2022/03/30 16:49:34 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_mlx.h"
+#include "../../include/cub_gfx.h"
 
-void	gfx_create(t_gfx *gfx, int window_witdh, int window_height)
+void	tex_destroy(t_tex *tex)
 {
 	
 }

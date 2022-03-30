@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tex_create.c                                       :+:      :+:    :+:   */
+/*   tex_at.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 10:59:34 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/29 11:57:53 by nlenoch          ###   ########.fr       */
+/*   Created: 2022/03/29 11:10:30 by nlenoch           #+#    #+#             */
+/*   Updated: 2022/03/30 16:49:15 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_tex.h"
+#include "../../include/cub_gfx.h"
 
-void	tex_create(t_tex *tex, const char *image_path)
+t_rgb	tex_get(t_tex *tex, t_fl x, t_fl y)
 {
-	mlx_init(); //must be the first function called on failure returns NULL
-	if (mlx_init() == NULL)
-		printf("MLX INIT ERROR!");
-	mlx_new_image();
-	
-	mlx_put_image_to_window();
+	return (COLOR_BLACK);
 }

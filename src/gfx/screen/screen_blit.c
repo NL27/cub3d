@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screen_get_width.c                                 :+:      :+:    :+:   */
+/*   screen_blit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 14:49:07 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/24 15:31:23 by enijakow         ###   ########.fr       */
+/*   Created: 2022/03/24 15:07:13 by enijakow          #+#    #+#             */
+/*   Updated: 2022/03/30 16:51:44 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub_screen.h"
+#include "../../include/cub_gfx.h"
 
-unsigned int	screen_get_width(t_screen *screen)
+void	screen_blit(t_screen *screen)
 {
-	(void) screen;
-	return (SCREEN_WIDTH);
+	mlx_put_image_to_window(screen->mlx, screen->window, screen->image, 0, 0);	
 }
