@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 12:47:45 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:19:31 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	f(void *ptr)
 	screen_blit(&cub->screen);
 	cub->pos.angle -= 0.0025;
 	cub->pos.vec.x += 0.01;
+	cub->pos.vec.y += 0.005;
 }
 
 void	test()

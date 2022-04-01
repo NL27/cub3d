@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/25 14:09:23 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:06:52 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../include/cub_ext.h"
 # include "../include/cub_math.h"
+
+typedef struct s_tex	t_tex;
 
 typedef enum e_block
 {
@@ -38,6 +40,7 @@ typedef struct s_hit
 	int		hit_block_x;
 	int		hit_block_y;
 	t_fl	tex_x;
+	t_tex	*tex;
 }	t_hit;
 
 bool	map_check_inbounds(t_map *map, int x, int y);
@@ -51,6 +54,8 @@ int		map_get_height(t_map *map);
 
 t_block	map_at(t_map *map, int x, int y);
 void	map_put(t_map *map, int x, int y, t_block block);
+
+t_tex	*map_tex_at(t_map *map, int x, int y);
 
 bool	map_validate(t_map *map);
 

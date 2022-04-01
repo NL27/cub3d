@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tex_create.c                                       :+:      :+:    :+:   */
+/*   map_tex_at.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 10:59:34 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/01 14:14:13 by enijakow         ###   ########.fr       */
+/*   Created: 2022/04/01 14:05:44 by enijakow          #+#    #+#             */
+/*   Updated: 2022/04/01 14:14:54 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub_gfx.h"
+#include "../include/cub_map.h"
 
-void	tex_create(t_tex *tex, const char *image_path)
+t_tex	*map_tex_at(t_map *map, int x, int y)
 {
-	(void) tex;
-	(void) image_path;
+	(void) map;
+	(void) x;
+	(void) y;
+	return (NULL);	// TODO
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tex_destroy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:09:29 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/30 16:49:34 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/01 14:14:20 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	tex_destroy(t_tex *tex)
 {
-	
+	(void) tex;
 }

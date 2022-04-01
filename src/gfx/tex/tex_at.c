@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   tex_at.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:10:30 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/30 17:46:12 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/01 14:15:39 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub_gfx.h"
 
-t_rgb	tex_get(t_tex *tex, t_fl x, t_fl y)
+t_rgb	tex_at(t_tex *tex, t_fl x, t_fl y)
 {
-	return (COLOR_BLACK);
+	(void) tex;
+	return (rgb_create(x * 255, 0, y * 255));
 }
