@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 16:27:26 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:19:43 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 	bool	side;
 	
 	side = false;
-	while (!is_hit(map_at(map, vars.x_pos, vars.y_pos)))
+	while (!((vars.x_pos != (int) vars.x_start || vars.y_pos != (int) vars.y_start) && is_hit(map_at(map, vars.x_pos, vars.y_pos))))
 	{
 		if (vars.side_dist_x < vars.side_dist_y)
 		{
