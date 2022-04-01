@@ -6,15 +6,16 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 17:19:43 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:41:02 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub_map.h"
 #include "map_internal.h"
 
-static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos)
+static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos, t_fl clip)
 {
+	vars->clip = clip;
 	vars->x_start = pos.vec.x;
 	vars->y_start = pos.vec.y;
 	vars->x_pos = (int) pos.vec.x;
@@ -53,21 +54,25 @@ static bool	is_hit(t_block block)
 static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 {
 	bool	side;
+	t_fl	dist;
 	
 	side = false;
-	while (!((vars.x_pos != (int) vars.x_start || vars.y_pos != (int) vars.y_start) && is_hit(map_at(map, vars.x_pos, vars.y_pos))))
+	dist = 0;
+	while (!(dist >= vars.clip && is_hit(map_at(map, vars.x_pos, vars.y_pos))))
 	{
 		if (vars.side_dist_x < vars.side_dist_y)
 		{
 			vars.side_dist_x += vars.delta_dist_x;
 			vars.x_pos += vars.step_x;
 			side = false;
+			dist = (vars.side_dist_x - vars.delta_dist_x);
 		}
 		else
 		{
 			vars.side_dist_y += vars.delta_dist_y;
 			vars.y_pos += vars.step_y;
 			side = true;
+			dist = (vars.side_dist_y - vars.delta_dist_y);
 		}
 	}
 	if (side)
@@ -102,10 +107,10 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 	return (true);
 }
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit)
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_fl clip)
 {
 	t_rayvars	vars;
 
-	map_set_rayvars(&vars, pos);
+	map_set_rayvars(&vars, pos, clip);
 	return (map_raycast_core(map, hit, vars));
 }

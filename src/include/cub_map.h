@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 16:29:45 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:35:19 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_tex	*map_tex_at(t_map *map, int x, int y, enum e_direction dir);
 
 bool	map_validate(t_map *map);
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit);
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_fl clip);
 void	map_render_portals(t_map *map, t_vec2_and_angle player_angle);
 
 #endif

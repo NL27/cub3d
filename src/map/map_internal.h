@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:07:43 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/25 14:08:23 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 17:36:57 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct s_rayvars
 {
+	t_fl	clip;
 	t_fl	x_start;
 	t_fl	y_start;
 	int		x_pos;
