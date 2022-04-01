@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 14:06:52 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:36:37 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../include/cub_ext.h"
 # include "../include/cub_math.h"
 
-typedef struct s_tex	t_tex;
+typedef struct s_screen	t_tex;
 
 typedef enum e_block
 {
