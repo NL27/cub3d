@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 14:22:41 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:59:27 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 	hit->tex_x = hit->tex_x - (int) hit->tex_x;
 	hit->hit_block_x = vars.x_pos;
 	hit->hit_block_y = vars.y_pos;
-	hit->tex = map_tex_at(map, hit->hit_block_x, hit->hit_block_y);
+	hit->tex = map_tex_at(map, hit->hit_block_x, hit->hit_block_y, D_NORTH);
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 14:47:01 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:54:12 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "cub_ext.h"
 # include "cub_math.h"
-# include "cub_map.h"
+
+typedef struct s_map	t_map;
 
 typedef unsigned int	t_rgb;
 

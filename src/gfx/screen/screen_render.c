@@ -6,11 +6,12 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 14:17:27 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 14:54:01 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub_gfx.h"
+#include "../../include/cub_map.h"
 
 void	screen_draw_slice(t_screen *screen, int x, int yup, int ydown, t_fl x_fact, t_tex *tex)
 {
