@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 12:53:49 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 13:23:53 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,12 @@ void	screen_draw_slice(t_screen *screen, t_vec2_and_angle pos, t_fl x_fisheye, i
 		{
 			//screen_put(screen, (unsigned int) x, (unsigned int) y, RGB_BLACK);
 			y_angle = ((y / (t_fl) screen_get_height(screen)) - 0.5f) * fov;
-			dist = (tan(y_angle + M_PI / 2) / x_fisheye);
-			floor_x = cos(pos.angle) * dist - 2 * pos.vec.x;
-			floor_y = -sin(pos.angle) * dist - 2 * pos.vec.y;
+			dist = (tan(y_angle + M_PI / 2) * 0.5 / x_fisheye);
+			if (y >= (int) screen_get_height(screen) / 2)
+			{
+				floor_x = cos(pos.angle) * dist - pos.vec.x;
+				floor_y = -sin(pos.angle) * dist - pos.vec.y;
+			}
 			t_fl floor_x2 = floor_x;
 			t_fl floor_y2 = floor_y;
 			floor_x = floorf(floor_x);
@@ -51,7 +54,7 @@ void	screen_draw_slice(t_screen *screen, t_vec2_and_angle pos, t_fl x_fisheye, i
 
 void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos)
 {
-	const t_fl		fov = 45 * (M_PI / 180.0f);
+	const t_fl		fov = 60 * (M_PI / 180.0f);
 	unsigned int	x;
 	unsigned int	wall_height;
 	t_fl			angle;
@@ -64,8 +67,8 @@ void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos)
 		pos.angle = angle - ((x / (t_fl) screen_get_width(screen)) - 0.5f) * fov;
 		map_raycast(map, pos, &hit);
 		// TODO, FIXME, XXX: hit.dist being zero!
-		hit.dist = hit.dist * cos(((x / (t_fl) screen_get_width(screen)) - 0.5f) * fov);
-		wall_height = (1 / hit.dist) * screen_get_height(screen);
+		hit.dist = hit.dist;
+		wall_height = (1 / (hit.dist)) * screen_get_height(screen) / cos(((x / (t_fl) screen_get_width(screen)) - 0.5f) * fov);
 		screen_draw_slice(screen, pos, cos(((x / (t_fl) screen_get_width(screen)) - 0.5f) * fov), x, screen_get_height(screen) / 2 - wall_height / 2, screen_get_height(screen) / 2 + wall_height / 2, hit.tex_x, ((hit.hit_block_x % 2) == (hit.hit_block_y % 2)) ? RGB_GRAY : RGB_WHITE);
 		x = x + 1;
 	}
