@@ -6,7 +6,7 @@
 #    By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/01 11:38:29 by nlenoch          ###   ########.fr        #
+#    Updated: 2022/04/01 11:39:48 by nlenoch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ main.c
 
 OBJECTS = $(patsubst %.c,%.o,$(SOURCES))
 
-CFLAGS = -Wall -Wextra -Werror -03
+CFLAGS = -Wall -Wextra -Werror -Ofast
 LDFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c

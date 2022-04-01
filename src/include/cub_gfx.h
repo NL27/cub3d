@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/30 16:51:07 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/01 11:41:59 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_screen
 	int		endian;
 }	t_screen;
 
-void			screen_create(t_screen *screen);
+void			screen_create(t_screen *screen, void *mlx_ptr, int width, int height);
 void			screen_destroy(t_screen *screen);
 
 unsigned int	screen_get_width(t_screen *screen);
