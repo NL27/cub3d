@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/01 14:15:10 by enijakow         ###   ########.fr        #
+#    Updated: 2022/04/01 14:46:12 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ gfx/rgb_scale.c \
 gfx/rgb_split.c \
 gfx/mlx/gfx_create.c \
 gfx/mlx/gfx_destroy.c \
+gfx/screen/screen_at.c \
 gfx/screen/screen_blit.c \
 gfx/screen/screen_create.c \
 gfx/screen/screen_destroy.c \

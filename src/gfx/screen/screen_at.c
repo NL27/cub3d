@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tex_at.c                                           :+:      :+:    :+:   */
+/*   screen_at.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 11:10:30 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/01 14:46:43 by enijakow         ###   ########.fr       */
+/*   Created: 2022/03/24 14:58:16 by enijakow          #+#    #+#             */
+/*   Updated: 2022/04/01 14:46:26 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub_gfx.h"
 
-t_rgb	tex_at(t_tex *tex, t_fl x, t_fl y)
+t_rgb	screen_at(t_screen *screen, unsigned int x, unsigned int y)
 {
-	if (tex == NULL)
-		return (rgb_create(x * 255, 0, y * 255));
-	return (screen_at((t_screen*) tex, (int) (x * screen_get_width((t_screen*) tex)), (int) (y * screen_get_height((t_screen*) tex))));
+	if (x >= 0 && y >= 0 && x < screen_get_width(screen) && y < screen_get_height(screen))
+		return (*((t_rgb *) (screen->pixel_base + (y * screen->line_len + x * (screen->bpp / 8)))));
+	return (RGB_BLACK);
 }
