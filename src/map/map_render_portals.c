@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 18:48:43 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 19:00:39 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	map_render_portals(t_map *map, t_vec2_and_angle player)
 			clip.limit = map->portals[!index].y;
 		else if (map->portals[!index].dir == D_EAST || map->portals[!index].dir == D_WEST)
 			clip.limit = map->portals[!index].x;
-		screen_render(&map->portals[index].screen, map, pos, &clip);
+		screen_render(&map->portals[index].screen, map, pos, &clip, dist);
 		index++;
 	}
 }

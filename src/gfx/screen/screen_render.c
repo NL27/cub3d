@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 18:21:03 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 19:03:23 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,25 @@ void	screen_draw_slice(t_screen *screen, int x, int yup, int ydown, t_fl x_fact,
 	}
 }
 
-void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos, t_clip *clip)
+void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos, t_clip *clip, t_vec2 plane_dist)
 {
-	const t_fl		fov = 60 * (M_PI / 180.0f);
+	//const t_fl		fov = 60 * (M_PI / 180.0f);
 	unsigned int	x;
 	unsigned int	wall_height;
-	t_fl			angle;
+	t_fl			player_angle;
+	t_fl			fov_angle;
 	t_hit			hit;
 
-	angle = pos.angle;
+	player_angle = pos.angle;
 	x = 0;
 	while (x < screen_get_width(screen))
 	{
-		pos.angle = angle - ((x / (t_fl) screen_get_width(screen)) - 0.5f) * fov;
+		fov_angle = atan2(plane_dist.x - ((x / (t_fl) screen_get_width(screen)) - 0.5f), plane_dist.y);
+		pos.angle = player_angle + fov_angle;
 		map_raycast(map, pos, &hit, clip);
 		// TODO, FIXME, XXX: hit.dist being zero!
 		hit.dist = hit.dist;
-		wall_height = (1 / (hit.dist)) * screen_get_height(screen) / cos(((x / (t_fl) screen_get_width(screen)) - 0.5f) * fov);
+		wall_height = (1 / (hit.dist)) * screen_get_height(screen) / cos(fov_angle);
 		screen_draw_slice(screen, x, screen_get_height(screen) / 2 - wall_height / 2, screen_get_height(screen) / 2 + wall_height / 2, hit.tex_x, hit.tex);
 		x = x + 1;
 	}
