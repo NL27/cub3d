@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gfx_destroy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:59:56 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/30 16:52:26 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/01 11:54:06 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	gfx_destroy(t_gfx *gfx)
 {
-	mlx_destroy(gfx->mlx);
+	(void) gfx;
+	// TODO: mlx_destroy(gfx->mlx);
 }

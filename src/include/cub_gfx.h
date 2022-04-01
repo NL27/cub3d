@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_gfx.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 11:41:59 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/01 11:53:12 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_gfx
 	void	*mlx;
 }	t_gfx;
 
-void	gfx_create(t_gfx *gfx, int window_width, int window_height);
+void	gfx_create(t_gfx *gfx);
 void	gfx_destroy(t_gfx *gfx);
 
 typedef struct s_screen

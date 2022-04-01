@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/30 17:45:22 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/01 11:51:39 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ void	cub_main(char *config_file)
 
 void	test()
 {
-	t_map		map;
+	t_gfx	gfx;
+
+	gfx_create(&gfx, 800, 600);
+	sleep(3);
+	gfx_destroy(&gfx);
+/*	t_map		map;
 	t_screen	screen;
 
 	printf("Testing begins!\n");
@@ -75,7 +80,7 @@ void	test()
 	}
 	printf("Testing ended! %u %u %d\n", map_get_width(&map), map_get_height(&map), map_validate(&map));
 	map_destroy(&map);
-	screen_destroy(&screen);
+	screen_destroy(&screen);*/
 }
 
 int		main(int argc, char *argv[])
