@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 17:35:28 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 18:21:44 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_rgb			screen_at(t_screen *screen, unsigned int x, unsigned int y);
 void			screen_put(t_screen *screen, unsigned int x, unsigned int y, t_rgb color);
 void			screen_blit(t_screen *screen, t_gfx *gfx);
 
-void			screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos, t_fl clip);
+void			screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos, t_clip *clip);
 
 typedef struct s_screen	t_tex;
 

@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 18:02:10 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 18:25:44 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	f(void *ptr)
 
 	cub = (t_cub *) ptr;
 	map_render_portals(&cub->map, cub->pos);
-	screen_render(&cub->screen, &cub->map, cub->pos, -1);
+	screen_render(&cub->screen, &cub->map, cub->pos, NULL);
 	screen_blit(&cub->screen, &cub->gfx);
 	//cub->pos.angle += 0.015;
 	//cub->pos.vec.x -= 0.0015;

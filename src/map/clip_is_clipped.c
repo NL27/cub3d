@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_internal.h                                     :+:      :+:    :+:   */
+/*   clip_is_clipped.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 14:07:43 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 18:21:31 by enijakow         ###   ########.fr       */
+/*   Created: 2022/04/01 18:23:08 by enijakow          #+#    #+#             */
+/*   Updated: 2022/04/01 18:28:17 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_INTERNAL_H
-# define MAP_INTERNAL_H
+#include "../include/cub_math.h"
 
-# include "../include/cub_math.h"
-# include "../include/cub_map.h"
-
-typedef struct s_rayvars
+bool	clip_is_clipped(t_clip *clip, int x, int y)
 {
-	t_clip	*clip;
-	t_fl	x_start;
-	t_fl	y_start;
-	int		x_pos;
-	int		y_pos;
-	int		step_x;
-	int		step_y;
-	t_fl	ray_dir_x;
-	t_fl	ray_dir_y;
-	t_fl	side_dist_x;
-	t_fl	side_dist_y;
-	t_fl	delta_dist_x;
-	t_fl	delta_dist_y;
-}	t_rayvars;
-
-#endif
+	if (clip == NULL)
+		return (false);
+	else if (clip->direction == D_NORTH)
+		return (y > clip->limit);
+	else if (clip->direction == D_SOUTH)
+		return (y < clip->limit);
+	else if (clip->direction == D_EAST)
+		return (x < clip->limit);
+	else if (clip->direction == D_WEST)
+		return (x > clip->limit);
+	return (false);
+}

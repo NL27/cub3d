@@ -6,14 +6,14 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 17:41:02 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 18:22:56 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub_map.h"
 #include "map_internal.h"
 
-static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos, t_fl clip)
+static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos, t_clip *clip)
 {
 	vars->clip = clip;
 	vars->x_start = pos.vec.x;
@@ -58,7 +58,7 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 	
 	side = false;
 	dist = 0;
-	while (!(dist >= vars.clip && is_hit(map_at(map, vars.x_pos, vars.y_pos))))
+	while (!(is_hit(map_at(map, vars.x_pos, vars.y_pos)) && !clip_is_clipped(vars.clip, vars.x_pos, vars.y_pos)))
 	{
 		if (vars.side_dist_x < vars.side_dist_y)
 		{
@@ -107,7 +107,7 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 	return (true);
 }
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_fl clip)
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_clip *clip)
 {
 	t_rayvars	vars;
 

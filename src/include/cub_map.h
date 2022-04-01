@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 17:35:19 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 18:21:50 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@ typedef enum e_block
 }	t_block;
 
 bool	block_is_solid(t_block block);
-
-typedef enum e_direction
-{
-	D_EAST = 0,
-	D_NORTH,
-	D_WEST,
-	D_SOUTH,
-	D_DIRECTION_COUNT
-}	t_direction;
-
-t_fl		direction_as_angle(t_direction dir);
-t_direction	angle_as_direction(t_fl angle);
 
 typedef struct s_portal
 {
@@ -82,7 +70,7 @@ t_tex	*map_tex_at(t_map *map, int x, int y, enum e_direction dir);
 
 bool	map_validate(t_map *map);
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_fl clip);
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_clip *clip);
 void	map_render_portals(t_map *map, t_vec2_and_angle player_angle);
 
 #endif

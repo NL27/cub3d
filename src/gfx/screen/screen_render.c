@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 17:35:07 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 18:21:03 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	screen_draw_slice(t_screen *screen, int x, int yup, int ydown, t_fl x_fact,
 	}
 }
 
-void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos, t_fl clip)
+void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos, t_clip *clip)
 {
 	const t_fl		fov = 60 * (M_PI / 180.0f);
 	unsigned int	x;
