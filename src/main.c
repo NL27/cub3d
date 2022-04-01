@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 20:15:02 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 20:40:54 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	f(void *ptr)
 	plane.y = 1;
 	screen_render(&cub->screen, &cub->map, cub->pos, NULL, plane);
 	screen_blit(&cub->screen, &cub->gfx);
-	//cub->pos.angle += 0.015;
-	//cub->pos.vec.x -= 0.0015;
-	cub->pos.vec.y += 0.005;
+	//cub->pos.angle += 0.01;
+	cub->pos.vec.x += 0.0015;
+	//cub->pos.vec.y += 0.005;
 }
 
 void	test()
@@ -68,13 +68,13 @@ void	test()
 			map_put(&cub.map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
 		}
 	}
-	//map_put(&cub.map, 7, 5, BLOCK_WALL);
-	//map_put(&cub.map, 7, 4, BLOCK_WALL);
-	//map_put(&cub.map, 7, 3, BLOCK_WALL);
+	map_put(&cub.map, 7, 5, BLOCK_WALL);
+	map_put(&cub.map, 7, 4, BLOCK_WALL);
+	map_put(&cub.map, 7, 3, BLOCK_WALL);
 	
-	cub.pos.vec.x = 2;
-	cub.pos.vec.y = 2;
-	cub.pos.angle = M_PI / 2.0f;
+	cub.pos.vec.x = 2.5;
+	cub.pos.vec.y = 2.5;
+	cub.pos.angle = M_PI;
 	mlx_loop_hook(cub.gfx.mlx, (int(*)()) f, &cub);
 	mlx_loop(cub.gfx.mlx);
 	map_destroy(&cub.map);
