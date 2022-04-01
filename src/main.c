@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 15:24:46 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:49:31 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ void	f(void *ptr)
 	t_cub	*cub;
 
 	cub = (t_cub *) ptr;
+	map_render_portals(&cub->map, cub->pos);
 	screen_render(&cub->screen, &cub->map, cub->pos);
 	screen_blit(&cub->screen, &cub->gfx);
-	cub->pos.angle += 0.005;
+	//cub->pos.angle += 0.005;
 	cub->pos.vec.x += 0.0025;
-	cub->pos.vec.y += 0.005;
+	//cub->pos.vec.y += 0.005;
 }
 
 void	test()
@@ -68,8 +69,8 @@ void	test()
 	map_put(&cub.map, 8, 3, BLOCK_WALL);
 	
 	cub.pos.vec.x = 2;
-	cub.pos.vec.y = 2;
-	cub.pos.angle = 0;
+	cub.pos.vec.y = 4;
+	cub.pos.angle = M_PI / 2.0f;
 	mlx_loop_hook(cub.gfx.mlx, (int(*)()) f, &cub);
 	mlx_loop(cub.gfx.mlx);
 	map_destroy(&cub.map);

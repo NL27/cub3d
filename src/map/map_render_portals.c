@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_create.c                                       :+:      :+:    :+:   */
+/*   map_render_portals.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 14:33:22 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 15:47:05 by enijakow         ###   ########.fr       */
+/*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
+/*   Updated: 2022/04/01 15:48:14 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub_map.h"
 
-void	map_create(t_map *map, t_gfx *gfx)
+void	map_render_portals(t_map *map, t_vec2_and_angle player)
 {
-	unsigned int	index;
-
-	map->width = 0;
-	map->height = 0;
-	map->blocks = NULL;
-	index = 0;
-	while (index < D_DIRECTION_COUNT)
-	{
-		map->textures[index] = NULL;
-		index++;
-	}
+	unsigned int		index;
+	t_vec2_and_angle	pos;
+	
 	index = 0;
 	while (index < 2)
 	{
-		map->portals[index].x = index + 1;
-		map->portals[index].y = 0;
-		map->portals[index].dir = D_NORTH;
-		screen_create(&map->portals[index].screen, gfx, 64*2, 64*2);
-		screen_put(&map->portals[index].screen, 0, 0, 0xff00ff);
+		// pos.angle = player_angle + (2 / 4.0f) * M_PI * 2;
+		pos.angle = -atan2(player.vec.y - map->portals[index].y, player.vec.x - map->portals[index].x);
+		pos.vec.x = map->portals[!index].x + cos(pos.angle) * 1.5 + 0.5f;
+		pos.vec.y = map->portals[!index].y - sin(pos.angle) * 1.5 + 0.5f;
+		screen_render(&map->portals[index].screen, map, pos);
 		index++;
 	}
 }
