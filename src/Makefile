@@ -6,7 +6,7 @@
 #    By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/03/30 17:51:26 by nlenoch          ###   ########.fr        #
+#    Updated: 2022/04/01 11:38:29 by nlenoch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,31 +60,26 @@ main.c
 
 OBJECTS = $(patsubst %.c,%.o,$(SOURCES))
 
-LIBS = -lmlx -Lmlx -framework OpenGL -framework AppKit
-
 CFLAGS = -Wall -Wextra -Werror -03
-LDFLAGS =
+LDFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(EXECUTABLE):
-# $(OBJECTS) $(HEADERS)
-# $(CC) $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
+$(EXECUTABLE): $(OBJECTS) $(HEADERS)
 	make -C $(MLX_DIR)
-	$(CC) -c $(CFLAGS $(SOURCES)
-	$(CC) $(CFLAGS) $(LIBS) $(SOURCES) -o $(EXECUTABLE)
+	$(CC) $(CFLAGS) $(OBJECTS) $(LDFLAGS) -o $(EXECUTABLE)
 
 all: $(EXECUTABLE)
 
 .phony: clean
 clean:
+	- make -C $(MLX_DIR) clean
 	- $(RM) $(OBJECTS)
 
 .phony: fclean
 fclean: clean
 	- $(RM) $(EXECUTABLE)
-	make -C $(MLX_DIR) clean
 
 .phony: re
 re: fclean all
