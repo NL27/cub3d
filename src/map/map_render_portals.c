@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 18:20:52 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 18:48:43 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	map_render_portals(t_map *map, t_vec2_and_angle player)
 	index = 0;
 	while (index < 2)
 	{
-		alpha = direction_as_angle(map->portals[!index].dir) - direction_as_angle(map->portals[index].dir);
-		dist.x = (player.vec.x - map->portals[index].x + 0.5f);
-		dist.y = (player.vec.y - map->portals[index].y + 0.5f);
-		pos.vec.x = -(dist.x * cos(alpha) - dist.y * sin(alpha));
+		alpha = direction_as_angle(map->portals[!index].dir) - direction_as_angle(map->portals[index].dir) + M_PI;
+		dist.x = (player.vec.x - (map->portals[index].x + 0.5f));
+		dist.y = (player.vec.y - (map->portals[index].y + 0.5f));
+		pos.vec.x = dist.x * cos(alpha) - dist.y * sin(alpha);
 		pos.vec.y = dist.x * sin(alpha) + dist.y * cos(alpha);
 		pos.vec.x += map->portals[!index].x;
 		pos.vec.y += map->portals[!index].y;
