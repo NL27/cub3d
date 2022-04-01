@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 19:03:23 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 19:50:57 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos, t_clip *c
 		map_raycast(map, pos, &hit, clip);
 		// TODO, FIXME, XXX: hit.dist being zero!
 		hit.dist = hit.dist;
-		wall_height = (1 / (hit.dist)) * screen_get_height(screen) / cos(fov_angle);
+		wall_height = (1 / (hit.dist)) * screen_get_height(screen) / cos(fov_angle) * plane_dist.y;
 		screen_draw_slice(screen, x, screen_get_height(screen) / 2 - wall_height / 2, screen_get_height(screen) / 2 + wall_height / 2, hit.tex_x, hit.tex);
 		x = x + 1;
 	}
