@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 14:58:27 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:22:39 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,21 @@ typedef enum e_direction
 	D_DIRECTION_COUNT
 }	t_direction;
 
+typedef struct s_portal
+{
+	int	x;
+	int	y;
+	t_direction		dir;
+	t_screen		screen;
+}	t_portal;
+
 typedef struct s_map
 {
-	t_tex	*textures[D_DIRECTION_COUNT];
-	int		width;
-	int		height;
-	t_block	*blocks;
+	t_portal	portals[2];
+	t_tex		*textures[D_DIRECTION_COUNT];
+	int			width;
+	int			height;
+	t_block		*blocks;
 }	t_map;
 
 typedef struct s_hit
@@ -52,10 +61,11 @@ typedef struct s_hit
 	t_tex	*tex;
 }	t_hit;
 
+
 bool	map_check_inbounds(t_map *map, int x, int y);
 bool	map_resize(t_map *map, int w, int h);
 
-void	map_create(t_map *map);
+void	map_create(t_map *map, t_gfx *gfx);
 void	map_destroy(t_map *map);
 
 int		map_get_width(t_map *map);

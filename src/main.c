@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 14:43:33 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:24:46 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	f(void *ptr)
 	cub = (t_cub *) ptr;
 	screen_render(&cub->screen, &cub->map, cub->pos);
 	screen_blit(&cub->screen, &cub->gfx);
-	cub->pos.angle -= 0.0025;
-	cub->pos.vec.x += 0.01;
+	cub->pos.angle += 0.005;
+	cub->pos.vec.x += 0.0025;
 	cub->pos.vec.y += 0.005;
 }
 
@@ -56,7 +56,7 @@ void	test()
 
 	gfx_create(&cub.gfx, 800, 600);
 	screen_create(&cub.screen, &cub.gfx, 800, 600);
-	map_create(&cub.map);
+	map_create(&cub.map, &cub.gfx);
 	for (int y = 0; y < 12; y++)
 	{
 		for (int x = 0; x < 12; x++)
