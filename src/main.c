@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 11:51:39 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 12:31:42 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,30 @@ void	cub_main(char *config_file)
 
 void	test()
 {
-	t_gfx	gfx;
+	t_gfx		gfx;
+	t_screen	screen;
+	t_map		map;
 
-	gfx_create(&gfx, 800, 600);
-	sleep(3);
+	gfx_create(&gfx);
+	screen_create(&screen, &gfx, 800, 600);
+	map_create(&map);
+	for (int y = 0; y < 12; y++)
+	{
+		for (int x = 0; x < 12; x++)
+		{
+			map_put(&map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
+		}
+	}
+	map_put(&map, 8, 4, BLOCK_WALL);
+	map_put(&map, 8, 3, BLOCK_WALL);
+	t_vec2_and_angle pos;
+	pos.vec.x = 2;
+	pos.vec.y = 2;
+	pos.angle = 0;
+	screen_render(&screen, &map, pos);
+	screen_blit(&screen);
+	mlx_loop(gfx.mlx);
+	screen_destroy(&screen);
 	gfx_destroy(&gfx);
 /*	t_map		map;
 	t_screen	screen;

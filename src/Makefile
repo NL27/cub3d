@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/01 11:52:30 by enijakow         ###   ########.fr        #
+#    Updated: 2022/04/01 11:59:32 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ utils/utils.h \
 utils/reader/reader.h \
 utils/stringbuilder/stringbuilder.h
 
-# gfx/screen/screen_blit.c
 # gfx/tex/tex_at.c
 # gfx/tex/tex_create.c
 # gfx/tex/tex_destroy.c
@@ -35,6 +34,7 @@ gfx/rgb_scale.c \
 gfx/rgb_split.c \
 gfx/mlx/gfx_create.c \
 gfx/mlx/gfx_destroy.c \
+gfx/screen/screen_blit.c \
 gfx/screen/screen_create.c \
 gfx/screen/screen_destroy.c \
 gfx/screen/screen_get_height.c \

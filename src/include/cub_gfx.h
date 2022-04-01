@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 11:53:12 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 12:27:39 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ typedef struct s_screen
 	void	*image;
 	int		height;
 	int		width;
+	char	*pixel_base;
 	int		line_len;
 	int		bpp;
 	int		endian;
 }	t_screen;
 
-void			screen_create(t_screen *screen, void *mlx_ptr, int width, int height);
+void			screen_create(t_screen *screen, t_gfx *gfx, int width, int height);
 void			screen_destroy(t_screen *screen);
 
 unsigned int	screen_get_width(t_screen *screen);
