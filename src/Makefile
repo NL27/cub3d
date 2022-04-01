@@ -6,7 +6,7 @@
 #    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/01 15:33:54 by enijakow         ###   ########.fr        #
+#    Updated: 2022/04/01 16:04:14 by enijakow         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,9 @@ gfx/screen/screen_render.c \
 gfx/tex/tex_at.c \
 gfx/tex/tex_create.c \
 gfx/tex/tex_destroy.c \
+map/angle_as_direction.c \
 map/block_is_solid.c \
+map/direction_as_angle.c \
 map/map_at.c \
 map/map_check_inbounds.c \
 map/map_create.c \

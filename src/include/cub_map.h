@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 15:42:16 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:05:33 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ bool	block_is_solid(t_block block);
 
 typedef enum e_direction
 {
-	D_NORTH = 0,
-	D_SOUTH = 1,
-	D_EAST = 2,
-	D_WEST = 3,
+	D_EAST = 0,
+	D_WEST,
+	D_NORTH,
+	D_SOUTH,
 	D_DIRECTION_COUNT
 }	t_direction;
+
+t_fl		direction_as_angle(t_direction dir);
+t_direction	angle_as_direction(t_fl angle);
 
 typedef struct s_portal
 {
@@ -54,11 +57,12 @@ typedef struct s_map
 
 typedef struct s_hit
 {
-	t_fl	dist;
-	int		hit_block_x;
-	int		hit_block_y;
-	t_fl	tex_x;
-	t_tex	*tex;
+	t_fl		dist;
+	int			hit_block_x;
+	int			hit_block_y;
+	t_fl		tex_x;
+	t_tex		*tex;
+	t_direction	direction;
 }	t_hit;
 
 
