@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 12:31:42 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 12:47:45 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,50 @@ void	cub_main(char *config_file)
 	}
 }
 
+typedef struct s_cub
+{
+	t_gfx				gfx;
+	t_screen			screen;
+	t_map				map;
+	t_vec2_and_angle	pos;
+}	t_cub;
+
+void	f(void *ptr)
+{
+	t_cub	*cub;
+
+	cub = (t_cub *) ptr;
+	screen_render(&cub->screen, &cub->map, cub->pos);
+	screen_blit(&cub->screen);
+	cub->pos.angle -= 0.0025;
+	cub->pos.vec.x += 0.01;
+}
+
 void	test()
 {
-	t_gfx		gfx;
-	t_screen	screen;
-	t_map		map;
+	t_cub	cub;
 
-	gfx_create(&gfx);
-	screen_create(&screen, &gfx, 800, 600);
-	map_create(&map);
+	gfx_create(&cub.gfx);
+	screen_create(&cub.screen, &cub.gfx, 800, 600);
+	map_create(&cub.map);
 	for (int y = 0; y < 12; y++)
 	{
 		for (int x = 0; x < 12; x++)
 		{
-			map_put(&map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
+			map_put(&cub.map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
 		}
 	}
-	map_put(&map, 8, 4, BLOCK_WALL);
-	map_put(&map, 8, 3, BLOCK_WALL);
-	t_vec2_and_angle pos;
-	pos.vec.x = 2;
-	pos.vec.y = 2;
-	pos.angle = 0;
-	screen_render(&screen, &map, pos);
-	screen_blit(&screen);
-	mlx_loop(gfx.mlx);
-	screen_destroy(&screen);
-	gfx_destroy(&gfx);
+	map_put(&cub.map, 8, 4, BLOCK_WALL);
+	map_put(&cub.map, 8, 3, BLOCK_WALL);
+	
+	cub.pos.vec.x = 2;
+	cub.pos.vec.y = 2;
+	cub.pos.angle = 0;
+	mlx_loop_hook(cub.gfx.mlx, (int(*)()) f, &cub);
+	mlx_loop(cub.gfx.mlx);
+	map_destroy(&cub.map);
+	screen_destroy(&cub.screen);
+	gfx_destroy(&cub.gfx);
 /*	t_map		map;
 	t_screen	screen;
 
