@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 18:22:56 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 20:13:32 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 {
 	bool	side;
 	t_fl	dist;
+	int		steps;
 	
 	side = false;
 	dist = 0;
-	while (!(is_hit(map_at(map, vars.x_pos, vars.y_pos)) && !clip_is_clipped(vars.clip, vars.x_pos, vars.y_pos)))
+	steps = 0;
+	while (!(is_hit(map_at(map, vars.x_pos, vars.y_pos)) && !clip_is_clipped(vars.clip, vars.x_pos, vars.y_pos)) && steps++ < 50)
 	{
 		if (vars.side_dist_x < vars.side_dist_y)
 		{

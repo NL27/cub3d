@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 19:04:31 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 20:15:02 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	test()
 			map_put(&cub.map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
 		}
 	}
-	map_put(&cub.map, 7, 5, BLOCK_WALL);
-	map_put(&cub.map, 7, 4, BLOCK_WALL);
-	map_put(&cub.map, 7, 3, BLOCK_WALL);
+	//map_put(&cub.map, 7, 5, BLOCK_WALL);
+	//map_put(&cub.map, 7, 4, BLOCK_WALL);
+	//map_put(&cub.map, 7, 3, BLOCK_WALL);
 	
 	cub.pos.vec.x = 2;
 	cub.pos.vec.y = 2;

@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 19:56:26 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/01 20:16:36 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 t_vec2	vec_rotate(t_vec2 v, t_fl alpha)
 {
 	t_vec2	result;
-
-	printf("%f\n", (alpha / (2 * M_PI)) * 360);
 
 	result.x = v.x * cos(alpha) - v.y * sin(alpha);
 	result.y = v.x * sin(alpha) + v.y * cos(alpha);
