@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 20:40:54 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/02 12:34:41 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	cub_main(char *config_file)
 	else
 	{
 		// TODO: Create a parser and process the file!
+		parser_reader
 	}
 }
 
