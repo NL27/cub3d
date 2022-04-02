@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_math.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:22:58 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 18:25:03 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/02 14:01:02 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef enum e_direction
 	D_NORTH,
 	D_WEST,
 	D_SOUTH,
+	D_FLOOR,
+	D_CEILING,
 	D_DIRECTION_COUNT
 }	t_direction;
 

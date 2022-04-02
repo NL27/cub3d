@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:03:30 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/02 13:53:54 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/02 15:49:18 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 bool	parser_parse_config_header(t_parser *parser, int *x)
 {
-	char	*str;
-	t_rgb	color;
-	t_map	*texture[D_DIRECTION_COUNT];
+	t_rgb	rgb;
 	
 	while (reader_has_more(parser->reader))
 	{
@@ -24,38 +22,43 @@ bool	parser_parse_config_header(t_parser *parser, int *x)
 		if (reader_peeks(parser->reader, "\n"))
 			; // Do nothing
 		else if (reader_peeks(parser->reader, "EA"))
-			parser_parse_texture(parser->reader, texture[0]);
+			parser_parse_texture(parser->reader, parser->map->textures[0]);
 		else if (reader_peeks(parser->reader, "NO"))
-			parser_parse_texture(parser->reader, texture[1]);
+			parser_parse_texture(parser->reader, parser->map->textures[1]);
 		else if (reader_peeks(parser->reader, "WE"))
-			parser_parse_texture(parser->reader, texture[2]);
+			parser_parse_texture(parser->reader, parser->map->textures[2]);
 		else if (reader_peeks(parser->reader, "SO"))
-			parser_parse_texture(parser->reader, texture[3]);
+			parser_parse_texture(parser->reader, parser->map->textures[3]);
 		else if (reader_peeks(parser->reader, "F"))
 		{
-			if (parser_parse_rgb(parser->reader, &color))
-				// TODO: Set floor color
-				;
+			if (parser_parse_rgb(parser->reader, &rgb))
+				// TODO: Set floor color with rgb values
+				parser_parse_heaven_hell(&rgb, parser, parser->map->textures[4]);
 			else
 				return (false);
-			
 		}
 		else if (reader_peeks(parser->reader, "C"))
 		{
-			if (parser_parse_rgb(parser->reader, &color))
-				// TODO: Set ceiling color
-				;
+			if (parser_parse_rgb(parser->reader, &rgb))
+				// TODO: Set ceiling color with rgb values
+				parser_parse_heaven_hell(&rgb, parser, parser->map->textures[5]);
 			else
 				return (false);
-			
 		}
 		else
 			break ;
 	}
 }
 
+void	parser_parse_heaven_hell(t_rgb *rgb, t_parser *parser, t_map *texture[D_DIRECTION_COUNT])
+{
+	parser->map->textures[D_DIRECTION_COUNT] = rgb;
+}
+
 void	parser_parse_texture(t_parser *parser, t_map *texture[D_DIRECTION_COUNT])
 {
+	char	*str;
+	
 	reader_skip_whitespace(parser->reader);
 	reader_read_until_newline(parser->reader, &str);
 	// TODO: Set eastern texture to the texture
@@ -63,7 +66,7 @@ void	parser_parse_texture(t_parser *parser, t_map *texture[D_DIRECTION_COUNT])
 	{
 		while (!reader_peekc(parser->reader, ' ') || !reader_peekc(parser->reader, '\t') || !reader_peekc(parser->reader, '\0') || !reader_peekc(parser->reader, '\n'))
 		{
-			*texture[D_DIRECTION_COUNT] = reader_read(parser->reader);
+			parser->map->textures[D_DIRECTION_COUNT] = reader_read(parser->reader);
 			reader_advance(parser->reader);
 		}
 	}
