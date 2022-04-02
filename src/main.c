@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/02 15:50:24 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/02 17:54:10 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,30 @@ void	cub_main(char *config_file)
 	else
 	{
 		// TODO: Create a parser and process the file!
-		parser_reader();
+		parser_reader(configuration);
 	}
+}
+
+typedef struct s_everything{
+	char	*direction_texture[6];
+}	t_everything;
+
+/*
+direction_texture[0] = North = ./...
+direction_texture[1] = South = ./...
+direction_texture[2] = East = ./...
+direction_texture[3] = West = ./...
+direction_texture[4] = Heaven = rgb_color
+direction_texture[5] = Hell = rgb_color
+*/
+
+void	parser_reader(char *configuration)
+{
+	t_parser	*parser;
+	
+	if (!parser_parse_config(parser))
+		break ;
+	
 }
 
 typedef struct s_cub
