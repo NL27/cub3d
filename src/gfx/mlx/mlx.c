@@ -89,3 +89,22 @@ int  *sizey		the screen height
 int				has no return value (bc).
 */
 int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey); // get the current screen size as MacOS is sheit
+
+/*
+void *mlx_ptr	the mlx instance;
+char *filename	the file to load;
+int  *width		a pointer to where the width ought to be written;
+int  *height	a pointer to where the height ought to be written;
+mem_leak		this function has a memory leak, try using xpm instead;
+void*			the image instance.
+*/
+void	*mlx_png_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
+
+/*
+void *mlx_ptr	the mlx instance;
+char *filename	the file to load;
+int  *width		a pointer to where the width ought to be written;
+int  *height	a pointer to where the height ought to be written;
+void*			the image instance, and NULL in case of error.
+*/
+void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);

@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/02 17:54:10 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/03 12:30:11 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,34 @@ void	cub_main(char *config_file)
 	else
 	{
 		// TODO: Create a parser and process the file!
-		parser_reader(configuration);
+		// parser_reader(configuration);
 	}
 }
 
-typedef struct s_everything{
-	char	*direction_texture[6];
-}	t_everything;
+// typedef struct s_everything{
+// 	char	*direction_texture[4];
+//	t_rgb	*color_heaven;
+//	t_rgb	*color_hell;
+// }	t_everything;
 
 /*
 direction_texture[0] = North = ./...
 direction_texture[1] = South = ./...
 direction_texture[2] = East = ./...
 direction_texture[3] = West = ./...
+
 direction_texture[4] = Heaven = rgb_color
 direction_texture[5] = Hell = rgb_color
 */
 
-void	parser_reader(char *configuration)
-{
-	t_parser	*parser;
+// void	parser_reader(char *configuration)
+// {
+// 	t_parser	*parser;
 	
-	if (!parser_parse_config(parser))
-		break ;
+// 	if (!parser_parse_config(parser))
+// 		break ;
 	
-}
+// }
 
 typedef struct s_cub
 {
@@ -72,9 +75,9 @@ void	f(void *ptr)
 	plane.y = 1;
 	screen_render(&cub->screen, &cub->map, cub->pos, NULL, plane);
 	screen_blit(&cub->screen, &cub->gfx);
-	//cub->pos.angle += 0.01;
-	cub->pos.vec.x += 0.0015;
-	//cub->pos.vec.y += 0.005;
+	cub->pos.angle -= 0.001;
+	// cub->pos.vec.x += 0.0015;
+	// cub->pos.vec.y += 0.005;
 }
 
 void	test()
