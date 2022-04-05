@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 20:40:42 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:31:36 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	map_render_portals(t_map *map, t_vec2_and_angle player)
 		dist.y = (player.vec.y - (map->portals[index].y + 0.5f));
 		target = vec_rotate(dist, alpha);
 		render_pos = vec_rotate(dist, beta);
-		mov.x = 1;
+		mov.x = -1;
 		mov.y = 0;
 		mov = vec_rotate(mov, -direction_as_angle(map->portals[index].dir));
 		pos.vec.x = map->portals[!index].x + mov.x + 0.5f + render_pos.x;
-		pos.vec.y = map->portals[!index].y + mov.y + render_pos.y;
+		pos.vec.y = map->portals[!index].y + mov.y + 0.5f + render_pos.y;
 		pos.angle = direction_as_angle(map->portals[!index].dir);
 		clip.direction = map->portals[!index].dir;
 		if (map->portals[!index].dir == D_NORTH || map->portals[!index].dir == D_SOUTH)
