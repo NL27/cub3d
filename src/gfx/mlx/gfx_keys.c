@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   gfx_keys.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:55:56 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/03 14:14:21 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/05 15:00:04 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub_gfx.h"
 
-void	gfx_keys(t_cub cub, int keycode)
+void	gfx_keys(t_gfx* gfx, void (*press)(int, void*), void (*release)(int, void*), void *param)
 {
-	void	*param;
-
-	mlx_key_hook(cub->screen, (*f)(keycode, param), param);
+	mlx_hook(gfx->window, 2, 0, (int (*)()) press, param);
+	mlx_hook(gfx->window, 3, 0, (int (*)()) release, param);
 }
 
+/*
 W_KEY = 87;
 A_KEY = 65;
 S_KEY = 83;
@@ -44,3 +44,4 @@ void gfx_movements(keycode)
 	else if (keycode == ESC_KEY)
 		exit_window;
 }
+*/
