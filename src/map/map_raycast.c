@@ -6,15 +6,16 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 20:13:32 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:37:07 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub_map.h"
 #include "map_internal.h"
 
-static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos, t_clip *clip)
+static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos, t_clip *clip, bool recursive)
 {
+	vars->recursive = recursive;
 	vars->clip = clip;
 	vars->x_start = pos.vec.x;
 	vars->y_start = pos.vec.y;
@@ -105,14 +106,14 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 	}
 	hit->hit_block_x = vars.x_pos;
 	hit->hit_block_y = vars.y_pos;
-	hit->tex = map_tex_at(map, hit->hit_block_x, hit->hit_block_y, hit->direction);
+	hit->tex = map_tex_at(map, hit->hit_block_x, hit->hit_block_y, hit->direction, vars.recursive);
 	return (true);
 }
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_clip *clip)
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_clip *clip, bool recursive)
 {
 	t_rayvars	vars;
 
-	map_set_rayvars(&vars, pos, clip);
+	map_set_rayvars(&vars, pos, clip, recursive);
 	return (map_raycast_core(map, hit, vars));
 }

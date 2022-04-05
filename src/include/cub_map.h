@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:08:02 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:38:03 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_portal
 	int	x;
 	int	y;
 	t_direction		dir;
-	t_screen		screen;
+	t_screen		screens[2];
 }	t_portal;
 
 typedef struct s_map
@@ -68,11 +68,11 @@ int		map_get_height(t_map *map);
 t_block	map_at(t_map *map, int x, int y);
 void	map_put(t_map *map, int x, int y, t_block block);
 
-t_tex	*map_tex_at(t_map *map, int x, int y, enum e_direction dir);
+t_tex	*map_tex_at(t_map *map, int x, int y, enum e_direction dir, bool recursive);
 
 bool	map_validate(t_map *map);
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_clip *clip);
-void	map_render_portals(t_map *map, t_vec2_and_angle player_angle);
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_clip *clip, bool recursive);
+void	map_render_portals(t_map *map, t_vec2_and_angle player, bool recursive);
 
 #endif

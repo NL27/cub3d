@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:15:54 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:39:37 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,11 @@ void	f(void *ptr)
 		cub->pos.angle += 0.02 * speed;
 	if (cub->keys.right)
 		cub->pos.angle -= 0.02 * speed;
-	map_render_portals(&cub->map, cub->pos);
+	map_render_portals(&cub->map, cub->pos, true);
+	map_render_portals(&cub->map, cub->pos, false);
 	plane.x = 0;
 	plane.y = 1;
-	screen_render(&cub->screen, &cub->map, cub->pos, NULL, plane);
+	screen_render(&cub->screen, &cub->map, cub->pos, NULL, plane, false);
 	screen_blit(&cub->screen, &cub->gfx);
 }
 
@@ -213,7 +214,7 @@ void	test()
 	
 	cub.pos.vec.x = 2.5;
 	cub.pos.vec.y = 2.5;
-	cub.pos.angle = M_PI;
+	cub.pos.angle = 0;
 	gfx_set_tick_function(&cub.gfx, f, &cub);
 	gfx_keys(&cub.gfx, g, h, &cub);
 	gfx_run(&cub.gfx);

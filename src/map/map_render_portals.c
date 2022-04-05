@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:25:24 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:47:18 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_vec2	vec_rotate(t_vec2 v, t_fl alpha)
 	return (result);
 }
 
-void	map_render_portal(t_map *map, t_screen* screen, t_vec2_and_angle view, unsigned int index)
+void	map_render_portal(t_map *map, t_screen* screen, t_vec2_and_angle view, unsigned int index, bool recursive)
 {
 	unsigned int		next_index;
 	t_vec2_and_angle	pos;
@@ -55,17 +55,27 @@ void	map_render_portal(t_map *map, t_screen* screen, t_vec2_and_angle view, unsi
 		clip.limit = map->portals[next_index].y;
 	else if (map->portals[next_index].dir == D_EAST || map->portals[next_index].dir == D_WEST)
 		clip.limit = map->portals[next_index].x;
-	screen_render(screen, map, pos, &clip, target);
+	screen_render(screen, map, pos, &clip, target, recursive);
 }
 
-void	map_render_portals(t_map *map, t_vec2_and_angle player)
+void	map_render_portals(t_map *map, t_vec2_and_angle player, bool recursive)
 {
 	unsigned int		index;
+	t_vec2_and_angle	portal_pos;
 	
+	(void) player;
 	index = 0;
 	while (index < CUB_PORTAL_COUNT)
 	{
-		map_render_portal(map, &map->portals[index].screen, player, index);
+		if (recursive)
+		{
+			portal_pos.angle = -direction_as_angle(map->portals[index].dir);
+			portal_pos.vec.x = map->portals[index].x + cos(portal_pos.angle) * 2 + 0.5f;
+			portal_pos.vec.y = map->portals[index].y + sin(portal_pos.angle) * 2 + 0.5f;
+			map_render_portal(map, &map->portals[index].screens[recursive], portal_pos, index, !recursive);
+		}
+		else
+			map_render_portal(map, &map->portals[index].screens[recursive], player, index, !recursive);
 		index++;
 	}
 }

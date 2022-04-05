@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:07:43 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 18:21:31 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:35:30 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct s_rayvars
 {
+	bool	recursive;
 	t_clip	*clip;
 	t_fl	x_start;
 	t_fl	y_start;
