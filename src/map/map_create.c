@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:33:22 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 16:32:34 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:11:21 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	map_create(t_map *map, t_gfx *gfx)
 		index++;
 	}
 	index = 0;
-	while (index < 2)
+	while (index < CUB_PORTAL_COUNT)
 	{
 		map->portals[index].x = index + 1;
 		map->portals[index].y = 0;
@@ -41,4 +41,7 @@ void	map_create(t_map *map, t_gfx *gfx)
 	map->portals[1].x = 2;
 	map->portals[1].y = 11;
 	map->portals[1].dir = D_NORTH;
+	map->portals[2].x = 7;
+	map->portals[2].y = 5;
+	map->portals[2].dir = D_SOUTH;
 }

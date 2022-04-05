@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:00:25 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:15:54 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ typedef struct s_cub
 	t_keys				keys;
 }	t_cub;
 
-void	move(t_map *map, t_vec2 *vec, t_fl x_dir, t_fl y_dir)
+void	move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
 {
 	int	dx;
 	int	dy;
+	int	c;
 
 	if (x_dir < 0)
 		dx = -1;
@@ -90,16 +91,23 @@ void	move(t_map *map, t_vec2 *vec, t_fl x_dir, t_fl y_dir)
 		dy = -1;
 	else
 		dy = 1;
-	if ((int) (vec->x + 0.15 * dx) == map->portals[0].x && (int) (vec->y + 0.15 * dy) == map->portals[0].y)
+	c = 0;
+	while (c < CUB_PORTAL_COUNT)
 	{
-		vec->x = map->portals[1].x - cos(direction_as_angle(map->portals[1].dir)) * 2;
-		vec->y = map->portals[1].y - sin(direction_as_angle(map->portals[1].dir)) * 2;
-		return ;
+		if ((int) (pos->vec.x + 0.15 * dx) == map->portals[c].x && (int) (pos->vec.y + 0.15 * dy) == map->portals[c].y)
+		{
+			c = (c + 1) % CUB_PORTAL_COUNT;
+			pos->vec.x = map->portals[c].x - cos(direction_as_angle(map->portals[c].dir)) + 0.5f;
+			pos->vec.y = map->portals[c].y - sin(direction_as_angle(map->portals[c].dir)) + 0.5f;
+			pos->angle = direction_as_angle(map->portals[c].dir);
+			return ;
+		}
+		c++;
 	}
-	if (!block_is_solid(map_at(map, (int) (vec->x + 0.1 * dx), (int) vec->y)))
-		vec->x += x_dir;
-	if (!block_is_solid(map_at(map, (int) vec->x, (int) (vec->y + 0.1 * dy))))
-		vec->y += y_dir;
+	if (!block_is_solid(map_at(map, (int) (pos->vec.x + 0.1 * dx), (int) pos->vec.y)))
+		pos->vec.x += x_dir;
+	if (!block_is_solid(map_at(map, (int) pos->vec.x, (int) (pos->vec.y + 0.1 * dy))))
+		pos->vec.y += y_dir;
 }
 
 void	f(void *ptr)
@@ -111,21 +119,13 @@ void	f(void *ptr)
 	speed = 2;
 	cub = (t_cub *) ptr;
 	if (cub->keys.w || cub->keys.up)
-	{
-		move(&cub->map, &cub->pos.vec, cos(cub->pos.angle) * 0.02 * speed, -sin(cub->pos.angle) * 0.02 * speed);
-	}
+		move(&cub->map, &cub->pos, cos(cub->pos.angle) * 0.02 * speed, -sin(cub->pos.angle) * 0.02 * speed);
 	if (cub->keys.s || cub->keys.down)
-	{
-		move(&cub->map, &cub->pos.vec, -cos(cub->pos.angle) * 0.02 * speed, sin(cub->pos.angle) * 0.02 * speed);
-	}
+		move(&cub->map, &cub->pos, -cos(cub->pos.angle) * 0.02 * speed, sin(cub->pos.angle) * 0.02 * speed);
 	if (cub->keys.a)
-	{
-		move(&cub->map, &cub->pos.vec, -sin(cub->pos.angle) * 0.02 * speed, -cos(cub->pos.angle) * 0.02 * speed);
-	}
+		move(&cub->map, &cub->pos, -sin(cub->pos.angle) * 0.02 * speed, -cos(cub->pos.angle) * 0.02 * speed);
 	if (cub->keys.d)
-	{
-		move(&cub->map, &cub->pos.vec, sin(cub->pos.angle) * 0.02 * speed, cos(cub->pos.angle) * 0.02 * speed);
-	}
+		move(&cub->map, &cub->pos, sin(cub->pos.angle) * 0.02 * speed, cos(cub->pos.angle) * 0.02 * speed);
 	if (cub->keys.left)
 		cub->pos.angle += 0.02 * speed;
 	if (cub->keys.right)

@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 18:21:50 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:08:02 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../include/cub_ext.h"
 # include "../include/cub_math.h"
 # include "../include/cub_gfx.h"
+
+# define CUB_PORTAL_COUNT 3
 
 typedef enum e_block
 {
@@ -36,7 +38,7 @@ typedef struct s_portal
 
 typedef struct s_map
 {
-	t_portal	portals[2];
+	t_portal	portals[CUB_PORTAL_COUNT];
 	t_tex		*textures[D_DIRECTION_COUNT];
 	int			width;
 	int			height;
