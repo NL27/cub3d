@@ -6,7 +6,7 @@
 /*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/01 19:00:22 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:46:24 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_gfx
 
 void	gfx_create(t_gfx *gfx, int width, int height);
 void	gfx_destroy(t_gfx *gfx);
+void	gfx_set_tick_function(t_gfx *gfx, void (*f)(void*), void *value);
+void	gfx_run(t_gfx *gfx);
 
 typedef struct s_screen
 {

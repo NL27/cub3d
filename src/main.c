@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
+/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/03 12:30:11 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/05 14:47:14 by enijakow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ void	test()
 	cub.pos.vec.x = 2.5;
 	cub.pos.vec.y = 2.5;
 	cub.pos.angle = M_PI;
-	mlx_loop_hook(cub.gfx.mlx, (int(*)()) f, &cub);
-	mlx_loop(cub.gfx.mlx);
+	gfx_set_tick_function(&cub.gfx, f, &cub);
+	gfx_run(&cub.gfx);
 	map_destroy(&cub.map);
 	screen_destroy(&cub.screen);
 	gfx_destroy(&cub.gfx);
