@@ -3,58 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:39:37 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:12:19 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/cub.h"
 #include "include/cub_map.h"
 #include "include/cub_gfx.h"
+#include "include/cub_parser.h"
+// #include "parser/parser_internal.h"
 #include "utils/utils.h"
 
 #include <unistd.h>
-
-void	cub_main(char *config_file)
-{
-	char	*configuration;
-
-	configuration = utils_read_file(config_file);
-	if (configuration == NULL)
-		printf("File not found!\n");
-	else
-	{
-		// TODO: Create a parser and process the file!
-		// parser_reader(configuration);
-	}
-}
-
-// typedef struct s_everything{
-// 	char	*direction_texture[4];
-//	t_rgb	*color_heaven;
-//	t_rgb	*color_hell;
-// }	t_everything;
-
-/*
-direction_texture[0] = North = ./...
-direction_texture[1] = South = ./...
-direction_texture[2] = East = ./...
-direction_texture[3] = West = ./...
-
-direction_texture[4] = Heaven = rgb_color
-direction_texture[5] = Hell = rgb_color
-*/
-
-// void	parser_reader(char *configuration)
-// {
-// 	t_parser	*parser;
-	
-// 	if (!parser_parse_config(parser))
-// 		break ;
-	
-// }
 
 typedef struct s_keys
 {
@@ -186,6 +149,94 @@ void	h(int key, void *ptr)
 	printf("Up: %d\n", key);
 }
 
+void	cub_init(t_cub *cub)
+{
+	cub->keys.w = false;
+	cub->keys.s = false;
+	cub->keys.a = false;
+	cub->keys.d = false;
+	cub->keys.up = false;
+	cub->keys.down = false;
+	cub->keys.left = false;
+	cub->keys.right = false;
+	cub->pos.vec.x = 2.5;
+	cub->pos.vec.y = 2.5;
+	cub->pos.angle = 0;
+	gfx_create(&cub->gfx, 800, 600);
+	screen_create(&cub->screen, &cub->gfx, 800, 600);
+	map_create(&cub->map, &cub->gfx);
+	gfx_set_tick_function(&cub->gfx, f, cub);
+	gfx_keys(&cub->gfx, g, h, cub);
+}
+
+void	cub_destroy(t_cub *cub)
+{
+	map_destroy(&cub->map);
+	screen_destroy(&cub->screen);
+	gfx_destroy(&cub->gfx);
+}
+
+void	cub_main(char *config_file)
+{
+	char	*configuration;
+	t_cub	cub;
+
+	configuration = utils_read_file(config_file);
+	if (configuration == NULL)
+		printf("File not found!\n");
+	else
+	{
+		cub_init(&cub);
+		// TODO: Create a parser and process the file!
+		if (parser_reader(configuration, &cub.map))
+			// put the map onto the screen
+			gfx_run(&cub.gfx);
+		else
+			// give back an error
+			printf("Wrong file input!\n");
+		cub_destroy(&cub);
+	}
+}
+
+// typedef struct s_everything{
+// 	char	*direction_texture[4];
+//	t_rgb	*color_heaven;
+//	t_rgb	*color_hell;
+// }	t_everything;
+
+/*
+direction_texture[0] = North = ./...
+direction_texture[1] = South = ./...
+direction_texture[2] = East = ./...
+direction_texture[3] = West = ./...
+
+direction_texture[4] = Heaven = rgb_color
+direction_texture[5] = Hell = rgb_color
+*/
+
+bool	parser_reader(char *configuration, t_map *map)
+{
+	// t_parser	parser;
+	bool		value;
+	
+	(void) configuration;
+	// parser_create_on_string(&parser, map, configuration);
+	// value = parser_parse_config(&parser);
+	for (int y = 0; y < 12; y++)
+	{
+		for (int x = 0; x < 12; x++)
+		{
+			map_put(map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
+		}
+	}
+	map_put(map, 7, 5, BLOCK_WALL);
+	map_put(map, 7, 4, BLOCK_WALL);
+	map_put(map, 7, 3, BLOCK_WALL);
+	value = true;
+	// parser_destroy(&parser);
+	return (value);
+}
+
 void	test()
 {
 	t_cub	cub;
@@ -269,7 +320,8 @@ void	test()
 
 int		main(int argc, char *argv[])
 {
-	test();
+	// test();
+	
 	if (argc == 2)
 		cub_main(argv[1]);
 	else

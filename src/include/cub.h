@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:08:41 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/17 14:08:59 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:07:17 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,11 @@
 # define CUB_H
 
 # include "cub_ext.h"
+
+// typedef struct s_cub
+// {
+// 	/* data */
+// }	t_cub;
+
 
 #endif
