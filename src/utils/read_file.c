@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:52:16 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/17 14:59:38 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:53:05 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*utils_read_file(char *path)
 	while (1)
 	{
 		trick.bytes_read = read(fd, buffer, sizeof(buffer));
+		trick.current_byte = 0;
 		if (trick.bytes_read <= 0)
 			break ;
 		while (trick.current_byte < trick.bytes_read)

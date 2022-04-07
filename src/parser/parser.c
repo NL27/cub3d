@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:09:28 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/07 14:46:53 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/07 16:35:54 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ bool	parser_parse_config(t_parser *parser)
 
 void	parser_destroy(t_parser *parser)
 {
-	if (parser->map != NULL)
-		free(parser->map);
-	if (parser->reader != NULL)
-		free(parser->reader);
+	(void) parser;
 }
 
 void	parser_create(t_parser *parser, t_map *map, t_reader *reader)

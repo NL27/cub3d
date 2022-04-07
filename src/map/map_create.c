@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_create.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:33:22 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:38:44 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:54:14 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,12 @@ void	map_create(t_map *map, t_gfx *gfx)
 	index = 0;
 	while (index < CUB_PORTAL_COUNT)
 	{
-		map->portals[index].x = index + 1;
-		map->portals[index].y = 0;
+		// Put the portals into negative space
+		map->portals[index].x = -1;
+		map->portals[index].y = -1;
 		map->portals[index].dir = D_SOUTH;
 		screen_create(&map->portals[index].screens[0], gfx, 64*5, 64*5);
 		screen_create(&map->portals[index].screens[1], gfx, 64*5, 64*5);
 		index++;
 	}
-	map->portals[0].x = 2;
-	map->portals[0].y = 0;
-	map->portals[0].dir = D_SOUTH;
-	map->portals[1].x = 2;
-	map->portals[1].y = 11;
-	map->portals[1].dir = D_NORTH;
-	map->portals[2].x = 7;
-	map->portals[2].y = 5;
-	map->portals[2].dir = D_SOUTH;
 }

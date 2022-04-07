@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:03:30 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 15:49:34 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/07 16:40:44 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ bool	parser_parse_config_header(t_parser *parser, int *x)
 			parser_parse_texture(parser, &parser->map->textures[D_SOUTH]);
 		else if (reader_peeks(parser->reader, "F"))
 		{
+			printf("Reached F!\n");
 			if (parser_parse_rgb(parser, &rgb))
 				// TODO: Set floor color with rgb values
 				;
@@ -62,6 +63,7 @@ bool	parser_parse_config_header(t_parser *parser, int *x)
 		}
 		else if (reader_peeks(parser->reader, "C"))
 		{
+			printf("Reached C!\n");
 			if (parser_parse_rgb(parser, &rgb))
 				// TODO: Set ceiling color with rgb values
 				;
@@ -71,6 +73,7 @@ bool	parser_parse_config_header(t_parser *parser, int *x)
 		else
 			break ;
 	}
+	printf("True!\n");
 	return (true);
 }
 

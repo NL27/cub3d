@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:04:15 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 14:33:31 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/07 16:50:52 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,22 @@ bool	parser_parse_config_body(t_parser *parser, int x)
 			map_put(parser->map, x++, y, BLOCK_AIR);
 		}
 		else
-			return (false);
+			reader_advance(parser->reader);
+	}
+	printf("Hi! %d %d\n", map_get_width(parser->map), map_get_height(parser->map));
+	for (int yy = 0; yy < map_get_height(parser->map); yy++)
+	{
+		for (int xx = 0; xx < map_get_width(parser->map); xx++)
+		{
+			switch (map_at(parser->map, xx, yy))
+			{
+				case BLOCK_NOTHING: putchar('.'); break;
+				case BLOCK_AIR: putchar('_'); break;
+				case BLOCK_WALL: putchar('#'); break;
+				default: putchar('?'); break;
+			}
+		}
+		putchar('\n');
 	}
 	return (true);
 }
