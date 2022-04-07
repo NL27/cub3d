@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_map.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:38:03 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:09:32 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ typedef struct s_portal
 
 typedef struct s_map
 {
-	t_portal	portals[CUB_PORTAL_COUNT];
-	t_tex		*textures[D_DIRECTION_COUNT];
-	int			width;
-	int			height;
-	t_block		*blocks;
+	t_portal			portals[CUB_PORTAL_COUNT];
+	t_tex				*textures[D_DIRECTION_COUNT];
+	int					width;
+	int					height;
+	t_block				*blocks;
+	t_vec2_and_angle	spawn;
+	unsigned int		spawnpoints_defined;
 }	t_map;
 
 typedef struct s_hit
@@ -70,6 +72,7 @@ void	map_put(t_map *map, int x, int y, t_block block);
 
 t_tex	*map_tex_at(t_map *map, int x, int y, enum e_direction dir, bool recursive);
 
+void	map_set_spawn(t_map *map, int x, int y, t_direction dir);
 bool	map_validate(t_map *map);
 
 bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_clip *clip, bool recursive);

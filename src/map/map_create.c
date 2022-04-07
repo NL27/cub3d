@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:33:22 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 16:54:14 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/07 17:10:15 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	map_create(t_map *map, t_gfx *gfx)
 	map->width = 0;
 	map->height = 0;
 	map->blocks = NULL;
+	map->spawnpoints_defined = 0;
+	map->spawn.vec.x = 1.5;
+	map->spawn.vec.y = 1.5;
+	map->spawn.angle = 0;
 	index = 0;
 	while (index < D_DIRECTION_COUNT)
 	{

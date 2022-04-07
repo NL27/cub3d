@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 16:36:46 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/07 17:12:37 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,6 @@ void	cub_init(t_cub *cub)
 	cub->keys.down = false;
 	cub->keys.left = false;
 	cub->keys.right = false;
-	cub->pos.vec.x = 2.5;
-	cub->pos.vec.y = 2.5;
-	cub->pos.angle = 0;
 	gfx_create(&cub->gfx, 800, 600);
 	screen_create(&cub->screen, &cub->gfx, 800, 600);
 	map_create(&cub->map, &cub->gfx);
@@ -176,6 +173,24 @@ void	cub_destroy(t_cub *cub)
 	gfx_destroy(&cub->gfx);
 }
 
+void	print_map(t_map *map)
+{
+	for (int yy = 0; yy < map_get_height(map); yy++)
+	{
+		for (int xx = 0; xx < map_get_width(map); xx++)
+		{
+			switch (map_at(map, xx, yy))
+			{
+				case BLOCK_NOTHING: putchar('.'); break;
+				case BLOCK_AIR: putchar('_'); break;
+				case BLOCK_WALL: putchar('#'); break;
+				default: putchar('?'); break;
+			}
+		}
+		putchar('\n');
+	}
+}
+
 void	cub_main(char *config_file)
 {
 	char	*configuration;
@@ -187,10 +202,12 @@ void	cub_main(char *config_file)
 	else
 	{
 		cub_init(&cub);
-		// TODO: Create a parser and process the file!
-		if (parser_reader(configuration, &cub.map))
-			// put the map onto the screen
+		if (parser_reader(configuration, &cub.map) && map_validate(&cub.map))
+		{
+			cub.pos = cub.map.spawn;
+			print_map(&cub.map);
 			gfx_run(&cub.gfx);
+		}
 		else
 			// give back an error
 			printf("Wrong file input!\n");

@@ -6,7 +6,7 @@
 #    By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/07 16:24:50 by nlenoch          ###   ########.fr        #
+#    Updated: 2022/04/07 17:02:47 by nlenoch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ map/map_put.c \
 map/map_raycast.c \
 map/map_render_portals.c \
 map/map_resize.c \
+map/map_set_spawn.c \
 map/map_tex_at.c \
 map/map_validate.c \
 parser/parser.c \

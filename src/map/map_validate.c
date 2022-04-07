@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:17:16 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/23 14:46:35 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:14:41 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ bool	map_validate(t_map *map)
 	int	x;
 	int	y;
 
+	if (map->spawnpoints_defined != 1)
+		return (false);
 	y = 0;
 	while (y < map_get_height(map))
 	{

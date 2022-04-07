@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:52:16 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 16:53:05 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/07 17:00:51 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ char	*utils_read_file(char *path)
 	}
 	result = stringbuilder_finalize(&builder);
 	stringbuilder_destroy(&builder);
+	close(fd);
 	return (result);
 }
