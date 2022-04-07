@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+         #
+#    By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/05 14:50:07 by enijakow         ###   ########.fr        #
+#    Updated: 2022/04/07 16:24:50 by nlenoch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,20 @@ utils/utils.h \
 utils/reader/reader.h \
 utils/stringbuilder/stringbuilder.h
 
+# gfx/mlx/gfx_mouse.c
+# gfx/mlx/gfx_png.c 
+# gfx/mlx/gfx_xpm.c 
+# gfx/screen/screen_create_from_images.c
 SOURCES = \
-gfx/rgb_create.c \
-gfx/rgb_is_black.c \
-gfx/rgb_scale.c \
-gfx/rgb_split.c \
 gfx/mlx/gfx_create.c \
 gfx/mlx/gfx_destroy.c \
 gfx/mlx/gfx_keys.c \
 gfx/mlx/gfx_run.c \
 gfx/mlx/gfx_set_tick_function.c \
+gfx/rgb_create.c \
+gfx/rgb_is_black.c \
+gfx/rgb_scale.c \
+gfx/rgb_split.c \
 gfx/screen/screen_at.c \
 gfx/screen/screen_blit.c \
 gfx/screen/screen_create.c \
@@ -44,6 +48,7 @@ gfx/screen/screen_render.c \
 gfx/tex/tex_at.c \
 gfx/tex/tex_create.c \
 gfx/tex/tex_destroy.c \
+main.c \
 map/angle_as_direction.c \
 map/block_is_solid.c \
 map/clip_is_clipped.c \
@@ -55,15 +60,25 @@ map/map_destroy.c \
 map/map_get_height.c \
 map/map_get_width.c \
 map/map_put.c \
-map/map_render_portals.c \
 map/map_raycast.c \
+map/map_render_portals.c \
 map/map_resize.c \
 map/map_tex_at.c \
 map/map_validate.c \
+parser/parser.c \
+parser/parser_parse_config_body.c \
+parser/parser_parse_config_header.c \
+parser/parser_parse_rgb.c \
 utils/memcpy.c \
 utils/read_file.c \
-utils/stringbuilder/stringbuilder.c \
-main.c
+utils/reader/reader.c \
+utils/reader/reader_check_empty_line.c \
+utils/reader/reader_check_newline.c \
+utils/reader/reader_peek.c \
+utils/reader/reader_read_int.c \
+utils/reader/reader_read_until_newline.c \
+utils/reader/reader_skip_whitespace.c \
+utils/stringbuilder/stringbuilder.c
 
 OBJECTS = $(patsubst %.c,%.o,$(SOURCES))
 

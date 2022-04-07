@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:09:28 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/07 13:53:55 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/07 14:46:53 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	parser_create(t_parser *parser, t_map *map, t_reader *reader)
 NO       ./path_to_north_texture
 SO ./path_to_south_texture
 WE ./path_to_west_texture
-EA ./path_to_east_texture
+EA     ./path_to_east_texture
 
 
 

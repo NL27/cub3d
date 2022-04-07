@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:23:20 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/03/26 14:47:47 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/07 16:25:27 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 void	reader_create_on_string(t_reader *reader, char *str)
 {
 	*reader = str;
+}
+
+void	reader_destroy(t_reader *reader)
+{
+	(void) reader;
 }
 
 bool	reader_has_more(t_reader *reader)

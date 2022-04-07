@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader_read_int.c                                  :+:      :+:    :+:   */
+/*   reader_read_until_newline.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 13:35:33 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/07 16:23:34 by nlenoch          ###   ########.fr       */
+/*   Created: 2022/04/07 14:41:58 by nlenoch           #+#    #+#             */
+/*   Updated: 2022/04/07 16:25:57 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
+#include <stdlib.h>
 
 #include "reader.h"
+#include "../stringbuilder/stringbuilder.h"
 
-static bool	is_digit(char c)
+bool	reader_read_until_newline(t_reader *reader, char **str)
 {
-	return ((c >= '0') && (c <= '9'));
-}
-
-bool	reader_read_uint(t_reader *reader, unsigned int *result)
-{
-	unsigned long	value;
-
-	value = 0;
-	while (reader_has_more(reader))
+	char			c;
+	t_stringbuilder	sb;
+	
+	stringbuilder_create(&sb);
+	while (!reader_check_newline(reader))
 	{
-		if (!is_digit(reader_peek(reader)))
-			break ;
-		value = 10 * value + reader_peek(reader) - '0';
-		if (value > INT_MAX)
-			return (false);
-		reader_advance(reader);
+		c = reader_read(reader);
+		stringbuilder_append_char(&sb, c);
 	}
-	*result = (unsigned int) value;
-	return (true);
+	*str = stringbuilder_finalize(&sb);
+	stringbuilder_destroy(&sb);
+	return (*str != NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 14:12:19 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/07 14:18:24 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,24 +216,27 @@ direction_texture[5] = Hell = rgb_color
 
 bool	parser_reader(char *configuration, t_map *map)
 {
-	// t_parser	parser;
+	t_reader	reader;
+	t_parser	parser;
 	bool		value;
 	
-	(void) configuration;
-	// parser_create_on_string(&parser, map, configuration);
-	// value = parser_parse_config(&parser);
-	for (int y = 0; y < 12; y++)
-	{
-		for (int x = 0; x < 12; x++)
-		{
-			map_put(map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
-		}
-	}
-	map_put(map, 7, 5, BLOCK_WALL);
-	map_put(map, 7, 4, BLOCK_WALL);
-	map_put(map, 7, 3, BLOCK_WALL);
-	value = true;
-	// parser_destroy(&parser);
+	// (void) configuration;
+	reader_create_on_string(&reader, configuration);
+	parser_create(&parser, map, &reader);
+	value = parser_parse_config(&parser);
+	// for (int y = 0; y < 12; y++)
+	// {
+	// 	for (int x = 0; x < 12; x++)
+	// 	{
+	// 		map_put(map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
+	// 	}
+	// }
+	// map_put(map, 7, 5, BLOCK_WALL);
+	// map_put(map, 7, 4, BLOCK_WALL);
+	// map_put(map, 7, 3, BLOCK_WALL);
+	// value = true;
+	parser_destroy(&parser);
+	reader_destroy(&reader);
 	return (value);
 }
 

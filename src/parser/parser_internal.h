@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_internal.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 17:59:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/28 18:01:47 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:40:50 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "../include/cub_parser.h"
 #include "../include/cub_gfx.h"
+#include "../utils/reader/reader.h"
 
 bool	parser_parse_rgb(t_parser *parser, t_rgb *rgb);
 bool	parser_parse_config_header(t_parser *parser, int *x);

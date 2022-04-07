@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:32:25 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/28 18:14:05 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:50:19 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ unsigned int	reader_skip_whitespace(t_reader *reader);		// Advance while pointin
 bool			reader_check_newline(t_reader *reader);			// => reader_peeks(reader, "\n")	returns false if current char is Not Newline else advance & return true
 bool			reader_check_empty_line(t_reader *reader);		// => { reader_skip_whitespace(reader); reader_check_newline(reader); } returns check_newline fct & skips whitespaces
 
-bool			reader_read_int(t_reader *reader, unsigned int *result);	// checks for ints and returns the total result
+bool			reader_read_until_newline(t_reader *reader, char **str);
+
+bool			reader_read_uint(t_reader *reader, unsigned int *result);	// checks for ints and returns the total result
 
 #endif
