@@ -55,11 +55,9 @@ static bool	is_hit(t_block block)
 static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 {
 	bool	side;
-	t_fl	dist;
 	int		steps;
 	
 	side = false;
-	dist = 0;
 	steps = 0;
 	while (!(is_hit(map_at(map, vars.x_pos, vars.y_pos)) && !clip_is_clipped(vars.clip, vars.x_pos, vars.y_pos)) && steps++ < 50)
 	{
@@ -68,14 +66,12 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 			vars.side_dist_x += vars.delta_dist_x;
 			vars.x_pos += vars.step_x;
 			side = false;
-			dist = (vars.side_dist_x - vars.delta_dist_x);
 		}
 		else
 		{
 			vars.side_dist_y += vars.delta_dist_y;
 			vars.y_pos += vars.step_y;
 			side = true;
-			dist = (vars.side_dist_y - vars.delta_dist_y);
 		}
 	}
 	if (side)
