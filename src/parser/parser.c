@@ -25,8 +25,9 @@ void	parser_destroy(t_parser *parser)
 	(void) parser;
 }
 
-void	parser_create(t_parser *parser, t_map *map, t_reader *reader)
+void	parser_create(t_parser *parser, t_gfx *gfx, t_map *map, t_reader *reader)
 {
+	parser->gfx = gfx;
 	parser->map = map;
 	parser->reader = reader;
 }

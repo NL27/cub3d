@@ -27,10 +27,7 @@ void	map_create(t_map *map, t_gfx *gfx)
 	map->spawn.angle = 0;
 	index = 0;
 	while (index < D_DIRECTION_COUNT)
-	{
-		map->textures[index] = NULL;
-		index++;
-	}
+		map->textures[index++] = NULL;
 	index = 0;
 	while (index < CUB_PORTAL_COUNT)
 	{

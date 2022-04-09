@@ -14,6 +14,17 @@
 
 void	map_destroy(t_map *map)
 {
+	unsigned int	index;
+
 	if (map->blocks != NULL)
 		free(map->blocks);
+	index = 0;
+	while (index < D_DIRECTION_COUNT)
+	{
+		if (map->textures[index] != NULL)
+		{
+			screen_destroy(map->textures[index]);
+			free(map->textures[index]);
+		}
+	}
 }

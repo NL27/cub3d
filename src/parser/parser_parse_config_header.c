@@ -14,16 +14,23 @@
 
 void	parser_parse_texture(t_parser *parser, t_tex **texture)
 {
-	char	*str;
+	char		*path;
+	t_screen	*screen;
 	
 	(void) texture;
 	reader_skip_whitespace(parser->reader);
-	reader_read_until_newline(parser->reader, &str);	// What if there are spaces after this?
-	// while (!reader_peekc(parser->reader, ' ') || !reader_peekc(parser->reader, '\t') || !reader_peekc(parser->reader, '\0') || !reader_peekc(parser->reader, '\n'))
-	// {
-	// 	parser->map->textures[D_DIRECTION_COUNT] = reader_read(parser->reader);
-	// 	reader_advance(parser->reader);
-	// }
+	path = NULL;
+	if (reader_read_until_newline(parser->reader, &path))	// What if there are spaces after this?
+	{
+		screen = malloc(sizeof(t_screen));
+		if (screen != NULL)
+		{
+			screen_create_from_image(screen, parser->gfx, path);
+			*texture = screen;
+		}
+	}
+	if (path != NULL)
+		free(path);
 
 	// TODO: Actually load the texture ;)
 }

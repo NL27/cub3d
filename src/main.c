@@ -191,6 +191,20 @@ void	print_map(t_map *map)
 	}
 }
 
+bool	parse_config(char *configuration, t_gfx *gfx, t_map *map)
+{
+	t_reader	reader;
+	t_parser	parser;
+	bool		value;
+	
+	reader_create_on_string(&reader, configuration);
+	parser_create(&parser, gfx, map, &reader);
+	value = parser_parse_config(&parser);
+	parser_destroy(&parser);
+	reader_destroy(&reader);
+	return (value);
+}
+
 void	cub_main(char *config_file)
 {
 	char	*configuration;
@@ -202,7 +216,7 @@ void	cub_main(char *config_file)
 	else
 	{
 		cub_init(&cub);
-		if (parser_reader(configuration, &cub.map) && map_validate(&cub.map))
+		if (parse_config(configuration, &cub.gfx, &cub.map) && map_validate(&cub.map))
 		{
 			cub.pos = cub.map.spawn;
 			print_map(&cub.map);
@@ -215,89 +229,8 @@ void	cub_main(char *config_file)
 	}
 }
 
-// typedef struct s_everything{
-// 	char	*direction_texture[4];
-//	t_rgb	*color_heaven;
-//	t_rgb	*color_hell;
-// }	t_everything;
-
-/*
-direction_texture[0] = North = ./...
-direction_texture[1] = South = ./...
-direction_texture[2] = East = ./...
-direction_texture[3] = West = ./...
-
-direction_texture[4] = Heaven = rgb_color
-direction_texture[5] = Hell = rgb_color
-*/
-
-bool	parser_reader(char *configuration, t_map *map)
-{
-	t_reader	reader;
-	t_parser	parser;
-	bool		value;
-	
-	// (void) configuration;
-	reader_create_on_string(&reader, configuration);
-	parser_create(&parser, map, &reader);
-	value = parser_parse_config(&parser);
-	// for (int y = 0; y < 12; y++)
-	// {
-	// 	for (int x = 0; x < 12; x++)
-	// 	{
-	// 		map_put(map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
-	// 	}
-	// }
-	// map_put(map, 7, 5, BLOCK_WALL);
-	// map_put(map, 7, 4, BLOCK_WALL);
-	// map_put(map, 7, 3, BLOCK_WALL);
-	// value = true;
-	parser_destroy(&parser);
-	reader_destroy(&reader);
-	return (value);
-}
-
-void	test()
-{
-	t_cub	cub;
-
-	cub.keys.w = false;
-	cub.keys.s = false;
-	cub.keys.a = false;
-	cub.keys.d = false;
-	cub.keys.up = false;
-	cub.keys.down = false;
-	cub.keys.left = false;
-	cub.keys.right = false;
-	gfx_create(&cub.gfx, 800, 600);
-	screen_create(&cub.screen, &cub.gfx, 800, 600);
-	map_create(&cub.map, &cub.gfx);
-	for (int y = 0; y < 12; y++)
-	{
-		for (int x = 0; x < 12; x++)
-		{
-			map_put(&cub.map, x, y, (x == 0 || y == 0 || x == 11 || y == 11) ? BLOCK_WALL : BLOCK_AIR);
-		}
-	}
-	map_put(&cub.map, 7, 5, BLOCK_WALL);
-	map_put(&cub.map, 7, 4, BLOCK_WALL);
-	map_put(&cub.map, 7, 3, BLOCK_WALL);
-	
-	cub.pos.vec.x = 2.5;
-	cub.pos.vec.y = 2.5;
-	cub.pos.angle = 0;
-	gfx_set_tick_function(&cub.gfx, f, &cub);
-	gfx_keys(&cub.gfx, g, h, &cub);
-	gfx_run(&cub.gfx);
-	map_destroy(&cub.map);
-	screen_destroy(&cub.screen);
-	gfx_destroy(&cub.gfx);
-}
-
 int		main(int argc, char *argv[])
 {
-	// test();
-	
 	if (argc == 2)
 		cub_main(argv[1]);
 	else
