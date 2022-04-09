@@ -17,10 +17,15 @@ unsigned int	reader_skip_whitespace(t_reader *reader)
 	unsigned int	spaces;
 
 	spaces = 0;
-	while (reader_peek(reader) == ' ' || reader_peek(reader) == '\t')
+	while (1)
 	{
+		if (reader_peek(reader) == ' ')
+			spaces++;
+		else if (reader_peek(reader) == '\t')
+			spaces += 4;
+		else
+			break ;
 		reader_advance(reader);
-		spaces++;
 	}
 	return (spaces);
 }
