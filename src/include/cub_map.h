@@ -38,13 +38,14 @@ typedef struct s_portal
 
 typedef struct s_map
 {
-	t_portal			portals[CUB_PORTAL_COUNT];
-	t_tex				*textures[D_DIRECTION_COUNT];
 	int					width;
 	int					height;
 	t_block				*blocks;
 	t_vec2_and_angle	spawn;
 	unsigned int		spawnpoints_defined;
+	t_portal			portals[CUB_PORTAL_COUNT];
+	t_tex				*textures[D_DIRECTION_COUNT];
+	t_rgb				colors[2];
 }	t_map;
 
 typedef struct s_hit
@@ -71,6 +72,8 @@ t_block	map_at(t_map *map, int x, int y);
 void	map_put(t_map *map, int x, int y, t_block block);
 
 t_tex	*map_tex_at(t_map *map, int x, int y, enum e_direction dir, bool recursive);
+void	map_set_color(t_map *map, unsigned int number, t_rgb color);
+t_rgb	map_get_color(t_map *map, unsigned int number);
 
 void	map_set_spawn(t_map *map, int x, int y, t_direction dir);
 bool	map_validate(t_map *map);

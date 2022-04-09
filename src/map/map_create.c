@@ -16,6 +16,8 @@ void	map_create(t_map *map, t_gfx *gfx)
 {
 	unsigned int	index;
 
+	map_set_color(map, 0, RGB_BLACK);
+	map_set_color(map, 1, RGB_WHITE);
 	map->width = 0;
 	map->height = 0;
 	map->blocks = NULL;

@@ -12,13 +12,6 @@
 
 #include "parser_internal.h"
 
-/*
-void	parser_parse_heaven_hell(t_rgb *rgb, t_parser *parser)
-{
-	parser->map->textures[D_DIRECTION_COUNT] = rgb;
-}
-*/
-
 void	parser_parse_texture(t_parser *parser, t_tex **texture)
 {
 	char	*str;
@@ -55,16 +48,14 @@ bool	parser_parse_config_header(t_parser *parser, int *x)
 		else if (reader_peeks(parser->reader, "F"))
 		{
 			if (parser_parse_rgb(parser, &rgb))
-				// TODO: Set floor color with rgb values
-				;
+				map_set_color(parser->map, 1, rgb);
 			else
 				return (false);
 		}
 		else if (reader_peeks(parser->reader, "C"))
 		{
 			if (parser_parse_rgb(parser, &rgb))
-				// TODO: Set ceiling color with rgb values
-				;
+				map_set_color(parser->map, 0, rgb);
 			else
 				return (false);
 		}

@@ -13,7 +13,7 @@
 #include "../../include/cub_gfx.h"
 #include "../../include/cub_map.h"
 
-void	screen_draw_slice(t_screen *screen, int x, int yup, int ydown, t_fl x_fact, t_tex *tex)
+void	screen_draw_slice(t_screen *screen, t_map *map, int x, int yup, int ydown, t_fl x_fact, t_tex *tex)
 {
 	int			y;
 	t_fl		y_fact;
@@ -27,7 +27,7 @@ void	screen_draw_slice(t_screen *screen, int x, int yup, int ydown, t_fl x_fact,
 			screen_put(screen, (unsigned int) x, (unsigned int) y, tex_at(tex, x_fact, y_fact));
 		}
 		else
-			screen_put(screen, (unsigned int) x, (unsigned int) y, RGB_BLACK);
+			screen_put(screen, (unsigned int) x, (unsigned int) y, map_get_color(map, y < ((int) screen_get_height(screen) / 2)));
 		y = y + 1;
 	}
 }
@@ -50,7 +50,7 @@ void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos, t_clip *c
 		// TODO, FIXME, XXX: hit.dist being zero!
 		hit.dist = hit.dist;
 		wall_height = (1 / (hit.dist)) * screen_get_height(screen) / cos(fov_angle) * plane_dist.y;
-		screen_draw_slice(screen, x, screen_get_height(screen) / 2 - wall_height / 2, screen_get_height(screen) / 2 + wall_height / 2, hit.tex_x, hit.tex);
+		screen_draw_slice(screen, map, x, screen_get_height(screen) / 2 - wall_height / 2, screen_get_height(screen) / 2 + wall_height / 2, hit.tex_x, hit.tex);
 		x = x + 1;
 	}
 }

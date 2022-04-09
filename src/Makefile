@@ -57,12 +57,14 @@ map/map_at.c \
 map/map_check_inbounds.c \
 map/map_create.c \
 map/map_destroy.c \
+map/map_get_color.c \
 map/map_get_height.c \
 map/map_get_width.c \
 map/map_put.c \
 map/map_raycast.c \
 map/map_render_portals.c \
 map/map_resize.c \
+map/map_set_color.c \
 map/map_set_spawn.c \
 map/map_tex_at.c \
 map/map_validate.c \
