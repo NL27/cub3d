@@ -84,7 +84,7 @@ utils/stringbuilder/stringbuilder.c
 OBJECTS = $(patsubst %.c,%.o,$(SOURCES))
 
 CFLAGS = -Wall -Wextra -Werror -Ofast
-LDFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+LDFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -lz
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

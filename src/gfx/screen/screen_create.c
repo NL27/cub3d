@@ -12,6 +12,15 @@
 
 #include "../../include/cub_gfx.h"
 
+void	screen_create_from_image(t_screen *screen, t_gfx *gfx, char *path)
+{
+	screen->mlx = gfx->mlx;
+	screen->image = mlx_png_file_to_image(gfx->mlx, path, &screen->width, &screen->height);
+	// TODO: Handle NULL
+	screen->pixel_base = mlx_get_data_addr(screen->image, &screen->bpp, &screen->line_len, &screen->endian);
+	// TODO: mlx_xpx_file_to_image(screen->mlx, path, screen->width, screen->height);
+}
+
 void	screen_create(t_screen *screen, t_gfx *gfx, int width, int height)
 {
 	int	x;

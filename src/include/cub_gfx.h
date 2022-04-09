@@ -55,6 +55,7 @@ typedef struct s_screen
 }	t_screen;
 
 void			screen_create(t_screen *screen, t_gfx *gfx, int width, int height);
+void			screen_create_from_image(t_screen *screen, t_gfx *gfx, char *path);
 void			screen_destroy(t_screen *screen);
 
 unsigned int	screen_get_width(t_screen *screen);
