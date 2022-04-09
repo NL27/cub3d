@@ -1,6 +1,9 @@
    F	37       ,100,0
 
-
+NO ../res/wall.png
+SO ../res/wall.png
+EA ../res/wall.png
+WE ../res/wall.png
 
 
 C	37   ,     30    ,    0
