@@ -1,15 +1,21 @@
 #include "../include/cub.h"
 
+void	keys_create(struct s_keys *keys)
+{
+	keys->w = false;
+	keys->s = false;
+	keys->a = false;
+	keys->d = false;
+	keys->up = false;
+	keys->down = false;
+	keys->left = false;
+	keys->right = false;
+}
+
 void	cub_create(t_cub *cub)
 {
-	cub->keys.w = false;
-	cub->keys.s = false;
-	cub->keys.a = false;
-	cub->keys.d = false;
-	cub->keys.up = false;
-	cub->keys.down = false;
-	cub->keys.left = false;
-	cub->keys.right = false;
+	cub->map_displayed = false;
+	keys_create(&cub->keys);
 	gfx_create(&cub->gfx, 800, 600);
 	screen_create(&cub->screen, &cub->gfx, 800, 600);
 	map_create(&cub->map, &cub->gfx);

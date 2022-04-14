@@ -36,6 +36,7 @@ typedef struct s_cub
 	t_map				map;
 	t_vec2_and_angle	pos;
 	t_keys				keys;
+	bool				map_displayed;
 }	t_cub;
 
 void	cub_create(t_cub *cub);
