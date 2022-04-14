@@ -20,7 +20,7 @@ static void	move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
 		if ((int) (pos->vec.x + 0.15 * dx) == map->portals[c].x && (int) (pos->vec.y + 0.15 * dy) == map->portals[c].y)
 		{
 			c = (c + 1) % CUB_PORTAL_COUNT;
-			pos->vec.x = map->portals[c].x - cos(direction_as_angle(map->portals[c].dir)) + 0.5f;
+			pos->vec.x = map->portals[c].x + cos(direction_as_angle(map->portals[c].dir)) + 0.5f;
 			pos->vec.y = map->portals[c].y - sin(direction_as_angle(map->portals[c].dir)) + 0.5f;
 			pos->angle = direction_as_angle(map->portals[c].dir);
 			return ;
