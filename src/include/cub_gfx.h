@@ -62,9 +62,11 @@ unsigned int	screen_get_width(t_screen *screen);
 unsigned int	screen_get_height(t_screen *screen);
 t_rgb			screen_at(t_screen *screen, unsigned int x, unsigned int y);
 void			screen_put(t_screen *screen, unsigned int x, unsigned int y, t_rgb color);
+void			screen_draw_rect(t_screen *screen, t_vec2i pos, t_vec2i wh, t_rgb color);
 void			screen_blit(t_screen *screen, t_gfx *gfx);
 
 void			screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos, t_clip *clip, t_vec2 plane_dist, bool recursive);
+void			screen_render_minimap(t_screen *screen, t_map *map, t_vec2_and_angle pos);
 
 typedef struct s_screen	t_tex;
 

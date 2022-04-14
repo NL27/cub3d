@@ -41,9 +41,11 @@ gfx/screen/screen_at.c \
 gfx/screen/screen_blit.c \
 gfx/screen/screen_create.c \
 gfx/screen/screen_destroy.c \
+gfx/screen/screen_draw_rect.c \
 gfx/screen/screen_get_height.c \
 gfx/screen/screen_get_width.c \
 gfx/screen/screen_put.c \
+gfx/screen/screen_render_minimap.c \
 gfx/screen/screen_render.c \
 gfx/tex/tex_at.c \
 gfx/tex/tex_create.c \
