@@ -15,6 +15,7 @@ void	keys_create(struct s_keys *keys)
 void	cub_create(t_cub *cub)
 {
 	cub->map_displayed = false;
+	cub->should_exit = false;
 	keys_create(&cub->keys);
 	gfx_create(&cub->gfx, 800, 600);
 	screen_create(&cub->screen, &cub->gfx, 800, 600);

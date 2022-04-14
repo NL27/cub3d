@@ -22,4 +22,6 @@ void	cub_keyup(int key, t_cub *cub)
 		cub->map_displayed = !cub->map_displayed;
 	if (key == 14)
 		cub_shoot_portal(cub);
+	if (key == 53)
+		cub->should_exit = true;
 }
