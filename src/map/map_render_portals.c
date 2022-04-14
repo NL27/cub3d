@@ -44,11 +44,11 @@ void	map_render_portal(t_map *map, t_screen* screen, t_vec2_and_angle view, unsi
 	dist.y = (view.vec.y - (map->portals[index].y + 0.5f));
 	target = vec_rotate(dist, alpha);
 	render_pos = vec_rotate(dist, beta);
-	mov.x = -1;
+	mov.x = -0.5f;
 	mov.y = 0;
-	mov = vec_rotate(mov, -direction_as_angle(map->portals[index].dir));
-	pos.vec.x = map->portals[next_index].x + mov.x + 0.5f + render_pos.x;
-	pos.vec.y = map->portals[next_index].y + mov.y + 0.5f + render_pos.y;
+	mov = vec_rotate(mov, -direction_as_angle(map->portals[next_index].dir));
+	pos.vec.x = map->portals[next_index].x - mov.x + 0.5f + render_pos.x;
+	pos.vec.y = map->portals[next_index].y - mov.y + 0.5f + render_pos.y;
 	pos.angle = direction_as_angle(map->portals[next_index].dir);
 	clip.direction = map->portals[next_index].dir;
 	if (map->portals[next_index].dir == D_NORTH || map->portals[next_index].dir == D_SOUTH)
