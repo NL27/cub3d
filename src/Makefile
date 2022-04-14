@@ -18,7 +18,10 @@ include/cub_ext.h \
 include/cub_gfx.h \
 include/cub_map.h \
 include/cub_math.h \
+include/cub_parser.h \
 include/cub.h \
+map/map_internal.h \
+parser/parser_internal.h \
 utils/utils.h \
 utils/reader/reader.h \
 utils/stringbuilder/stringbuilder.h
@@ -92,7 +95,7 @@ OBJECTS = $(patsubst %.c,%.o,$(SOURCES))
 CFLAGS = -Wall -Wextra -Werror -Ofast
 LDFLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -lz
 
-%.o: %.c
+%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(EXECUTABLE): $(OBJECTS) $(HEADERS)
