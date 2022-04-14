@@ -23,11 +23,12 @@ utils/utils.h \
 utils/reader/reader.h \
 utils/stringbuilder/stringbuilder.h
 
-# gfx/mlx/gfx_mouse.c
-# gfx/mlx/gfx_png.c 
-# gfx/mlx/gfx_xpm.c 
-# gfx/screen/screen_create_from_images.c
 SOURCES = \
+cub/cub_create.c \
+cub/cub_destroy.c \
+cub/cub_keydown.c \
+cub/cub_keyup.c \
+cub/cub_tick.c \
 gfx/mlx/gfx_create.c \
 gfx/mlx/gfx_destroy.c \
 gfx/mlx/gfx_keys.c \
