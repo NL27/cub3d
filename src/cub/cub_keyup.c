@@ -20,5 +20,6 @@ void	cub_keyup(int key, t_cub *cub)
 		cub->keys.right = false;
 	if (key == 48)
 		cub->map_displayed = !cub->map_displayed;
+	if (key == 14)
+		cub_shoot_portal(cub);
 }
-

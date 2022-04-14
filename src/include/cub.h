@@ -46,4 +46,6 @@ void	cub_tick(t_cub *cub);
 void	cub_keyup(int key, t_cub *cub);
 void	cub_keydown(int key, t_cub *cub);
 
+void	cub_shoot_portal(t_cub *cub);
+
 #endif

@@ -28,6 +28,7 @@ cub/cub_create.c \
 cub/cub_destroy.c \
 cub/cub_keydown.c \
 cub/cub_keyup.c \
+cub/cub_shoot_portal.c \
 cub/cub_tick.c \
 gfx/mlx/gfx_create.c \
 gfx/mlx/gfx_destroy.c \
