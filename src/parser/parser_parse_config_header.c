@@ -55,14 +55,14 @@ bool	parser_parse_config_header(t_parser *parser, int *x)
 		else if (reader_peeks(parser->reader, "F"))
 		{
 			if (parser_parse_rgb(parser, &rgb))
-				map_set_color(parser->map, 1, rgb);
+				map_set_color(parser->map, 0, rgb);
 			else
 				return (false);
 		}
 		else if (reader_peeks(parser->reader, "C"))
 		{
 			if (parser_parse_rgb(parser, &rgb))
-				map_set_color(parser->map, 0, rgb);
+				map_set_color(parser->map, 1, rgb);
 			else
 				return (false);
 		}
