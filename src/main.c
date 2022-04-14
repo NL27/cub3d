@@ -98,6 +98,7 @@ void	f(void *ptr)
 	plane.x = 0;
 	plane.y = 1;
 	screen_render(&cub->screen, &cub->map, cub->pos, NULL, plane, false);
+	screen_render_minimap(&cub->screen, &cub->map, cub->pos);
 	screen_blit(&cub->screen, &cub->gfx);
 }
 

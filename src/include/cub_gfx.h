@@ -23,6 +23,9 @@ typedef unsigned int	t_rgb;
 #define RGB_BLACK 0
 #define RGB_WHITE 0xffffff
 #define RGB_GRAY  0xaaaaaa
+#define RGB_RED   0xff0000
+#define RGB_GREEN 0x00ff00
+#define RGB_BLUE  0x0000ff
 
 bool	rgb_is_black(t_rgb rgb);
 

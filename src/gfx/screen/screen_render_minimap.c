@@ -3,25 +3,36 @@
 
 void	screen_render_minimap(t_screen *screen, t_map *map, t_vec2_and_angle pos)
 {
-	int	dx;
-	int	dy;
+	const int	size = 10;
+	const int	range = 25;
+	int		dx;
+	int		dy;
+	t_fl	flx;
+	t_fl	fly;
 
-	dy = -5;
-	while (dy <= 5)
+	flx = pos.vec.x - (int) pos.vec.x;
+	fly = pos.vec.y - (int) pos.vec.y;
+	dy = -range;
+	while (dy <= range)
 	{
-		dx = -5;
-		while (dx <= 5)
+		dx = -range;
+		while (dx <= range)
 		{
 			if (map_at(map, pos.vec.x + dx, pos.vec.y + dy) == BLOCK_WALL)
 			{
 				screen_draw_rect(screen,
-								(t_vec2i) { (dx * 10) + screen_get_width(screen) / 2,
-											(dy * 10) + screen_get_height(screen) / 2 },
-								(t_vec2i) { 10, 10 },
+								(t_vec2i) { ((dx - flx) * size) + screen_get_width(screen) / 2,
+											((dy - fly) * size) + screen_get_height(screen) / 2 },
+								(t_vec2i) { size, size },
 								RGB_GRAY);
 			}
 			dx++;
 		}
 		dy++;
 	}
+	screen_draw_rect(screen,
+					(t_vec2i) { screen_get_width(screen) / 2 - size/2,
+								screen_get_height(screen) / 2 - size/2},
+					(t_vec2i) { size, size },
+					RGB_RED);
 }
