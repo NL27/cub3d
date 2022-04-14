@@ -17,7 +17,7 @@
 # include "../include/cub_math.h"
 # include "../include/cub_gfx.h"
 
-# define CUB_PORTAL_COUNT 3
+# define CUB_PORTAL_COUNT 2
 
 typedef enum e_block
 {
