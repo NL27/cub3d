@@ -1,5 +1,10 @@
 #include "../include/cub.h"
 
+static bool angle_match(t_fl a1, t_fl a2)
+{
+	return (fabs(atan2(sin(a1-a2), cos(a1-a2))) < (M_PI / 4.0f));
+}
+
 static void	move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
 {
 	int	dx;
@@ -17,7 +22,9 @@ static void	move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
 	c = 0;
 	while (c < CUB_PORTAL_COUNT)
 	{
-		if ((int) (pos->vec.x + 0.15 * dx) == map->portals[c].x && (int) (pos->vec.y + 0.15 * dy) == map->portals[c].y)
+		if ((int) (pos->vec.x + 0.15 * dx) == map->portals[c].x
+			&& (int) (pos->vec.y + 0.15 * dy) == map->portals[c].y
+			&& angle_match(pos->angle + M_PI, direction_as_angle(map->portals[c].dir)))
 		{
 			c = (c + 1) % CUB_PORTAL_COUNT;
 			pos->vec.x = map->portals[c].x + cos(direction_as_angle(map->portals[c].dir)) + 0.5f;
