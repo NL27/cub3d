@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 15:19:21 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:08:04 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	screen_draw_slice(t_screen *screen, t_map *map, int x, int yup,
 }
 
 void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos,
-		t_clip *clip, t_vec2 plane_dist, bool recursive)
+		t_vec2 plane_dist, t_map_raycast_args *args)
 {
-	unsigned int	x;
-	unsigned int	wall_height;
-	t_fl			player_angle;
-	t_fl			fov_angle;
-	t_hit			hit;
+	unsigned int		x;
+	unsigned int		wall_height;
+	t_fl				player_angle;
+	t_fl				fov_angle;
+	t_hit				hit;
 
 	player_angle = pos.angle;
 	x = 0;
@@ -51,7 +51,7 @@ void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos,
 		fov_angle = atan2(plane_dist.x - ((x / (t_fl)
 						screen_get_width(screen)) - 0.5f), plane_dist.y);
 		pos.angle = player_angle + fov_angle;
-		map_raycast(map, pos, &hit, clip, recursive);
+		map_raycast(map, pos, &hit, args);
 		// TODO, FIXME, XXX: hit.dist being zero!
 		hit.dist = hit.dist;
 		wall_height = (1 / (hit.dist)) * screen_get_height(screen)

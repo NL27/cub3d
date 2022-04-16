@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 14:48:01 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:09:28 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	map_render_portal(t_map *map, t_screen *screen,
 	t_fl				alpha;
 	t_fl				beta;
 	t_clip				clip;
+	t_map_raycast_args	args;
 
 	next_index = (index + 1) % CUB_PORTAL_COUNT;
 	if (map->portals[index].dir == D_NORTH
@@ -61,7 +62,9 @@ void	map_render_portal(t_map *map, t_screen *screen,
 	else if (map->portals[next_index].dir == D_EAST
 		|| map->portals[next_index].dir == D_WEST)
 		clip.limit = map->portals[next_index].x;
-	screen_render(screen, map, pos, &clip, target, recursive);
+	args.clip = &clip;
+	args.recursive = recursive;
+	screen_render(screen, map, pos, target, &args);
 }
 
 void	map_render_portals(t_map *map, t_vec2_and_angle player, bool recursive)

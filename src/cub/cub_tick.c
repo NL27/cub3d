@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:27:15 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/16 15:27:18 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:08:36 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static void	move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
 
 void	cub_tick(t_cub *cub)
 {
-	t_vec2	plane;
-	t_fl	speed;
+	t_vec2				plane;
+	t_fl				speed;
 
 	speed = 2;
 	if (cub->keys.w || cub->keys.up)
@@ -83,7 +83,7 @@ void	cub_tick(t_cub *cub)
 	map_render_portals(&cub->map, cub->pos, false);
 	plane.x = 0;
 	plane.y = 1;
-	screen_render(&cub->screen, &cub->map, cub->pos, NULL, plane, false);
+	screen_render(&cub->screen, &cub->map, cub->pos, plane, NULL);
 	if (cub->map_displayed)
 		screen_render_minimap(&cub->screen, &cub->map, cub->pos);
 	screen_blit(&cub->screen, &cub->gfx);

@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:22:58 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/02 14:01:02 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:06:05 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,11 @@ typedef struct s_clip
 }	t_clip;
 
 bool		clip_is_clipped(t_clip *clip, int x, int y);
+
+typedef struct s_map_raycast_args
+{
+	t_clip	*clip;
+	bool	recursive;
+}	t_map_raycast_args;
 
 #endif

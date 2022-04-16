@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:33:22 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 14:41:08 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 16:43:06 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	map_create(t_map *map, t_gfx *gfx)
 	index = 0;
 	while (index < CUB_PORTAL_COUNT)
 	{
-		// Put the portals into negative space
 		map->portals[index].x = -1;
 		map->portals[index].y = -1;
 		map->portals[index].dir = D_SOUTH;
