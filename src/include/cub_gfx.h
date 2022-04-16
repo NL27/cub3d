@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 17:14:31 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:44:56 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			gfx_run(t_gfx *gfx);
 
 typedef struct s_screen
 {
-	void	*mlx;  // TODO: Maybe remove this
+	void	*mlx;
 	void	*image;
 	int		height;
 	int		width;
@@ -58,6 +58,17 @@ typedef struct s_screen
 	int		bpp;
 	int		endian;
 }	t_screen;
+
+typedef struct s_screen	t_tex;
+
+typedef struct s_screen_draw_slice_trick
+{
+	int		x;
+	int		yup;
+	int		ydown;
+	t_fl	x_fact;
+	t_tex	*tex;
+}	t_screen_draw_slice_trick;
 
 void			screen_create(t_screen *screen, t_gfx *gfx,
 					int width, int height);
@@ -78,8 +89,6 @@ void			screen_render(t_screen *screen, t_map *map,
 					t_vec2_and_angle pos, t_screen_render_args args);
 void			screen_render_minimap(t_screen *screen,
 					t_map *map, t_vec2_and_angle pos);
-
-typedef struct s_screen	t_tex;
 
 t_rgb			tex_at(t_tex *tex, t_fl x, t_fl y);
 

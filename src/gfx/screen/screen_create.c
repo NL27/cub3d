@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:29:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 15:00:31 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:30:53 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	screen_create_from_image(t_screen *screen, t_gfx *gfx, char *path)
 	// TODO: Handle NULL
 	screen->pixel_base = mlx_get_data_addr(screen->image, &screen->bpp,
 			&screen->line_len, &screen->endian);
-	// TODO: mlx_xpx_file_to_image(screen->mlx, path, screen->width, screen->height);
 }
 
 void	screen_create(t_screen *screen, t_gfx *gfx, int width, int height)

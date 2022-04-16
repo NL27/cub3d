@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 17:05:45 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:18:57 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		map_get_height(t_map *map);
 t_block	map_at(t_map *map, int x, int y);
 void	map_put(t_map *map, int x, int y, t_block block);
 
-t_tex	*map_tex_at(t_map *map, int x, int y,
+t_tex	*map_tex_at(t_map *map, t_vec2i at,
 			enum e_direction dir, bool recursive);
 void	map_set_color(t_map *map, unsigned int number, t_rgb color);
 t_rgb	map_get_color(t_map *map, unsigned int number);
