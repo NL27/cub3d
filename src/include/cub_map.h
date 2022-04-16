@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 18:03:44 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 18:14:53 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_map_portal_vars
 	t_fl				beta;
 	t_clip				clip;
 	t_map_raycast_args	args;
+	unsigned int		next_index;
 }	t_map_portal_vars;
 
 typedef struct s_map_portal_args

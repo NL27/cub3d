@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 18:05:32 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 18:21:23 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,33 @@ t_vec2	vec_rotate(t_vec2 v, t_fl alpha)
 	return (result);
 }
 
+void	map_render_portal_trick(t_map *map, t_map_portal_vars *v,
+	t_map_portal_args *p, t_vec2_and_angle *view)
+{
+	v->beta = direction_as_angle(map->portals[p->index].dir)
+		- direction_as_angle(map->portals[v->next_index].dir) + M_PI;
+	v->dist.x = (view->vec.x - (map->portals[p->index].x + 0.5f));
+	v->dist.y = (view->vec.y - (map->portals[p->index].y + 0.5f));
+	v->target = vec_rotate(v->dist, v->alpha);
+	v->render_pos = vec_rotate(v->dist, v->beta);
+	v->mov.x = -0.5f;
+	v->mov.y = 0;
+	v->mov = vec_rotate(v->mov,
+			-direction_as_angle(map->portals[v->next_index].dir));
+	v->pos.vec.x = map->portals[v->next_index].x
+		- v->mov.x + 0.5f + v->render_pos.x;
+	v->pos.vec.y = map->portals[v->next_index].y
+		- v->mov.y + 0.5f + v->render_pos.y;
+	v->pos.angle = direction_as_angle(map->portals[v->next_index].dir);
+	v->clip.direction = map->portals[v->next_index].dir;
+}
+
 void	map_render_portal(t_map *map, t_screen *screen,
 		t_vec2_and_angle view, t_map_portal_args p)
 {
-	unsigned int		next_index;
 	t_map_portal_vars	v;
 
-	next_index = (p.index + 1) % CUB_PORTAL_COUNT;
+	v.next_index = (p.index + 1) % CUB_PORTAL_COUNT;
 	if (map->portals[p.index].dir == D_NORTH
 		|| map->portals[p.index].dir == D_SOUTH)
 		v.alpha = ((3 / 4.0f) * M_PI * 2.0f)
@@ -35,25 +55,13 @@ void	map_render_portal(t_map *map, t_screen *screen,
 	else
 		v.alpha = ((1 / 4.0f) * M_PI * 2.0f)
 			- direction_as_angle(map->portals[p.index].dir);
-	v.beta = direction_as_angle(map->portals[p.index].dir)
-		- direction_as_angle(map->portals[next_index].dir) + M_PI;
-	v.dist.x = (view.vec.x - (map->portals[p.index].x + 0.5f));
-	v.dist.y = (view.vec.y - (map->portals[p.index].y + 0.5f));
-	v.target = vec_rotate(v.dist, v.alpha);
-	v.render_pos = vec_rotate(v.dist, v.beta);
-	v.mov.x = -0.5f;
-	v.mov.y = 0;
-	v.mov = vec_rotate(v.mov, -direction_as_angle(map->portals[next_index].dir));
-	v.pos.vec.x = map->portals[next_index].x - v.mov.x + 0.5f + v.render_pos.x;
-	v.pos.vec.y = map->portals[next_index].y - v.mov.y + 0.5f + v.render_pos.y;
-	v.pos.angle = direction_as_angle(map->portals[next_index].dir);
-	v.clip.direction = map->portals[next_index].dir;
-	if (map->portals[next_index].dir == D_NORTH
-		|| map->portals[next_index].dir == D_SOUTH)
-		v.clip.limit = map->portals[next_index].y;
-	else if (map->portals[next_index].dir == D_EAST
-		|| map->portals[next_index].dir == D_WEST)
-		v.clip.limit = map->portals[next_index].x;
+	map_render_portal_trick(map, &v, &p, &view);
+	if (map->portals[v.next_index].dir == D_NORTH
+		|| map->portals[v.next_index].dir == D_SOUTH)
+		v.clip.limit = map->portals[v.next_index].y;
+	else if (map->portals[v.next_index].dir == D_EAST
+		|| map->portals[v.next_index].dir == D_WEST)
+		v.clip.limit = map->portals[v.next_index].x;
 	v.args.clip = &v.clip;
 	v.args.recursive = p.recursive;
 	screen_render(screen, map, v.pos,
