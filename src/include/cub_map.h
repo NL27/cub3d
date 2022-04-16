@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 17:18:57 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 18:03:44 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,24 @@ bool	map_validate(t_map *map);
 bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit,
 			t_map_raycast_args *opt_args);
 void	map_render_portals(t_map *map, t_vec2_and_angle player, bool recursive);
+
+typedef struct s_map_portal_vars
+{
+	t_vec2_and_angle	pos;
+	t_vec2				dist;
+	t_vec2				target;
+	t_vec2				render_pos;
+	t_vec2				mov;
+	t_fl				alpha;
+	t_fl				beta;
+	t_clip				clip;
+	t_map_raycast_args	args;
+}	t_map_portal_vars;
+
+typedef struct s_map_portal_args
+{
+	unsigned int	index;
+	bool			recursive;
+}	t_map_portal_args;
 
 #endif
