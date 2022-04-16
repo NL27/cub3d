@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 17:08:28 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:14:31 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ void			screen_draw_rect(t_screen *screen, t_vec2i pos,
 void			screen_blit(t_screen *screen, t_gfx *gfx);
 
 void			screen_render(t_screen *screen, t_map *map,
-					t_vec2_and_angle pos, t_vec2 plane_dist,
-					t_map_raycast_args *args);
+					t_vec2_and_angle pos, t_screen_render_args args);
 void			screen_render_minimap(t_screen *screen,
 					t_map *map, t_vec2_and_angle pos);
 

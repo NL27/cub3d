@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:27:15 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/16 17:08:36 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:15:38 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	cub_tick(t_cub *cub)
 	map_render_portals(&cub->map, cub->pos, false);
 	plane.x = 0;
 	plane.y = 1;
-	screen_render(&cub->screen, &cub->map, cub->pos, plane, NULL);
+	screen_render(&cub->screen, &cub->map, cub->pos,
+		(struct s_screen_render_args){plane, NULL});
 	if (cub->map_displayed)
 		screen_render_minimap(&cub->screen, &cub->map, cub->pos);
 	screen_blit(&cub->screen, &cub->gfx);

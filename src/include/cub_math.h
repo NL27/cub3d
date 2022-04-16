@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:22:58 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 17:06:05 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:14:04 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,11 @@ typedef struct s_map_raycast_args
 	t_clip	*clip;
 	bool	recursive;
 }	t_map_raycast_args;
+
+typedef struct s_screen_render_args
+{
+	t_vec2				plane_dist;
+	t_map_raycast_args	*map_args;
+}	t_screen_render_args;
 
 #endif

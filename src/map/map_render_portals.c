@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 17:09:28 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:16:51 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	map_render_portal(t_map *map, t_screen *screen,
 		clip.limit = map->portals[next_index].x;
 	args.clip = &clip;
 	args.recursive = recursive;
-	screen_render(screen, map, pos, target, &args);
+	screen_render(screen, map, pos,
+		(struct s_screen_render_args){target, &args});
 }
 
 void	map_render_portals(t_map *map, t_vec2_and_angle player, bool recursive)
