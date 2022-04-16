@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:27:15 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/16 17:15:38 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:57:13 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,22 @@ static bool	angle_match(t_fl a1, t_fl a2)
 	return (fabs(atan2(sin(a1 - a2), cos(a1 - a2))) < (M_PI / 4.0f));
 }
 
-static void	move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
+static void	move_trick1(t_fl x_dir, t_fl y_dir, int *dx, int *dy)
 {
-	int	dx;
-	int	dy;
+	if (x_dir < 0)
+		*dx = -1;
+	else
+		*dx = 1;
+	if (y_dir < 0)
+		*dy = -1;
+	else
+		*dy = 1;
+}
+
+static void	move_trick2(t_map *map, t_vec2_and_angle *pos, int dx, int dy)
+{
 	int	c;
 
-	if (x_dir < 0)
-		dx = -1;
-	else
-		dx = 1;
-	if (y_dir < 0)
-		dy = -1;
-	else
-		dy = 1;
 	c = 0;
 	while (c < CUB_PORTAL_COUNT)
 	{
@@ -49,6 +51,15 @@ static void	move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
 		}
 		c++;
 	}
+}
+
+static void	move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
+{
+	int	dx;
+	int	dy;
+
+	move_trick1(x_dir, y_dir, &dx, &dy);
+	move_trick2(map, pos, dx, dy);
 	if (!block_is_solid(map_at(map,
 				(int)(pos->vec.x + 0.1 * dx), (int)pos->vec.y)))
 		pos->vec.x += x_dir;
@@ -57,12 +68,8 @@ static void	move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
 		pos->vec.y += y_dir;
 }
 
-void	cub_tick(t_cub *cub)
+static void	cub_tick_trick_on_track(t_cub *cub, t_fl speed)
 {
-	t_vec2				plane;
-	t_fl				speed;
-
-	speed = 2;
 	if (cub->keys.w || cub->keys.up)
 		move(&cub->map, &cub->pos, cos(cub->pos.angle) * 0.02 * speed,
 			-sin(cub->pos.angle) * 0.02 * speed);
@@ -79,6 +86,15 @@ void	cub_tick(t_cub *cub)
 		cub->pos.angle += 0.02 * speed;
 	if (cub->keys.right)
 		cub->pos.angle -= 0.02 * speed;
+}
+
+void	cub_tick(t_cub *cub)
+{
+	t_vec2				plane;
+	t_fl				speed;
+
+	speed = 2;
+	cub_tick_trick_on_track(cub, speed);
 	map_render_portals(&cub->map, cub->pos, true);
 	map_render_portals(&cub->map, cub->pos, false);
 	plane.x = 0;

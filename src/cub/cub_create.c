@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 14:22:06 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/16 14:22:09 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 17:50:11 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,4 @@ void	cub_create(t_cub *cub)
 	map_create(&cub->map, &cub->gfx);
 	gfx_set_tick_function(&cub->gfx, (void *) cub_tick, cub);
 	gfx_keys(&cub->gfx, (void *) cub_keydown, (void *) cub_keyup, cub);
-	// if (cub->should_exit)
-	// 	cub_destroy(cub);
 }
