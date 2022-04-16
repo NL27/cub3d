@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:04:15 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 14:32:10 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 16:24:12 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	parser_body_trick(t_map *map, int *x, int *y, t_direction d)
 bool	parser_body_trick2(t_parser *parser, int *x, int *y)
 {
 	if (reader_peeks(parser->reader, "N"))
-		parser_body_trick(parser->map, &x, &y, D_NORTH);
+		parser_body_trick(parser->map, x, y, D_NORTH);
 	else if (reader_peeks(parser->reader, "S"))
-		parser_body_trick(parser->map, &x, &y, D_SOUTH);
+		parser_body_trick(parser->map, x, y, D_SOUTH);
 	else if (reader_peeks(parser->reader, "E"))
-		parser_body_trick(parser->map, &x, &y, D_EAST);
+		parser_body_trick(parser->map, x, y, D_EAST);
 	else if (reader_peeks(parser->reader, "W"))
-		parser_body_trick(parser->map, &x, &y, D_WEST);
+		parser_body_trick(parser->map, x, y, D_WEST);
 	else
 		return (false);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:22:33 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/16 15:22:34 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 16:35:23 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	cub_keyup(int key, t_cub *cub)
 	if (key == 14)
 		cub_shoot_portal(cub);
 	if (key == 53)
-		cub->should_exit = true;
+	{
+		cub_destroy(cub);
+		exit(0);
+	}
+		// cub->should_exit = true;
 		// cub_exit(cub);
 }
