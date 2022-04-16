@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stringbuilder.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:23:37 by enijakow          #+#    #+#             */
-/*   Updated: 2022/03/17 14:48:43 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/16 14:24:57 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ typedef struct s_stringbuilder
 	unsigned int	write_head;
 	unsigned int	buffer_size;
 	char			*buffer;
-} t_stringbuilder;
+}	t_stringbuilder;
 
 void	stringbuilder_create(t_stringbuilder *sb);
 void	stringbuilder_destroy(t_stringbuilder *sb);

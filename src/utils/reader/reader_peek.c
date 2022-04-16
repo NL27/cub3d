@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:04:43 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/07 16:23:01 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 14:22:57 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ bool	reader_peekc(t_reader *reader, char c)
 
 bool	reader_peeks(t_reader *reader, char *prefix)
 {
-	char *tmp;
-	
+	char	*tmp;
+
 	tmp = *reader;
 	while (*prefix != '\0')
 	{

@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 17:12:37 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 15:27:51 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	parse_config(char *configuration, t_gfx *gfx, t_map *map)
 	t_reader	reader;
 	t_parser	parser;
 	bool		value;
-	
+
 	reader_create_on_string(&reader, configuration);
 	parser_create(&parser, gfx, map, &reader);
 	value = parser_parse_config(&parser);
@@ -43,7 +43,8 @@ void	cub_main(char *config_file)
 	else
 	{
 		cub_create(&cub);
-		if (parse_config(configuration, &cub.gfx, &cub.map) && map_validate(&cub.map))
+		if (parse_config(configuration, &cub.gfx, &cub.map)
+			&& map_validate(&cub.map))
 		{
 			cub.pos = cub.map.spawn;
 			gfx_run(&cub.gfx);
@@ -55,7 +56,7 @@ void	cub_main(char *config_file)
 	}
 }
 
-int		main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	if (argc == 2)
 		cub_main(argv[1]);

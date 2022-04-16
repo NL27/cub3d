@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 14:41:58 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/07 16:25:57 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 14:23:15 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	reader_read_until_newline(t_reader *reader, char **str)
 {
 	char			c;
 	t_stringbuilder	sb;
-	
+
 	stringbuilder_create(&sb);
 	while (!reader_check_newline(reader))
 	{

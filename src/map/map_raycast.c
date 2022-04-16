@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   map_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:02:13 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:37:07 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/16 14:45:54 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub_map.h"
 #include "map_internal.h"
 
-static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos, t_clip *clip, bool recursive)
+static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos,
+		t_clip *clip, bool recursive)
 {
 	vars->recursive = recursive;
 	vars->clip = clip;
@@ -33,7 +34,8 @@ static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos, t_clip *clip,
 	else
 	{
 		vars->step_x = 1;
-		vars->side_dist_x = (vars->x_pos + 1.0f - pos.vec.x) * vars->delta_dist_x;
+		vars->side_dist_x = (vars->x_pos + 1.0f
+				- pos.vec.x) * vars->delta_dist_x;
 	}
 	if (vars->ray_dir_y < 0)
 	{
@@ -43,7 +45,8 @@ static void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos, t_clip *clip,
 	else
 	{
 		vars->step_y = 1;
-		vars->side_dist_y = (vars->y_pos + 1.0f - pos.vec.y) * vars->delta_dist_y;
+		vars->side_dist_y = (vars->y_pos + 1.0f
+				- pos.vec.y) * vars->delta_dist_y;
 	}
 }
 
@@ -56,10 +59,11 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 {
 	bool	side;
 	int		steps;
-	
+
 	side = false;
 	steps = 0;
-	while (!(is_hit(map_at(map, vars.x_pos, vars.y_pos)) && !clip_is_clipped(vars.clip, vars.x_pos, vars.y_pos)) && steps++ < 50)
+	while (!(is_hit(map_at(map, vars.x_pos, vars.y_pos)) && !clip_is_clipped(
+				vars.clip, vars.x_pos, vars.y_pos)) && steps++ < 50)
 	{
 		if (vars.side_dist_x < vars.side_dist_y)
 		{
@@ -102,11 +106,13 @@ static bool	map_raycast_core(t_map *map, t_hit *hit, t_rayvars vars)
 	}
 	hit->hit_block_x = vars.x_pos;
 	hit->hit_block_y = vars.y_pos;
-	hit->tex = map_tex_at(map, hit->hit_block_x, hit->hit_block_y, hit->direction, vars.recursive);
+	hit->tex = map_tex_at(map, hit->hit_block_x, hit->hit_block_y,
+			hit->direction, vars.recursive);
 	return (true);
 }
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_clip *clip, bool recursive)
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit,
+		t_clip *clip, bool recursive)
 {
 	t_rayvars	vars;
 

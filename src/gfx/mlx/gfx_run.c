@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gfx_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:46:30 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 14:46:50 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:21:39 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	gfx_run(t_gfx *gfx)
 {
-    mlx_loop(gfx->mlx);
+	mlx_loop(gfx->mlx);
 }

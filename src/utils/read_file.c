@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:52:16 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 17:00:51 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 14:25:25 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,6 @@
 
 #include "utils.h"
 #include "stringbuilder/stringbuilder.h"
-
-struct	s_trick
-{
-	ssize_t		bytes_read;
-	ssize_t		current_byte;
-};
 
 char	*utils_read_file(char *path)
 {

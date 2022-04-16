@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_render_portals.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:27:10 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:47:18 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/16 14:48:01 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_vec2	vec_rotate(t_vec2 v, t_fl alpha)
 
 	result.x = v.x * cos(alpha) - v.y * sin(alpha);
 	result.y = v.x * sin(alpha) + v.y * cos(alpha);
-
 	return (result);
 }
 
-void	map_render_portal(t_map *map, t_screen* screen, t_vec2_and_angle view, unsigned int index, bool recursive)
+void	map_render_portal(t_map *map, t_screen *screen,
+		t_vec2_and_angle view, unsigned int index, bool recursive)
 {
 	unsigned int		next_index;
 	t_vec2_and_angle	pos;
@@ -35,11 +35,15 @@ void	map_render_portal(t_map *map, t_screen* screen, t_vec2_and_angle view, unsi
 	t_clip				clip;
 
 	next_index = (index + 1) % CUB_PORTAL_COUNT;
-	if (map->portals[index].dir == D_NORTH || map->portals[index].dir == D_SOUTH)
-		alpha = ((3 / 4.0f) * M_PI * 2.0f) - direction_as_angle(map->portals[index].dir);
+	if (map->portals[index].dir == D_NORTH
+		|| map->portals[index].dir == D_SOUTH)
+		alpha = ((3 / 4.0f) * M_PI * 2.0f)
+			- direction_as_angle(map->portals[index].dir);
 	else
-		alpha = ((1 / 4.0f) * M_PI * 2.0f) - direction_as_angle(map->portals[index].dir);
-	beta = direction_as_angle(map->portals[index].dir) - direction_as_angle(map->portals[next_index].dir) + M_PI;
+		alpha = ((1 / 4.0f) * M_PI * 2.0f)
+			- direction_as_angle(map->portals[index].dir);
+	beta = direction_as_angle(map->portals[index].dir)
+		- direction_as_angle(map->portals[next_index].dir) + M_PI;
 	dist.x = (view.vec.x - (map->portals[index].x + 0.5f));
 	dist.y = (view.vec.y - (map->portals[index].y + 0.5f));
 	target = vec_rotate(dist, alpha);
@@ -51,9 +55,11 @@ void	map_render_portal(t_map *map, t_screen* screen, t_vec2_and_angle view, unsi
 	pos.vec.y = map->portals[next_index].y - mov.y + 0.5f + render_pos.y;
 	pos.angle = direction_as_angle(map->portals[next_index].dir);
 	clip.direction = map->portals[next_index].dir;
-	if (map->portals[next_index].dir == D_NORTH || map->portals[next_index].dir == D_SOUTH)
+	if (map->portals[next_index].dir == D_NORTH
+		|| map->portals[next_index].dir == D_SOUTH)
 		clip.limit = map->portals[next_index].y;
-	else if (map->portals[next_index].dir == D_EAST || map->portals[next_index].dir == D_WEST)
+	else if (map->portals[next_index].dir == D_EAST
+		|| map->portals[next_index].dir == D_WEST)
 		clip.limit = map->portals[next_index].x;
 	screen_render(screen, map, pos, &clip, target, recursive);
 }
@@ -62,7 +68,7 @@ void	map_render_portals(t_map *map, t_vec2_and_angle player, bool recursive)
 {
 	unsigned int		index;
 	t_vec2_and_angle	portal_pos;
-	
+
 	(void) player;
 	index = 0;
 	while (index < CUB_PORTAL_COUNT)
@@ -70,12 +76,16 @@ void	map_render_portals(t_map *map, t_vec2_and_angle player, bool recursive)
 		if (recursive)
 		{
 			portal_pos.angle = -direction_as_angle(map->portals[index].dir);
-			portal_pos.vec.x = map->portals[index].x + cos(portal_pos.angle) * 2 + 0.5f;
-			portal_pos.vec.y = map->portals[index].y + sin(portal_pos.angle) * 2 + 0.5f;
-			map_render_portal(map, &map->portals[index].screens[recursive], portal_pos, index, !recursive);
+			portal_pos.vec.x = map->portals[index].x
+				+ cos(portal_pos.angle) * 2 + 0.5f;
+			portal_pos.vec.y = map->portals[index].y
+				+ sin(portal_pos.angle) * 2 + 0.5f;
+			map_render_portal(map, &map->portals[index].screens[recursive],
+				portal_pos, index, !recursive);
 		}
 		else
-			map_render_portal(map, &map->portals[index].screens[recursive], player, index, !recursive);
+			map_render_portal(map, &map->portals[index].screens[recursive],
+				player, index, !recursive);
 		index++;
 	}
 }

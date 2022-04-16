@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:33:22 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 17:10:15 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 14:41:08 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	map_create(t_map *map, t_gfx *gfx)
 		map->portals[index].x = -1;
 		map->portals[index].y = -1;
 		map->portals[index].dir = D_SOUTH;
-		screen_create(&map->portals[index].screens[0], gfx, 64*5, 64*5);
-		screen_create(&map->portals[index].screens[1], gfx, 64*5, 64*5);
+		screen_create(&map->portals[index].screens[0], gfx, 64 * 5, 64 * 5);
+		screen_create(&map->portals[index].screens[1], gfx, 64 * 5, 64 * 5);
 		index++;
 	}
 }

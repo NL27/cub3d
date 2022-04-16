@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/07 17:09:32 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/16 14:50:29 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ bool	block_is_solid(t_block block);
 
 typedef struct s_portal
 {
-	int	x;
-	int	y;
+	int				x;
+	int				y;
 	t_direction		dir;
 	t_screen		screens[2];
 }	t_portal;
@@ -58,7 +58,6 @@ typedef struct s_hit
 	t_direction	direction;
 }	t_hit;
 
-
 bool	map_check_inbounds(t_map *map, int x, int y);
 bool	map_resize(t_map *map, int w, int h);
 
@@ -71,14 +70,16 @@ int		map_get_height(t_map *map);
 t_block	map_at(t_map *map, int x, int y);
 void	map_put(t_map *map, int x, int y, t_block block);
 
-t_tex	*map_tex_at(t_map *map, int x, int y, enum e_direction dir, bool recursive);
+t_tex	*map_tex_at(t_map *map, int x, int y,
+			enum e_direction dir, bool recursive);
 void	map_set_color(t_map *map, unsigned int number, t_rgb color);
 t_rgb	map_get_color(t_map *map, unsigned int number);
 
 void	map_set_spawn(t_map *map, int x, int y, t_direction dir);
 bool	map_validate(t_map *map);
 
-bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit, t_clip *clip, bool recursive);
+bool	map_raycast(t_map *map, t_vec2_and_angle pos, t_hit *hit,
+			t_clip *clip, bool recursive);
 void	map_render_portals(t_map *map, t_vec2_and_angle player, bool recursive);
 
 #endif
