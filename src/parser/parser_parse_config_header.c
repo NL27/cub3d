@@ -22,12 +22,17 @@ void	parser_parse_texture(t_parser *parser, t_tex **texture)
 	path = NULL;
 	if (reader_read_until_newline(parser->reader, &path))
 	{
-		// TODO, FIXME, XXX: What if the texture is to be parsed twice? -> Leak!
+		if (*texture != NULL)
+		{
+			screen_destroy(*texture);
+			free(*texture);
+			*texture = NULL;
+		}
 		screen = malloc(sizeof(t_screen));
 		if (screen != NULL)
 		{
-			screen_create_from_image(screen, parser->gfx, path);
-			*texture = screen;
+			if (screen_create_from_image(screen, parser->gfx, path))
+				*texture = screen;
 		}
 	}
 	if (path != NULL)

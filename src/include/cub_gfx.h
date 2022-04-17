@@ -72,7 +72,7 @@ typedef struct s_screen_draw_slice_trick
 
 void			screen_create(t_screen *screen, t_gfx *gfx,
 					int width, int height);
-void			screen_create_from_image(t_screen *screen,
+bool			screen_create_from_image(t_screen *screen,
 					t_gfx *gfx, char *path);
 void			screen_destroy(t_screen *screen);
 
