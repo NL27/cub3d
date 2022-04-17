@@ -37,6 +37,11 @@ void	cub_main(char *config_file)
 	char	*configuration;
 	t_cub	cub;
 
+	if (!string_ends_with(config_file, ".cub"))
+	{
+		printf("Not a .cub file!\n");
+		return ;
+	}
 	configuration = utils_read_file(config_file);
 	if (configuration == NULL)
 		printf("File not found!\n");

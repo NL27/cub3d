@@ -14,6 +14,7 @@
 # define UTILS_H
 
 # include <stdlib.h>
+# include <stdbool.h>
 
 struct	s_trick
 {
@@ -23,5 +24,6 @@ struct	s_trick
 
 void	utils_memcpy(void *dst, void *src, size_t size);
 char	*utils_read_file(char *path);
+bool	string_ends_with(const char *str, const char *end);
 
 #endif

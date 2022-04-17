@@ -80,6 +80,7 @@ parser/parser_parse_config_header.c \
 parser/parser_parse_rgb.c \
 utils/memcpy.c \
 utils/read_file.c \
+utils/string_ends_with.c \
 utils/reader/reader.c \
 utils/reader/reader_check_empty_line.c \
 utils/reader/reader_check_newline.c \
