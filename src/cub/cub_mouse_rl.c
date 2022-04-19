@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 19:28:45 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/18 17:49:51 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 12:12:08 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cub_mouse_rl(int x, int y, t_cub *cub)
 {
-	printf("X %d\n", x);
+	// printf("X %d\n", x);
 	(void) y;
 	cub->mouse.old_x = x;
 	mlx_mouse_get_pos(cub->gfx.window, &cub->mouse.new_x, &cub->mouse.new_y); //

@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 15:27:51 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 13:44:40 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	cub_main(char *config_file)
 
 	if (!string_ends_with(config_file, ".cub"))
 	{
-		printf("Not a .cub file!\n");
+		printf("Error\nNot a .cub file!\n");
 		return ;
 	}
 	configuration = utils_read_file(config_file);
 	if (configuration == NULL)
-		printf("File not found!\n");
+		printf("Error\nFile not found!\n");
 	else
 	{
 		cub_create(&cub);
@@ -55,8 +55,7 @@ void	cub_main(char *config_file)
 			gfx_run(&cub.gfx);
 		}
 		else
-			// give back an error
-			printf("Wrong file input!\n");
+			printf("Error\nWrong file input!\n");
 		cub_destroy(&cub);
 	}
 }
@@ -67,7 +66,7 @@ int	main(int argc, char *argv[])
 		cub_main(argv[1]);
 	else
 	{
-		printf("Error: Arguments!\n");
+		printf("Error\nArguments!\n");
 	}
 	return (0);
 }

@@ -6,11 +6,17 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 14:22:06 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/19 11:51:58 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 13:50:08 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
+
+void	cub_exit(t_cub *cub)
+{
+	cub_destroy(cub);
+	exit(0);
+}
 
 void	keys_create(struct s_keys *keys)
 {
@@ -47,4 +53,5 @@ void	cub_create(t_cub *cub)
 	gfx_keys(&cub->gfx, (void *) cub_keydown, (void *) cub_keyup, cub);
 	mlx_mouse_get_pos(cub->gfx.window, &cub->mouse.old_x, &cub->mouse.old_y); //
 	mlx_hook(cub->gfx.window, 6, 0, (int (*)()) cub_mouse_rl, cub); //
+	mlx_hook(cub->gfx.window, 17, 0, (void *) cub_exit, cub);
 }

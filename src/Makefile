@@ -6,7 +6,7 @@
 #    By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/19 11:56:57 by nlenoch          ###   ########.fr        #
+#    Updated: 2022/04/19 13:51:25 by nlenoch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,6 +105,8 @@ $(EXECUTABLE): $(OBJECTS) $(HEADERS)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LDFLAGS) -o $(EXECUTABLE)
 
 all: $(EXECUTABLE)
+
+bonus: all
 
 .phony: clean
 clean:

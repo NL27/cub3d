@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:03:30 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 14:35:09 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 13:39:08 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,22 @@ void	parser_parse_texture(t_parser *parser, t_tex **texture)
 		free(path);
 }
 
-bool	parser_parse_config_header_trick(t_parser *parser)
+bool	parser_parse_config_header_trick(t_parser *parser, bool *result)
 {
 	t_rgb	rgb;
 
+	*result = true;
 	if (reader_peeks(parser->reader, "F"))
 	{
-		if (parser_parse_rgb(parser, &rgb))
+		*result = parser_parse_rgb(parser, &rgb);
+		if (*result)
 			map_set_color(parser->map, 0, rgb);
-		else
-			return (false);
 	}
 	else if (reader_peeks(parser->reader, "C"))
 	{
-		if (parser_parse_rgb(parser, &rgb))
+		*result = parser_parse_rgb(parser, &rgb);
+		if (*result)
 			map_set_color(parser->map, 1, rgb);
-		else
-			return (false);
 	}
 	else
 		return (false);
@@ -64,6 +63,8 @@ bool	parser_parse_config_header_trick(t_parser *parser)
 
 bool	parser_parse_config_header(t_parser *parser, int *x)
 {
+	bool	result;
+
 	while (reader_has_more(parser->reader))
 	{
 		*x = reader_skip_whitespace(parser->reader);
@@ -77,8 +78,11 @@ bool	parser_parse_config_header(t_parser *parser, int *x)
 			parser_parse_texture(parser, &parser->map->textures[D_WEST]);
 		else if (reader_peeks(parser->reader, "SO"))
 			parser_parse_texture(parser, &parser->map->textures[D_SOUTH]);
-		else if (parser_parse_config_header_trick(parser))
-			;
+		else if (parser_parse_config_header_trick(parser, &result))
+		{
+			if (!result)
+				return (false);
+		}
 		else
 			break ;
 	}

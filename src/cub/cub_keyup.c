@@ -6,11 +6,13 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:22:33 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/16 17:50:20 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 13:50:43 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
+
+void	cub_exit(t_cub *cub);
 
 void	cub_keyup(int key, t_cub *cub)
 {
@@ -35,8 +37,5 @@ void	cub_keyup(int key, t_cub *cub)
 	if (key == 14)
 		cub_shoot_portal(cub);
 	if (key == 53)
-	{
-		cub_destroy(cub);
-		exit(0);
-	}
+		cub_exit(cub);
 }
