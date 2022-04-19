@@ -6,18 +6,23 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:03:30 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/19 13:39:08 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:48:39 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_internal.h"
 
-void	parser_parse_texture(t_parser *parser, t_tex **texture)
+void	parser_parse_texture_trick(bool *result, t_screen *screen)
+{
+	*result = false;
+	free(screen);
+}
+
+bool	parser_parse_texture(t_parser *parser, t_tex **texture, bool *result)
 {
 	char		*path;
 	t_screen	*screen;
 
-	(void) texture;
 	reader_skip_whitespace(parser->reader);
 	path = NULL;
 	if (reader_read_until_newline(parser->reader, &path))
@@ -33,10 +38,13 @@ void	parser_parse_texture(t_parser *parser, t_tex **texture)
 		{
 			if (screen_create_from_image(screen, parser->gfx, path))
 				*texture = screen;
+			else
+				parser_parse_texture_trick(result, screen);
 		}
 	}
 	if (path != NULL)
 		free(path);
+	return (true);
 }
 
 bool	parser_parse_config_header_trick(t_parser *parser, bool *result)
@@ -63,28 +71,28 @@ bool	parser_parse_config_header_trick(t_parser *parser, bool *result)
 
 bool	parser_parse_config_header(t_parser *parser, int *x)
 {
-	bool	result;
+	bool	r;
 
+	r = true;
 	while (reader_has_more(parser->reader))
 	{
 		*x = reader_skip_whitespace(parser->reader);
 		if (reader_peeks(parser->reader, "\n"))
 			;
 		else if (reader_peeks(parser->reader, "EA"))
-			parser_parse_texture(parser, &parser->map->textures[D_EAST]);
+			parser_parse_texture(parser, &parser->map->textures[D_EAST], &r);
 		else if (reader_peeks(parser->reader, "NO"))
-			parser_parse_texture(parser, &parser->map->textures[D_NORTH]);
+			parser_parse_texture(parser, &parser->map->textures[D_NORTH], &r);
 		else if (reader_peeks(parser->reader, "WE"))
-			parser_parse_texture(parser, &parser->map->textures[D_WEST]);
+			parser_parse_texture(parser, &parser->map->textures[D_WEST], &r);
 		else if (reader_peeks(parser->reader, "SO"))
-			parser_parse_texture(parser, &parser->map->textures[D_SOUTH]);
-		else if (parser_parse_config_header_trick(parser, &result))
-		{
-			if (!result)
-				return (false);
-		}
+			parser_parse_texture(parser, &parser->map->textures[D_SOUTH], &r);
+		else if (parser_parse_config_header_trick(parser, &r))
+			;
 		else
 			break ;
+		if (!r)
+			return (false);
 	}
-	return (true);
+	return (r);
 }

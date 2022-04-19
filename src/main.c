@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:10:09 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/19 13:44:40 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 15:13:51 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,29 @@ bool	parse_config(char *configuration, t_gfx *gfx, t_map *map)
 	return (value);
 }
 
+void	cub_load_and_validate(char *configuration)
+{
+	t_cub	cub;
+
+	cub_create(&cub);
+	if (parse_config(configuration, &cub.gfx, &cub.map)
+		&& map_validate(&cub.map))
+	{
+		free(configuration);
+		cub.pos = cub.map.spawn;
+		gfx_run(&cub.gfx);
+	}
+	else
+	{
+		free(configuration);
+		printf("Error\nWrong file input!\n");
+	}
+	cub_destroy(&cub);
+}
+
 void	cub_main(char *config_file)
 {
 	char	*configuration;
-	t_cub	cub;
 
 	if (!string_ends_with(config_file, ".cub"))
 	{
@@ -47,16 +66,7 @@ void	cub_main(char *config_file)
 		printf("Error\nFile not found!\n");
 	else
 	{
-		cub_create(&cub);
-		if (parse_config(configuration, &cub.gfx, &cub.map)
-			&& map_validate(&cub.map))
-		{
-			cub.pos = cub.map.spawn;
-			gfx_run(&cub.gfx);
-		}
-		else
-			printf("Error\nWrong file input!\n");
-		cub_destroy(&cub);
+		cub_load_and_validate(configuration);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 12:17:26 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/19 12:17:27 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:52:22 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ bool	string_ends_with(const char *str, const char *end)
 	unsigned int	i2;
 	unsigned int	i3;
 
+	if (str == NULL || end == NULL)
+		return (false);
 	i1 = 0;
 	while (str[i1] != '\0')
 	{

@@ -1,2 +1,0 @@
-gfx/tex/tex_create.c			-> implement textures to paths
-gfx/tex/tex_destroy.c 			-> implement destruction of textures

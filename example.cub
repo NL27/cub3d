@@ -1,9 +1,9 @@
    F	37       ,111,0
 
-WE ../res/wall.png   
-NO ../res/wall.png
-SO ../res/wall.png
-EA ../res/wall.png      
+WE ../res/bluestone.xpm
+NO ../res/bluestone.xpm
+SO ../res/bluestone.xpm
+EA ../res/bluestone.xpm
 
 
 C	0  ,     0    ,    180
