@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 14:21:08 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/19 14:21:09 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 15:22:03 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	cub_move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir)
 	int	dy;
 
 	move_trick1(x_dir, y_dir, &dx, &dy);
-	move_trick2(map, pos, dx, dy);
+	if (map->portals_placed >= 2)
+		move_trick2(map, pos, dx, dy);
 	if (!block_is_solid(map_at(map,
 				(int)(pos->vec.x + 0.1 * dx), (int)pos->vec.y)))
 		pos->vec.x += x_dir;

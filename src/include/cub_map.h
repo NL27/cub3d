@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:28:55 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 18:14:53 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 15:22:29 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_map
 	t_block				*blocks;
 	t_vec2_and_angle	spawn;
 	unsigned int		spawnpoints_defined;
+	unsigned int		portals_placed;
 	t_portal			portals[CUB_PORTAL_COUNT];
 	t_tex				*textures[D_DIRECTION_COUNT];
 	t_rgb				colors[2];

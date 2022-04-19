@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:33:22 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 16:43:06 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 15:22:45 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	map_create(t_map *map, t_gfx *gfx)
 	map->spawn.vec.x = 1.5;
 	map->spawn.vec.y = 1.5;
 	map->spawn.angle = 0;
+	map->portals_placed = 0;
 	index = 0;
 	while (index < D_DIRECTION_COUNT)
 		map->textures[index++] = NULL;
