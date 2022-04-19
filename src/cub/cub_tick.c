@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:27:15 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/16 17:57:13 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 11:56:16 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,12 @@ static void	cub_tick_trick_on_track(t_cub *cub, t_fl speed)
 			cos(cub->pos.angle) * 0.02 * speed);
 	if (cub->keys.left)
 		cub->pos.angle += 0.02 * speed;
+	if (cub->mouse.left)
+		cub->pos.angle += 0.04 * speed; //
 	if (cub->keys.right)
 		cub->pos.angle -= 0.02 * speed;
+	if (cub->mouse.right)
+		cub->pos.angle -= 0.04 * speed; //
 }
 
 void	cub_tick(t_cub *cub)

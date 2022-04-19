@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:27:03 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 17:44:56 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 11:53:24 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void			gfx_set_tick_function(t_gfx *gfx,
 void			gfx_keys(t_gfx *gfx, void (*press)(int, void*),
 					void (*release)(int, void*), void *param);
 void			gfx_run(t_gfx *gfx);
+void			gfx_mouse(t_gfx *gfx, void (*mouse_rl)(int, int, //
+						void*), void *param); //
 
 typedef struct s_screen
 {
