@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:35:08 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/16 17:43:25 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:21:48 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	screen_render(t_screen *screen, t_map *map, t_vec2_and_angle pos,
 						screen_get_width(screen)) - 0.5f), args.plane_dist.y);
 		pos.angle = player_angle + fov_angle;
 		map_raycast(map, pos, &hit, args.map_args);
-		// TODO, FIXME, XXX: hit.dist being zero!
-		hit.dist = hit.dist;
+		if (hit.dist == 0.0f)
+			hit.dist = 0.001f;
 		wall_height = (1 / (hit.dist)) * screen_get_height(screen)
 			/ cos(fov_angle) * args.plane_dist.y;
 		screen_draw_slice(screen, map,

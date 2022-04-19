@@ -6,7 +6,7 @@
 #    By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/19 13:57:52 by nlenoch          ###   ########.fr        #
+#    Updated: 2022/04/19 14:29:26 by nlenoch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ map/map_render_portals.c \
 map/map_resize.c \
 map/map_set_color.c \
 map/map_set_spawn.c \
+map/map_set_rayvars.c \
 map/map_tex_at.c \
 map/map_validate.c \
 parser/parser.c \
@@ -86,6 +87,7 @@ utils/string_ends_with.c \
 utils/reader/reader.c \
 utils/reader/reader_check_empty_line.c \
 utils/reader/reader_check_newline.c \
+utils/reader/reader_core.c \
 utils/reader/reader_peek.c \
 utils/reader/reader_read_int.c \
 utils/reader/reader_read_until_newline.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_internal.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enijakow <enijakow@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:07:43 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/05 18:35:30 by enijakow         ###   ########.fr       */
+/*   Updated: 2022/04/19 14:28:45 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ typedef struct s_rayvars
 	t_fl	delta_dist_x;
 	t_fl	delta_dist_y;
 }	t_rayvars;
+
+bool	is_hit(t_block block);
+void	map_set_rayvars(t_rayvars *vars, t_vec2_and_angle pos,
+			t_clip *clip, bool recursive);
 
 #endif

@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reader.c                                           :+:      :+:    :+:   */
+/*   reader_core.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 14:23:20 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/19 14:23:54 by nlenoch          ###   ########.fr       */
+/*   Created: 2022/04/19 14:23:38 by nlenoch           #+#    #+#             */
+/*   Updated: 2022/04/19 14:24:33 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reader.h"
 
-void	reader_create_on_string(t_reader *reader, char *str)
+bool	reader_has_more(t_reader *reader)
 {
-	*reader = str;
+	return (reader_peek(reader) != '\0');
 }
 
-void	reader_destroy(t_reader *reader)
+void	reader_advance(t_reader *reader)
 {
-	(void) reader;
+	(*reader)++;
+}
+
+char	reader_peek(t_reader *reader)
+{
+	return (**reader);
+}
+
+char	reader_read(t_reader *reader)
+{
+	char	character;
+
+	character = reader_peek(reader);
+	reader_advance(reader);
+	return (character);
 }
