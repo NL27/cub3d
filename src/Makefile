@@ -6,7 +6,7 @@
 #    By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/19 14:29:26 by nlenoch          ###   ########.fr        #
+#    Updated: 2022/04/19 14:30:57 by nlenoch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,6 @@ gfx/screen/screen_put.c \
 gfx/screen/screen_render_minimap.c \
 gfx/screen/screen_render.c \
 gfx/tex/tex_at.c \
-gfx/tex/tex_create.c \
-gfx/tex/tex_destroy.c \
 main.c \
 map/block_is_solid.c \
 map/clip_is_clipped.c \

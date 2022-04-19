@@ -1,9 +1,2 @@
-src/utils/reader/reader.c 		-> too many fcts in file
-src/map/map_raycast.c 			-> too many fcts in file
 gfx/tex/tex_create.c			-> implement textures to paths
 gfx/tex/tex_destroy.c 			-> implement destruction of textures
-gfx/screen/screen_render.c 		-> TODO, FIXME, XXX: hit.dist being zero!
-gfx/mlx/gfx_mouse.c 			-> invalid comment
-cub/cub_create.c				-> invalid comment
-cub/cub_mouse_rl.c				-> invalid comment
-cub/cub_tick.c 					-> too many fcts in file
