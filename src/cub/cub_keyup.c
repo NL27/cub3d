@@ -6,13 +6,20 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:22:33 by nlenoch           #+#    #+#             */
-/*   Updated: 2022/04/19 13:50:43 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:11:18 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
 void	cub_exit(t_cub *cub);
+
+static void	cub_toggle_mouse(t_cub *cub)
+{
+	mlx_mouse_get_pos(cub->gfx.window,
+		&cub->mouse.old_x, &cub->mouse.old_y);
+	cub->mouse_locked = !cub->mouse_locked;
+}
 
 void	cub_keyup(int key, t_cub *cub)
 {
@@ -34,6 +41,8 @@ void	cub_keyup(int key, t_cub *cub)
 		cub->keys.right = false;
 	if (key == 48)
 		cub->map_displayed = !cub->map_displayed;
+	if (key == 46)
+		cub_toggle_mouse(cub);
 	if (key == 14)
 		cub_shoot_portal(cub);
 	if (key == 53)

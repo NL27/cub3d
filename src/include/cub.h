@@ -6,7 +6,7 @@
 /*   By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 14:08:41 by enijakow          #+#    #+#             */
-/*   Updated: 2022/04/19 11:54:15 by nlenoch          ###   ########.fr       */
+/*   Updated: 2022/04/19 14:07:17 by nlenoch          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 typedef struct s_mouse
 {
-	bool	right;
-	bool	left;
 	int		old_x;
 	int		new_x;
 	int		old_y;
@@ -46,9 +44,10 @@ typedef struct s_cub
 	t_map				map;
 	t_vec2_and_angle	pos;
 	t_keys				keys;
-	t_mouse				mouse; //
+	t_mouse				mouse;
 	bool				map_displayed;
 	bool				should_exit;
+	bool				mouse_locked;
 }	t_cub;
 
 void	cub_create(t_cub *cub);
@@ -57,7 +56,7 @@ void	cub_destroy(t_cub *cub);
 void	cub_tick(t_cub *cub);
 void	cub_keyup(int key, t_cub *cub);
 void	cub_keydown(int key, t_cub *cub);
-void	cub_mouse_rl(int x, int y, t_cub *cub); //
+void	cub_mouse_rl(int x, int y, t_cub *cub);
 
 void	cub_shoot_portal(t_cub *cub);
 

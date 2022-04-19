@@ -6,7 +6,7 @@
 #    By: nlenoch <nlenoch@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 14:09:34 by enijakow          #+#    #+#              #
-#    Updated: 2022/04/19 13:51:25 by nlenoch          ###   ########.fr        #
+#    Updated: 2022/04/19 13:57:52 by nlenoch          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ cub/cub_tick.c \
 gfx/mlx/gfx_create.c \
 gfx/mlx/gfx_destroy.c \
 gfx/mlx/gfx_keys.c \
-gfx/mlx/gfx_mouse.c \
 gfx/mlx/gfx_run.c \
 gfx/mlx/gfx_set_tick_function.c \
 gfx/rgb_create.c \
