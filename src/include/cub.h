@@ -59,5 +59,6 @@ void	cub_keydown(int key, t_cub *cub);
 void	cub_mouse_rl(int x, int y, t_cub *cub);
 
 void	cub_shoot_portal(t_cub *cub);
+void	cub_move(t_map *map, t_vec2_and_angle *pos, t_fl x_dir, t_fl y_dir);
 
 #endif
